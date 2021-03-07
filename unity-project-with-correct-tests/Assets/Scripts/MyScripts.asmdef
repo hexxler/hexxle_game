@@ -1,6 +1,6 @@
-﻿{
-	"name": "PlayerLogic",
-	"references": [],
+{
+    "name": "MyScripts",
+    "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

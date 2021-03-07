@@ -1,9 +1,9 @@
 {
-    "name": "PlayMode",
+    "name": "PlayModeTests",
     "references": [
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
-        "PlayerLogic"
+        "MyScripts"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
@@ -16,6 +16,5 @@
     "defineConstraints": [
         "UNITY_INCLUDE_TESTS"
     ],
-    "versionDefines": [],
-    "noEngineReferences": false
+    "versionDefines": []
 }

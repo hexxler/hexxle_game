@@ -1,9 +1,9 @@
 {
-    "name": "EditMode",
+    "name": "EditModeTests",
     "references": [
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
-        "PlayerLogic"
+        "MyScripts"
     ],
     "includePlatforms": [
         "Editor"
@@ -18,6 +18,5 @@
     "defineConstraints": [
         "UNITY_INCLUDE_TESTS"
     ],
-    "versionDefines": [],
-    "noEngineReferences": false
+    "versionDefines": []
 }

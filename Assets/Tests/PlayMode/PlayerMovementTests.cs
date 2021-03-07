@@ -35,25 +35,18 @@ namespace Tests
 
             if (player == null)
             {
-                Debug.Log("Couldnt retrieve player!");
                 Assert.Fail();
                 yield break;
             }
 
-            resetRigidbodyVelocity(player.GetComponent<Rigidbody>());
+            player.GetComponent<Rigidbody>().velocity = Vector3.zero;
             PlayerMovement playerMovement = player.GetComponent<PlayerMovement>();
-            playerMovement.movementForce *= 2;
 
-            debugPosition(player.transform.position);
             var x = player.transform.position.x;
-            Debug.Log("moving player left");
             playerMovement.moveLeft();
-            Debug.Log("Player moved, waiting for movement to stop...");
 
             yield return new WaitForSeconds(2f);
 
-            Debug.Log("rechecking player position");
-            debugPosition(player.transform.position);
             Assert.IsTrue(player.transform.position.x < x);
             
         }
@@ -66,24 +59,18 @@ namespace Tests
 
             if (player == null)
             {
-                Debug.Log("Couldnt retrieve player!");
                 Assert.Fail();
                 yield break;
             }
 
-            resetRigidbodyVelocity(player.GetComponent<Rigidbody>());
+            player.GetComponent<Rigidbody>().velocity = Vector3.zero;
             PlayerMovement playerMovement = player.GetComponent<PlayerMovement>();
 
-            debugPosition(player.transform.position);
             var x = player.transform.position.x;
-            Debug.Log("moving player right");
             playerMovement.moveRight();
-            Debug.Log("Player moved, waiting for movement to stop...");
 
             yield return new WaitForSeconds(2f);
 
-            Debug.Log("rechecking player position");
-            debugPosition(player.transform.position);
             Assert.IsTrue(player.transform.position.x > x);
         }
 
@@ -95,24 +82,18 @@ namespace Tests
 
             if (player == null)
             {
-                Debug.Log("Couldnt retrieve player!");
                 Assert.Fail();
                 yield break;
             }
 
-            resetRigidbodyVelocity(player.GetComponent<Rigidbody>());
+            player.GetComponent<Rigidbody>().velocity = Vector3.zero;
             PlayerMovement playerMovement = player.GetComponent<PlayerMovement>();
 
-            debugPosition(player.transform.position);
             var z = player.transform.position.z;
-            Debug.Log("moving player right");
             playerMovement.moveForward();
-            Debug.Log("Player moved, waiting for movement to stop...");
 
             yield return new WaitForSeconds(2f);
 
-            Debug.Log("rechecking player position");
-            debugPosition(player.transform.position);
             Assert.IsTrue(player.transform.position.z > z);
         }
 
@@ -124,24 +105,18 @@ namespace Tests
 
             if (player == null)
             {
-                Debug.Log("Couldnt retrieve player!");
                 Assert.Fail();
                 yield break;
             }
 
-            resetRigidbodyVelocity(player.GetComponent<Rigidbody>());
+            player.GetComponent<Rigidbody>().velocity = Vector3.zero;
             PlayerMovement playerMovement = player.GetComponent<PlayerMovement>();
 
-            debugPosition(player.transform.position);
             var z = player.transform.position.z;
-            Debug.Log("moving player backwards");
             playerMovement.moveBackwards();
-            Debug.Log("Player moved, waiting for movement to stop...");
 
             yield return new WaitForSeconds(2f);
 
-            Debug.Log("rechecking player position");
-            debugPosition(player.transform.position);
             Assert.IsTrue(player.transform.position.z < z);
         }
 
@@ -153,40 +128,21 @@ namespace Tests
 
             if (player == null)
             {
-                Debug.Log("Couldnt retrieve player!");
                 Assert.Fail();
                 yield break;
             }
 
-            resetRigidbodyVelocity(player.GetComponent<Rigidbody>());
+            player.GetComponent<Rigidbody>().velocity = Vector3.zero;
             PlayerMovement playerMovement = player.GetComponent<PlayerMovement>();
 
-            debugPosition(player.transform.position);
             var y = player.transform.position.y;
-            Debug.Log("making player jump");
             playerMovement.jump();
-            Debug.Log("Player moved, waiting for movement to stop...");
 
             yield return new WaitForSeconds(0.5f);
 
-            Debug.Log("rechecking player position");
-            debugPosition(player.transform.position);
             Assert.IsTrue(player.transform.position.y > y);
         }
 
-
-
-        private void debugPosition(Vector3 position)
-        {
-            Debug.Log("X: " + position.x);
-            Debug.Log("Y: " + position.y);
-            Debug.Log("Z: " + position.y);
-        }
-
-        private void resetRigidbodyVelocity(Rigidbody rigidbody)
-        {
-            rigidbody.velocity = Vector3.zero;
-        }
 
         private GameObject getPlayerObject()
         {

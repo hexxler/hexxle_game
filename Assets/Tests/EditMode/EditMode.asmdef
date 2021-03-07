@@ -3,7 +3,6 @@
     "references": [
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
-        "Scripts",
         "PlayerLogic"
     ],
     "includePlatforms": [

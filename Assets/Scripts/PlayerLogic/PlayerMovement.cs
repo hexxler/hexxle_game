@@ -4,8 +4,8 @@ namespace PlayerLogic
 {
     public class PlayerMovement : MonoBehaviour
     {
-        public float movementForce = 300f;
-        public float jumpForce = 100f;
+        public float movementForce = 500f;
+        public float jumpForce = 300f;
         Vector3 movementDirection;
         // Start is called before the first frame update
         void Start()

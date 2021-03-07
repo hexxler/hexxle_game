@@ -77,7 +77,6 @@ namespace PlayerLogic
         {
             if(!movementDirection.Equals(new Vector3()))
             {
-                Debug.Log("Moving in the direction " + movementDirection.ToString());
                 var xForce = movementDirection.x * movementForce * Time.deltaTime;
                 var yForce = movementDirection.y * jumpForce * Time.deltaTime;
                 var zForce = movementDirection.z * movementForce * Time.deltaTime;

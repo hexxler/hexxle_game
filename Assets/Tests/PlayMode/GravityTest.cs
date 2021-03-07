@@ -34,7 +34,6 @@ namespace Tests
 
             if (player == null)
             {
-                Debug.Log("Couldnt retrieve player!");
                 Assert.Fail();
                 yield break;
             }
@@ -43,24 +42,13 @@ namespace Tests
             PlayerMovement playerMovement = player.GetComponent<PlayerMovement>();
             playerMovement.movementForce *= 2;
             resetRigidbodyVelocity(player.GetComponent<Rigidbody>());
-            debugPosition(player.transform.position);
             var y = player.transform.position.y;
-            Debug.Log("moving player forwards");
             playerMovement.moveForward();
 
             yield return new WaitForSeconds(3f);
 
-            Debug.Log("rechecking player position");
-            debugPosition(player.transform.position);
             Assert.IsTrue(player.transform.position.y < y);
 
-        }
-
-        private void debugPosition(Vector3 position)
-        {
-            Debug.Log("X: " + position.x);
-            Debug.Log("Y: " + position.y);
-            Debug.Log("Z: " + position.y);
         }
 
         private void resetRigidbodyVelocity(Rigidbody rigidbody)

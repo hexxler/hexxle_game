@@ -17,6 +17,9 @@ jobs:
       previous-tag: ${{ steps.previoustag.outputs.tag }}
       new-tag: ${{ steps.bump-vers.outputs.new_tag }}
     steps:
+      - uses: actions/checkout@v2.2.0
+        with:
+          fetch-depth: 0
       - name: 'Get Previous tag'
         id: previoustag
         uses: "WyriHaximus/github-action-get-previous-tag@v1"

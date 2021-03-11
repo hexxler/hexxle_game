@@ -73,8 +73,8 @@ jobs:
       
       - name: "push release tag"
         run: |
-          "git tag ${{ needs.analyze-tags.outputs.new_tag }}"
-          "git push origin main --tags"
+          git tag ${{ needs.analyze-tags.outputs.new_tag }}
+          git push origin main --tags
           
       - name: "Create release and push artifact"
         uses: ncipollo/release-action@v1

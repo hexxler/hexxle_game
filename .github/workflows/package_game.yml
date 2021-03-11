@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: Unity Game-packager
+name: Package Game and create a new release
 
 # Controls when the action will run. 
 on:
@@ -11,7 +11,7 @@ env:
   UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
 
 jobs:
-  buildForAllSupportedPlatforms:
+  buildForAllSupportedPlatformsAndRelease:
     name: Build for ${{ matrix.targetPlatform }}
     runs-on: ubuntu-latest
     strategy:
@@ -26,16 +26,50 @@ jobs:
         with:
           fetch-depth: 0
           lfs: true
+          
+      - name: 'Get Previous tag'
+        uses: "WyriHaximus/github-action-get-previous-tag@v1"
+        
+      - name: 'Get next minor version'
+        uses: "WyriHaximus/github-action-next-semvers@v1"
+        with:
+          version: ${{ steps.previoustag.outputs.tag }}
+          
+      - name: 'Create new milestone'
+        uses: actions-ecosystem/action-push-tag@v1
+        if: ${{ steps.bump-semver.outputs.new_version != null }}
+        with:
+          tag: ${{ steps.bump-semver.outputs.new_version }}
+          message: "${{ steps.bump-semver.outputs.new_version }}:"
+          
       - uses: actions/cache@v2
         with:
           path: Library
           key: Library-${{ matrix.targetPlatform }}
           restore-keys: Library-
+          
       - uses: game-ci/unity-builder@v2
         with:
           targetPlatform: ${{ matrix.targetPlatform }}
           projectPath: ${{ matrix.projectPath }}
+          
       - uses: actions/upload-artifact@v2
         with:
           name: Build-${{ matrix.targetPlatform }}
           path: build/${{ matrix.targetPlatform }}
+      - name: "Download artifacts"
+        uses: actions/download-artifact@v2
+        with:
+          name: "Download game package artifact"
+          
+      - name: "Display file structure for debugging"
+        run: "ls -lah"
+      
+      - name: "Rename releases"
+        run: "mv Build-StandaloneWindows64.zip hexxle_game-${{ steps.bump-semver.outputs.new_version }}.zip"
+        
+      - name: "Upload release artifact"
+        uses: softprops/action-gh-release@v1
+        with:
+          body: "Uploads .zip as a release"
+          files: hexxle_game-${{ steps.bump-semver.outputs.new_version }}.zip

@@ -11,6 +11,23 @@ env:
   UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
 
 jobs:
+  createNewReleaseTag:
+    runs-on: ubuntu-latest
+    outputs:
+      previous-tag: ${{ steps.previoustag.outputs.tag }}
+      new-tag: ${{ steps.bump-vers.outputs.new_tag }}
+    steps:
+      - name: 'Get Previous tag'
+        id: previoustag
+        uses: "WyriHaximus/github-action-get-previous-tag@v1"
+
+      - name: 'Get next minor version'
+        id: bump-vers
+        uses: "WyriHaximus/github-action-next-semvers@v1"
+        with:
+          version: ${{ steps.previoustag.outputs.tag }}
+
+
   buildForAllSupportedPlatformsAndRelease:
     name: Build for ${{ matrix.targetPlatform }}
     runs-on: ubuntu-latest
@@ -21,28 +38,12 @@ jobs:
           - StandaloneWindows64 # Build a Windows 64-bit standalone.
         projectPath:
           - unity-project-with-correct-tests
+    
     steps:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
           lfs: true
-          
-      - name: 'Get Previous tag'
-        id: previoustag
-        uses: "WyriHaximus/github-action-get-previous-tag@v1"
-        
-      - name: 'Get next minor version'
-        id: bump-vers
-        uses: "WyriHaximus/github-action-next-semvers@v1"
-        with:
-          version: ${{ steps.previoustag.outputs.tag }}
-          
-      - name: 'Create new milestone'
-        uses: actions-ecosystem/action-push-tag@v1
-        if: ${{ steps.bump-vers.outputs.new_version != null }}
-        with:
-          tag: ${{ steps.bump-vers.outputs.new_version }}
-          message: "${{ steps.bump-vers.outputs.new_version }}:"
           
       - uses: actions/cache@v2
         with:
@@ -57,7 +58,7 @@ jobs:
           
       - uses: actions/upload-artifact@v2
         with:
-          name: Build-${{ matrix.targetPlatform }}
+          name: hexxle_game-${{ needs.analyze-tags.outputs.new_tag }}-${{ matrix.targetPlatform }}
           path: build/${{ matrix.targetPlatform }}
       - name: "Download artifacts"
         uses: actions/download-artifact@v2
@@ -67,11 +68,13 @@ jobs:
       - name: "Display file structure for debugging"
         run: "ls -lah"
       
-      - name: "Rename releases"
-        run: "mv Build-StandaloneWindows64.zip hexxle_game-${{ steps.bump-semver.outputs.new_version }}.zip"
-        
-      - name: "Upload release artifact"
-        uses: softprops/action-gh-release@v1
+      - name: "push release tag"
+        run: |
+          "git tag ${{ needs.analyze-tags.outputs.new_tag }}"
+          "git push origin main --tags"
+          
+      - name: "Create release and push artifact"
+        uses: ncipollo/release-action@v1
         with:
-          body: "Uploads .zip as a release"
-          files: hexxle_game-${{ steps.bump-semver.outputs.new_version }}.zip
+          artifacts: hexxle_game-${{ needs.analyze-tags.outputs.new_tag }}-${{ matrix.targetPlatform }}
+          token: ${{ secrets.AUTO_RELEASE_TOKEN }}

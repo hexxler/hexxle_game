@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       previous-tag: ${{ steps.previoustag.outputs.tag }}
-      new-tag: ${{ steps.bump-vers.outputs.new_tag }}
+      new-tag: ${{ steps.bump-vers.outputs.patch }}
     steps:
       - uses: actions/checkout@v2.2.0
         with:
@@ -61,23 +61,23 @@ jobs:
           
       - uses: actions/upload-artifact@v2
         with:
-          name: hexxle_game-${{ needs.analyze-tags.outputs.new_tag }}-${{ matrix.targetPlatform }}
+          name: hexxle_game-${{ needs.createNewReleaseTag.outputs.new_tag }}-${{ matrix.targetPlatform }}
           path: build/${{ matrix.targetPlatform }}
       - name: "Download artifacts"
         uses: actions/download-artifact@v2
         with:
-          name: hexxle_game-${{ needs.analyze-tags.outputs.new_tag }}-${{ matrix.targetPlatform }}
+          name: hexxle_game-${{ needs.createNewReleaseTag.outputs.new_tag }}-${{ matrix.targetPlatform }}
           
       - name: "Display file structure for debugging"
         run: "ls -lah"
       
       - name: "push release tag"
         run: |
-          git tag ${{ needs.analyze-tags.outputs.new_tag }}
+          git tag ${{ needs.createNewReleaseTag.outputs.new_tag }}
           git push origin main --tags
           
       - name: "Create release and push artifact"
         uses: ncipollo/release-action@v1
         with:
-          artifacts: hexxle_game-${{ needs.analyze-tags.outputs.new_tag }}-${{ matrix.targetPlatform }}
+          artifacts: hexxle_game-${{ needs.createNewReleaseTag.outputs.new_tag }}-${{ matrix.targetPlatform }}
           token: ${{ secrets.AUTO_RELEASE_TOKEN }}

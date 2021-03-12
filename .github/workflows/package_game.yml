@@ -73,7 +73,9 @@ jobs:
           projectPath: ${{ matrix.projectPath }}
         
       - name: Display filestructure for debugging 🔎
-        run: ls -lah
+        run: |
+          cd build
+          ls -lah
         
       - name: Rename directory ✏️
         run: mv ${{ matrix.targetPlatform }} hexxle_game-${{ matrix.targetPlatform }}-${{ needs.create_new_release_tag.outputs.new-tag }}

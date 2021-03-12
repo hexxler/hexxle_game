@@ -71,7 +71,6 @@ jobs:
         with:
           buildName: hexxle_game-${{ matrix.targetPlatform }}-${{ needs.create_new_release_tag.outputs.new-tag }}
           targetPlatform: ${{ matrix.targetPlatform }}
-          projectPath: ${{ matrix.projectPath }}
         
       - name: Display filestructure for debugging 🔎
         run: |
@@ -83,6 +82,6 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           tag_name: ${{ needs.create_new_release_tag.outputs.new-tag }}
-          files: build/hexxle_game-${{ matrix.targetPlatform }}-${{ needs.create_new_release_tag.outputs.new-tag }}
+          files: build/hexxle_game-${{ matrix.targetPlatform }}-${{ needs.create_new_release_tag.outputs.new-tag }}.zip
         env:
           GITHUB_TOKEN: ${{ secrets.AUTO_RELEASE_TOKEN }}

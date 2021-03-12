@@ -81,10 +81,16 @@ jobs:
           cd ${{ matrix.targetPlatform }}
           ls -lah
       
+      - name: Create a .zip of the build 📁
+        uses: papeloto/action-zip@v1
+        with:
+          files: build/${{ matrix.targetPlatform }}/hexxle_game-${{ matrix.targetPlatform }}-${{ needs.create_new_release_tag.outputs.new-tag }}
+          dest: hexxle_game-${{ matrix.targetPlatform }}-${{ needs.create_new_release_tag.outputs.new-tag }}.zip
+      
       - name: Release game! 🚀
         uses: softprops/action-gh-release@v1
         with:
           tag_name: ${{ needs.create_new_release_tag.outputs.new-tag }}
-          files: build/${{ matrix.targetPlatform }}/hexxle_game-${{ matrix.targetPlatform }}-${{ needs.create_new_release_tag.outputs.new-tag }}.zip
+          files: hexxle_game-${{ matrix.targetPlatform }}-${{ needs.create_new_release_tag.outputs.new-tag }}.zip
         env:
           GITHUB_TOKEN: ${{ secrets.AUTO_RELEASE_TOKEN }}

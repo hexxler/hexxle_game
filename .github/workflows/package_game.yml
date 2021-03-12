@@ -84,7 +84,7 @@ jobs:
       - name: Create a .zip of the build 📁
         run: |
           apt install zip unzip
-          zip -r hexxle_game-${{ matrix.targetPlatform }}-${{ needs.create_new_release_tag.outputs.new-tag }}.zip build/${{ matrix.targetPlatform }}/hexxle_game-${{ matrix.targetPlatform }}-${{ needs.create_new_release_tag.outputs.new-tag }}
+          zip -r hexxle_game-${{ matrix.targetPlatform }}-${{ needs.create_new_release_tag.outputs.new-tag }}.zip build/${{ matrix.targetPlatform }}
           
       - name: Display filestructure for debugging 🔎
         run: |

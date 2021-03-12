@@ -69,6 +69,7 @@ jobs:
       - name: Build game 🎮 📦
         uses: game-ci/unity-builder@v2
         with:
+          buildName: hexxle_game-${{ matrix.targetPlatform }}-${{ needs.create_new_release_tag.outputs.new-tag }}
           targetPlatform: ${{ matrix.targetPlatform }}
           projectPath: ${{ matrix.projectPath }}
         
@@ -77,9 +78,6 @@ jobs:
           ls -lah
           cd build
           ls -lah
-        
-      - name: copy and rename directory ✏️
-        run: cp -R build/${{ matrix.targetPlatform }} build/hexxle_game-${{ matrix.targetPlatform }}-${{ needs.create_new_release_tag.outputs.new-tag }}
       
       - name: Release game! 🚀
         uses: softprops/action-gh-release@v1

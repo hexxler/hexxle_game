@@ -69,8 +69,8 @@ jobs:
       - name: Build game 🎮 📦
         uses: game-ci/unity-builder@v2
         with:
-          name: hexxle_game-${{ matrix.targetPlatform }}-${{ needs.create_new_release_tag.outputs.new-tag }}
-          path: build/${{ matrix.targetPlatform }}
+          buildName: hexxle_game-${{ matrix.targetPlatform }}-${{ needs.create_new_release_tag.outputs.new-tag }}
+          buildsPath: build/${{ matrix.targetPlatform }}
           targetPlatform: ${{ matrix.targetPlatform }}
         
       - name: Display filestructure for debugging 🔎

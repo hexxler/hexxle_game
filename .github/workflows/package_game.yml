@@ -73,15 +73,17 @@ jobs:
           projectPath: ${{ matrix.projectPath }}
         
       - name: Display filestructure for debugging 🔎
-        run: ls -lah
+        run: |
+              cd build
+              ls -lah
         
       - name: Rename file ✏️
-        run: cp build/${{ matrix.targetPlatform }} build/hexxle_game-${{ matrix.targetPlatform }}-${{ needs.create_new_release_tag.outputs.new-tag }}
+        run: mv ${{ matrix.targetPlatform }} hexxle_game-${{ matrix.targetPlatform }}-${{ needs.create_new_release_tag.outputs.new-tag }}
       
       - name: Release game! 🚀
         uses: softprops/action-gh-release@v1
         with:
           tag_name: ${{ needs.create_new_release_tag.outputs.new-tag }}
-          files: build/hexxle_game-${{ matrix.targetPlatform }}-${{ needs.create_new_release_tag.outputs.new-tag }}
+          files: hexxle_game-${{ matrix.targetPlatform }}-${{ needs.create_new_release_tag.outputs.new-tag }}
         env:
           GITHUB_TOKEN: ${{ secrets.AUTO_RELEASE_TOKEN }}

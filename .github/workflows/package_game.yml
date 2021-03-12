@@ -78,7 +78,7 @@ jobs:
               ls -lah
         
       - name: Rename file ✏️
-        run: mv ${{ matrix.targetPlatform }} hexxle_game-${{ matrix.targetPlatform }}-${{ needs.create_new_release_tag.outputs.new-tag }}
+        run: mv -r ${{ matrix.targetPlatform }} hexxle_game-${{ matrix.targetPlatform }}-${{ needs.create_new_release_tag.outputs.new-tag }}
       
       - name: Release game! 🚀
         uses: softprops/action-gh-release@v1

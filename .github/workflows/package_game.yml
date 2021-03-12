@@ -78,8 +78,8 @@ jobs:
           cd build
           ls -lah
         
-      - name: Rename directory ✏️
-        run: mv build/${{ matrix.targetPlatform }} build/hexxle_game-${{ matrix.targetPlatform }}-${{ needs.create_new_release_tag.outputs.new-tag }}
+      - name: copy and rename directory ✏️
+        run: cp -R build/${{ matrix.targetPlatform }} build/hexxle_game-${{ matrix.targetPlatform }}-${{ needs.create_new_release_tag.outputs.new-tag }}
       
       - name: Release game! 🚀
         uses: softprops/action-gh-release@v1

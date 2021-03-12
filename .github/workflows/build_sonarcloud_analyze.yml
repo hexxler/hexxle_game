@@ -46,7 +46,7 @@ jobs:
         run: |
           cd ${{ matrix.projectPath }}
           dotnet new sln
-          ls -l
+          ls
       - name: Build and analyze
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any

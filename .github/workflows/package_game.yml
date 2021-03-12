@@ -11,28 +11,35 @@ env:
   UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
 
 jobs:
-  createNewReleaseTag:
-    runs-on: ubuntu-latest
-    outputs:
-      previous-tag: ${{ steps.previoustag.outputs.tag }}
-      new-tag: ${{ steps.bump-vers.outputs.patch }}
-    steps:
-      - uses: actions/checkout@v2.2.0
-        with:
-          fetch-depth: 0
-      - name: 'Get Previous tag'
-        id: previoustag
-        uses: "WyriHaximus/github-action-get-previous-tag@v1"
+  create_new_release_tag:
+      runs-on: ubuntu-latest
+      outputs:
+        previous-tag: ${{ steps.previoustag.outputs.tag }}
+        new-tag: ${{ steps.semvers.outputs.patch }}
+      steps:
+        - uses: actions/checkout@v2.2.0
+          with:
+            fetch-depth: 0
+        - name: 'Get Previous tag'
+          id: previoustag
+          uses: "WyriHaximus/github-action-get-previous-tag@v1.0.1"
 
-      - name: 'Get next minor version'
-        id: bump-vers
-        uses: "WyriHaximus/github-action-next-semvers@v1"
-        with:
-          version: ${{ steps.previoustag.outputs.tag }}
+        - name: 'Get next minor version'
+          id: semvers
+          uses: "WyriHaximus/github-action-next-semvers@v1"
+          with:
+            version: ${{ steps.previoustag.outputs.tag }}
+            
+        - name: Display old version
+          run: echo ${{ steps.previoustag.outputs.tag }}
+          
+        - name: Display new version
+          run: echo ${{ steps.semvers.outputs.patch }}
 
 
   buildForAllSupportedPlatformsAndRelease:
     name: Build for ${{ matrix.targetPlatform }}
+    needs: create_new_release_tag
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -53,31 +60,28 @@ jobs:
           path: Library
           key: Library-${{ matrix.targetPlatform }}
           restore-keys: Library-
-          
-      - uses: game-ci/unity-builder@v2
+             
+      - name: Display outputs from previous job 🔎
+        run: |
+          echo ${{ needs.create_new_release_tag.outputs.previous-tag }}
+          echo ${{ needs.create_new_release_tag.outputs.new-tag }}
+           
+      - name: Build game 🎮 📦
+        uses: game-ci/unity-builder@v2
         with:
           targetPlatform: ${{ matrix.targetPlatform }}
           projectPath: ${{ matrix.projectPath }}
-          
-      - uses: actions/upload-artifact@v2
-        with:
-          name: hexxle_game-${{ needs.createNewReleaseTag.outputs.new_tag }}-${{ matrix.targetPlatform }}
-          path: build/${{ matrix.targetPlatform }}
-      - name: "Download artifacts"
-        uses: actions/download-artifact@v2
-        with:
-          name: hexxle_game-${{ needs.createNewReleaseTag.outputs.new_tag }}-${{ matrix.targetPlatform }}
-          
-      - name: "Display file structure for debugging"
-        run: "ls -lah"
+        
+      - name: Display filestructure for debugging 🔎
+        run: ls -lah
+        
+      - name: Rename file ✏️
+        run: mv build/${{ matrix.targetPlatform }} hexxle_game-${{ matrix.targetPlatform }}-${{ needs.create_new_release_tag.outputs.new-tag }}
       
-      - name: "push release tag"
-        run: |
-          git tag ${{ needs.createNewReleaseTag.outputs.new_tag }}
-          git push origin main --tags
-          
-      - name: "Create release and push artifact"
-        uses: ncipollo/release-action@v1
+      - name: Release game! 🚀
+        uses: softprops/action-gh-release@v1
         with:
-          artifacts: hexxle_game-${{ needs.createNewReleaseTag.outputs.new_tag }}-${{ matrix.targetPlatform }}
-          token: ${{ secrets.AUTO_RELEASE_TOKEN }}
+          tag_name: ${{ needs.create_new_release_tag.outputs.new-tag }}
+          files: hexxle_game-${{ matrix.targetPlatform }}-${{ needs.create_new_release_tag.outputs.new-tag }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.AUTO_RELEASE_TOKEN }}

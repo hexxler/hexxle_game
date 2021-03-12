@@ -42,6 +42,11 @@ jobs:
         run: |
           New-Item -Path .\.sonar\scanner -ItemType Directory
           dotnet tool update dotnet-sonarscanner --tool-path .\.sonar\scanner
+      - name: Create solution-file (.sln)
+        run: |
+          cd ${{ matrix.projectPath }}
+          dotnet new sln
+          ls -lah
       - name: Build and analyze
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any

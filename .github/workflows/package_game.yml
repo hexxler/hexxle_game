@@ -82,7 +82,7 @@ jobs:
           ls -lah
       
       - name: Create a compressed directory of the build 📁
-        run: tar -czvf hexxle_game-${{ matrix.targetPlatform }}-${{ needs.create_new_release_tag.outputs.new-tag }}.tar.gz /build/${{ matrix.targetPlatform }}
+        run: tar -czvf hexxle_game-${{ matrix.targetPlatform }}-${{ needs.create_new_release_tag.outputs.new-tag }}.tar.gz build/${{ matrix.targetPlatform }}
           
       - name: Display filestructure again for debugging 🔎
         run: |

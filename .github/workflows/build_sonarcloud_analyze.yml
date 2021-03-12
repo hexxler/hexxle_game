@@ -43,6 +43,7 @@ jobs:
           New-Item -Path .\.sonar\scanner -ItemType Directory
           dotnet tool update dotnet-sonarscanner --tool-path .\.sonar\scanner
       - name: Create solution-file (.sln)
+        shell: powershell
         run: |
           cd ${{ matrix.projectPath }}
           dotnet new sln
@@ -54,5 +55,5 @@ jobs:
         shell: powershell
         run: |
           .\.sonar\scanner\dotnet-sonarscanner begin /k:"${{ matrix.projectPath }}" /o:"hexxler" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
-          dotnet clean # Maybe needs more arguments
+          dotnet clean ${{ matrix.projectPath }}.sln # Maybe needs more arguments
           .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"

@@ -82,10 +82,17 @@ jobs:
           ls -lah
       
       - name: Create a .zip of the build 📁
-        uses: papeloto/action-zip@v1
-        with:
-          files: build/${{ matrix.targetPlatform }}/hexxle_game-${{ matrix.targetPlatform }}-${{ needs.create_new_release_tag.outputs.new-tag }}
-          dest: hexxle_game-${{ matrix.targetPlatform }}-${{ needs.create_new_release_tag.outputs.new-tag }}.zip
+        run: |
+          apt install zip unzip
+          zip -r hexxle_game-${{ matrix.targetPlatform }}-${{ needs.create_new_release_tag.outputs.new-tag }}.zip build/${{ matrix.targetPlatform }}/hexxle_game-${{ matrix.targetPlatform }}-${{ needs.create_new_release_tag.outputs.new-tag }}
+          
+      - name: Display filestructure for debugging 🔎
+        run: |
+          ls -lah
+          cd build
+          ls -lah
+          cd ${{ matrix.targetPlatform }}
+          ls -lah
       
       - name: Release game! 🚀
         uses: softprops/action-gh-release@v1

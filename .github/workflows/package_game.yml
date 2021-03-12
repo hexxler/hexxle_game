@@ -81,12 +81,10 @@ jobs:
           cd ${{ matrix.targetPlatform }}
           ls -lah
       
-      - name: Create a .zip of the build 📁
-        run: |
-          apt install zip unzip
-          zip -r hexxle_game-${{ matrix.targetPlatform }}-${{ needs.create_new_release_tag.outputs.new-tag }}.zip build/${{ matrix.targetPlatform }}
+      - name: Create a compressed directory of the build 📁
+        run: tar -czvf hexxle_game-${{ matrix.targetPlatform }}-${{ needs.create_new_release_tag.outputs.new-tag }}.tar.gz /build/${{ matrix.targetPlatform }}
           
-      - name: Display filestructure for debugging 🔎
+      - name: Display filestructure again for debugging 🔎
         run: |
           ls -lah
           cd build

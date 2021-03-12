@@ -57,5 +57,5 @@ jobs:
         shell: powershell
         run: |
           .\.sonar\scanner\dotnet-sonarscanner begin /k:"${{ matrix.projectKey }}" /o:"hexxler" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
-          dotnet clean ${{ matrix.projectPath }}/${{ matrix.projectPath }}.sln
+          dotnet build ${{ matrix.projectPath }}/${{ matrix.projectPath }}.sln
           .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"

@@ -71,6 +71,7 @@ jobs:
         with:
           buildName: hexxle_game-${{ matrix.targetPlatform }}-${{ needs.create_new_release_tag.outputs.new-tag }}
           targetPlatform: ${{ matrix.targetPlatform }}
+          projectPath: ${{ matrix.projectPath }}
         
       - name: Display filestructure for debugging 🔎
         run: |

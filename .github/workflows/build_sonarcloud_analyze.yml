@@ -2,8 +2,9 @@ name: build_sonarcloud_analyze
 on:
   push:
     branches:
-      - main
-      - development
+      - sonarqube_test
+      #- main
+      #- development
   pull_request:
     types: [opened, synchronize, reopened]
 jobs:
@@ -57,5 +58,5 @@ jobs:
         shell: powershell
         run: |
           .\.sonar\scanner\dotnet-sonarscanner begin /k:"${{ matrix.projectKey }}" /o:"hexxler" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
-          dotnet build ${{ matrix.projectPath }}/${{ matrix.projectPath }}.sln
+          dotnet clean ${{ matrix.projectPath }}/${{ matrix.projectPath }}.sln
           .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"

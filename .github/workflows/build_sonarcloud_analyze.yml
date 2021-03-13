@@ -48,8 +48,8 @@ jobs:
       - name: Create solution-file (.sln)
         shell: powershell
         run: |
-          cd ${{ matrix.projectPath }}
-          dotnet new sln
+          # cd ${{ matrix.projectPath }}
+          # dotnet new sln
           ls
       - name: Build and analyze
         env:
@@ -58,5 +58,6 @@ jobs:
         shell: powershell
         run: |
           .\.sonar\scanner\dotnet-sonarscanner begin /k:"${{ matrix.projectKey }}" /o:"hexxler" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
-          dotnet clean ${{ matrix.projectPath }}/${{ matrix.projectPath }}.sln
+          # dotnet clean ${{ matrix.projectPath }}/${{ matrix.projectPath }}.sln
+          dotnet clean unity-sonarqube-test-project/unity-sonarqube-test-project.sln
           .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"

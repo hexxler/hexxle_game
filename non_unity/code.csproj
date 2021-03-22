@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="main.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+	<Compile Include="../hexxle/Assets/Scripts/CoordinateSystem/Axes.cs" Link="CoordinateSystem\Axes.cs" />
+	<Compile Include="../hexxle/Assets/Scripts/CoordinateSystem/Coordinate.cs" Link="CoordinateSystem\Coordinate.cs" />
+	<Compile Include="../hexxle/Assets/Scripts/CoordinateSystem/Hexagonal.cs" Link="CoordinateSystem\Hexagonal.cs" />
+	<Compile Include="../hexxle/Assets/Scripts/ClassSystem/Breed.cs" Link="ClassSystem\Breed.cs" />
+	<Compile Include="../hexxle/Assets/Scripts/ClassSystem/Tile.cs" Link="ClassSystem\Tile.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+	  <Folder Include="ClassSystem\" />
+	  <Folder Include="CoordinateSystem\" />
+  </ItemGroup>
+</Project>

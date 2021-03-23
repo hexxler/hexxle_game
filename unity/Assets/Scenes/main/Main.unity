@@ -242,7 +242,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e8bb32188670da41bc8377c37957346, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TileTemplate: {fileID: 6947344560577137970, guid: 5ac649681811d1341bbcd50682a72988,
+  VoidTile: {fileID: 5672219751839235906, guid: 8e2b277f9fcfd5a4086fa23721245d33,
     type: 3}
 --- !u!4 &1405703742
 Transform:

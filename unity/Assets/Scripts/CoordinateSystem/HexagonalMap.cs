@@ -19,6 +19,10 @@ namespace Hexxle.CoordinateSystem
             set => this[coordinate.x, coordinate.y, coordinate.z] = value;
         }
 
+        public bool IsEmpty(Coordinate coordinate)
+        {
+            return _axes[coordinate.x][coordinate.y][coordinate.z].Type.Equals(Breed.UNDEFINED);
+        }
 
     }
 }

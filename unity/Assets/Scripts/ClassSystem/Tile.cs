@@ -4,8 +4,10 @@ namespace Hexxle.ClassSystem
     {
         private readonly Breed _type;
 
-        public Tile () {
-            _type = Breed.Void;
+
+        public Tile() : this(Breed.UNDEFINED)
+        {
+
         }
 
         public Tile (Breed type) {
@@ -13,6 +15,11 @@ namespace Hexxle.ClassSystem
         }
 
 
-        public Breed Type { get; }
+        public Breed Type { 
+            get
+            {
+                return _type;
+            }
+        }
     }
 }

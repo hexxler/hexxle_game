@@ -2,7 +2,8 @@ namespace Hexxle.ClassSystem
 {
     public enum Breed
     {
-        Void = 0,
+        UNDEFINED = 0,
+        Void,
         Red,
         Green,
         Blue

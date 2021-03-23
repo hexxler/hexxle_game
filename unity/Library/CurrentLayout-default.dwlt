@@ -15,7 +15,7 @@ MonoBehaviour:
   m_PixelRect:
     serializedVersion: 2
     x: 164
-    y: 79
+    y: 51
     width: 2644
     height: 1381
   m_ShowMode: 4
@@ -43,8 +43,8 @@ MonoBehaviour:
     y: 887
     width: 675
     height: 444
-  m_MinSize: {x: 101, y: 121}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 100, y: 100}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 14}
   m_Panes:
   - {fileID: 14}
@@ -74,7 +74,7 @@ MonoBehaviour:
   m_MinSize: {x: 276, y: 192}
   m_MaxSize: {x: 4001, y: 8042}
   vertical: 1
-  controlID: 127
+  controlID: 128
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -96,10 +96,10 @@ MonoBehaviour:
     y: 30
     width: 2644
     height: 1331
-  m_MinSize: {x: 678, y: 342}
-  m_MaxSize: {x: 12003, y: 8042}
+  m_MinSize: {x: 679, y: 492}
+  m_MaxSize: {x: 14002, y: 14042}
   vertical: 0
-  controlID: 53
+  controlID: 127
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -119,8 +119,8 @@ MonoBehaviour:
     y: 0
     width: 675
     height: 887
-  m_MinSize: {x: 276, y: 71}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 275, y: 50}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 21}
   m_Panes:
   - {fileID: 21}
@@ -148,8 +148,8 @@ MonoBehaviour:
     y: 0
     width: 593
     height: 744
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 201, y: 221}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 22}
   m_Panes:
   - {fileID: 22}
@@ -165,7 +165,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: ConsoleWindow
+  m_Name: ProjectBrowser
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
@@ -174,14 +174,14 @@ MonoBehaviour:
     y: 744
     width: 1969
     height: 587
-  m_MinSize: {x: 101, y: 121}
-  m_MaxSize: {x: 4001, y: 4021}
-  m_ActualView: {fileID: 24}
+  m_MinSize: {x: 231, y: 271}
+  m_MaxSize: {x: 10001, y: 10021}
+  m_ActualView: {fileID: 20}
   m_Panes:
   - {fileID: 24}
   - {fileID: 20}
-  m_Selected: 0
-  m_LastSelected: 1
+  m_Selected: 1
+  m_LastSelected: 0
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -270,10 +270,10 @@ MonoBehaviour:
     y: 0
     width: 1969
     height: 1331
-  m_MinSize: {x: 402, y: 342}
-  m_MaxSize: {x: 8002, y: 8042}
+  m_MinSize: {x: 403, y: 492}
+  m_MaxSize: {x: 10001, y: 14042}
   vertical: 1
-  controlID: 54
+  controlID: 76
 --- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -295,10 +295,10 @@ MonoBehaviour:
     y: 0
     width: 1969
     height: 744
-  m_MinSize: {x: 402, y: 221}
-  m_MaxSize: {x: 8002, y: 4021}
+  m_MinSize: {x: 403, y: 221}
+  m_MaxSize: {x: 8003, y: 4021}
   vertical: 0
-  controlID: 55
+  controlID: 57
 --- !u!114 &13
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -318,8 +318,8 @@ MonoBehaviour:
     y: 0
     width: 1376
     height: 744
-  m_MinSize: {x: 202, y: 221}
-  m_MaxSize: {x: 4002, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 23}
   m_Panes:
   - {fileID: 15}
@@ -348,12 +348,12 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 2133
-    y: 996
+    y: 968
     width: 674
     height: 423
   m_ViewDataDictionary: {fileID: 0}
   m_Spl:
-    ID: 156
+    ID: 155
     splitterInitialOffset: 259
     currentActiveSplitter: -1
     realSizes: b9000000a8000000
@@ -365,7 +365,7 @@ MonoBehaviour:
     lastTotalSize: 353
     splitSize: 6
     xOffset: 0
-  m_TestTypeToolbarIndex: 0
+  m_TestTypeToolbarIndex: 1
   m_PlayModeTestListGUI:
     m_Window: {fileID: 14}
     newResultList:
@@ -421,12 +421,12 @@ MonoBehaviour:
   m_EditModeTestListGUI:
     m_Window: {fileID: 14}
     newResultList:
-    - id: 1000
-      uniqueId: '[sample-project][suite]'
-      name: sample-project
-      fullName: sample-project
+    - id: 1002
+      uniqueId: '[hexxle][suite]'
+      name: hexxle
+      fullName: hexxle
       resultStatus: 1
-      duration: 0.1025243
+      duration: 0.2023828
       messages: 
       output: 
       stacktrace: 
@@ -438,11 +438,11 @@ MonoBehaviour:
       parentId: 
       parentUniqueId: 
     - id: 1004
-      uniqueId: '[EditModeTests.dll][suite]'
-      name: EditModeTests.dll
-      fullName: C:/Users/ricar/Documents/GitHub/unity-test-runner/unity-project-with-correct-tests/Library/ScriptAssemblies/EditModeTests.dll
+      uniqueId: '[EditMode.dll][suite]'
+      name: EditMode.dll
+      fullName: C:/Users/ricar/Documents/GitHub/hexxle_game/unity/Library/ScriptAssemblies/EditMode.dll
       resultStatus: 1
-      duration: 0.0579009
+      duration: 0.0782831
       messages: 
       output: 
       stacktrace: 
@@ -452,13 +452,13 @@ MonoBehaviour:
       isSuite: 1
       categories: []
       parentId: 1000
-      parentUniqueId: '[sample-project][suite]'
+      parentUniqueId: '[hexxle][suite]'
     - id: 1005
-      uniqueId: EditModeTests.dll/[EditModeTests][Tests][suite]
+      uniqueId: EditMode.dll/[EditMode][Tests][suite]
       name: Tests
       fullName: Tests
       resultStatus: 1
-      duration: 0.0543678
+      duration: 0.0720597
       messages: 
       output: 
       stacktrace: 
@@ -468,13 +468,13 @@ MonoBehaviour:
       isSuite: 1
       categories: []
       parentId: 1004
-      parentUniqueId: '[EditModeTests.dll][suite]'
+      parentUniqueId: '[EditMode.dll][suite]'
     - id: 1001
-      uniqueId: EditModeTests.dll/Tests/[EditModeTests][Tests.SampleEditModeTest][suite]
-      name: SampleEditModeTest
-      fullName: Tests.SampleEditModeTest
+      uniqueId: EditMode.dll/Tests/[EditMode][Tests.HexagonalMapTests][suite]
+      name: HexagonalMapTests
+      fullName: Tests.HexagonalMapTests
       resultStatus: 1
-      duration: 0.0501935
+      duration: 0.0649262
       messages: 
       output: 
       stacktrace: 
@@ -484,13 +484,13 @@ MonoBehaviour:
       isSuite: 1
       categories: []
       parentId: 1005
-      parentUniqueId: EditModeTests.dll/[EditModeTests][Tests][suite]
+      parentUniqueId: EditMode.dll/[EditMode][Tests][suite]
     - id: 1002
-      uniqueId: EditModeTests.dll/Tests/SampleEditModeTest/[EditModeTests][Tests.SampleEditModeTest.TestIncrement]
-      name: TestIncrement
-      fullName: Tests.SampleEditModeTest.TestIncrement
+      uniqueId: EditMode.dll/Tests/HexagonalMapTests/[EditMode][Tests.HexagonalMapTests.CheckingForAnUnsetCoordinateReturnsTileOfTypeUndefined]
+      name: CheckingForAnUnsetCoordinateReturnsTileOfTypeUndefined
+      fullName: Tests.HexagonalMapTests.CheckingForAnUnsetCoordinateReturnsTileOfTypeUndefined
       resultStatus: 1
-      duration: 0.0222757
+      duration: 0.0195744
       messages: 
       output: 
       stacktrace: 
@@ -501,13 +501,13 @@ MonoBehaviour:
       categories:
       - Uncategorized
       parentId: 1001
-      parentUniqueId: EditModeTests.dll/Tests/[EditModeTests][Tests.SampleEditModeTest][suite]
+      parentUniqueId: EditMode.dll/Tests/[EditMode][Tests.HexagonalMapTests][suite]
     - id: 1003
-      uniqueId: EditModeTests.dll/Tests/SampleEditModeTest/[EditModeTests][Tests.SampleEditModeTest.TestMaxCount]
-      name: TestMaxCount
-      fullName: Tests.SampleEditModeTest.TestMaxCount
+      uniqueId: EditMode.dll/Tests/HexagonalMapTests/[EditMode][Tests.HexagonalMapTests.IsEmptyReturnsFalseForSetTile]
+      name: IsEmptyReturnsFalseForSetTile
+      fullName: Tests.HexagonalMapTests.IsEmptyReturnsFalseForSetTile
       resultStatus: 1
-      duration: 0.0005268
+      duration: 0.0013259
       messages: 
       output: 
       stacktrace: 
@@ -518,14 +518,65 @@ MonoBehaviour:
       categories:
       - Uncategorized
       parentId: 1001
-      parentUniqueId: EditModeTests.dll/Tests/[EditModeTests][Tests.SampleEditModeTest][suite]
-    m_ResultText: maximumHealthIsCorrect (0.010s)
+      parentUniqueId: EditMode.dll/Tests/[EditMode][Tests.HexagonalMapTests][suite]
+    - id: 1002
+      uniqueId: EditMode.dll/Tests/HexagonalMapTests/[EditMode][Tests.HexagonalMapTests.IsEmptyReturnsTrueForUnsetTile]
+      name: IsEmptyReturnsTrueForUnsetTile
+      fullName: Tests.HexagonalMapTests.IsEmptyReturnsTrueForUnsetTile
+      resultStatus: 1
+      duration: 0.0004077
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1001
+      parentUniqueId: EditMode.dll/Tests/[EditMode][Tests.HexagonalMapTests][suite]
+    - id: 1004
+      uniqueId: EditMode.dll/Tests/HexagonalMapTests/[EditMode][Tests.HexagonalMapTests.SettingANewTileSetsAllTilesThatConnectToItToUndefined]
+      name: SettingANewTileSetsAllTilesThatConnectToItToUndefined
+      fullName: Tests.HexagonalMapTests.SettingANewTileSetsAllTilesThatConnectToItToUndefined
+      resultStatus: 1
+      duration: 0.0087926
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1001
+      parentUniqueId: EditMode.dll/Tests/[EditMode][Tests.HexagonalMapTests][suite]
+    - id: 1003
+      uniqueId: EditMode.dll/Tests/HexagonalMapTests/[EditMode][Tests.HexagonalMapTests.SettingATileAtCoordinateReturnsCorrectTileAgain]
+      name: SettingATileAtCoordinateReturnsCorrectTileAgain
+      fullName: Tests.HexagonalMapTests.SettingATileAtCoordinateReturnsCorrectTileAgain
+      resultStatus: 1
+      duration: 0.001677
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1001
+      parentUniqueId: EditMode.dll/Tests/[EditMode][Tests.HexagonalMapTests][suite]
+    m_ResultText: SettingANewTileSetsAllTilesThatConnectToItToUndefined (0.009s)
     m_ResultStacktrace: 
     m_TestListState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 75ea49e0
-      m_LastClickedID: -532026763
-      m_ExpandedIDs: 28d017853cdc509e8df004c3678f16cd522db40c4420ce704b5ea47cffffff7f
+      m_SelectedIDs: 2d3f5864
+      m_LastClickedID: 1683504941
+      m_ExpandedIDs: 28d0178502ea92993cdc509e8df004c3678f16cd522db40c4420ce704b5ea47cffffff7f
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -796,8 +847,8 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 148
-    y: 840
+    x: 164
+    y: 825
     width: 1968
     height: 566
   m_ViewDataDictionary: {fileID: 0}
@@ -814,20 +865,20 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts/Game
+    - Assets/Tests/EditMode
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scripts/Game
+  - Assets/Tests/EditMode
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\ricar\Documents\GitHub\hexxle_game\unity
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 2e340000
-    m_LastClickedID: 13358
-    m_ExpandedIDs: 0000000016340000183400001a3400001c34000000ca9a3b
+    m_SelectedIDs: 28340000
+    m_LastClickedID: 13352
+    m_ExpandedIDs: 00000000183400001a34000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -855,7 +906,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000016340000183400001a3400001c340000
+    m_ExpandedIDs: 00000000183400001a340000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -933,7 +984,7 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 2133
-    y: 109
+    y: 81
     width: 674
     height: 866
   m_ViewDataDictionary: {fileID: 0}
@@ -971,16 +1022,16 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 164
-    y: 109
+    y: 81
     width: 592
     height: 723
   m_ViewDataDictionary: {fileID: 0}
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: c4330000
-      m_LastClickedID: 13252
-      m_ExpandedIDs: 68fbffff
+      m_SelectedIDs: b6320000
+      m_LastClickedID: 0
+      m_ExpandedIDs: 78faffff68fbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1026,7 +1077,7 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 757
-    y: 109
+    y: 81
     width: 1374
     height: 723
   m_ViewDataDictionary: {fileID: 0}
@@ -1118,7 +1169,7 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 164
-    y: 853
+    y: 825
     width: 1968
     height: 566
   m_ViewDataDictionary: {fileID: 0}

@@ -19,7 +19,7 @@ namespace Hexxle.CoordinateSystem
         }
 
 
-        private void RearageCheck(ref List<T> list, int size)
+        private void RearangeCheck(ref List<T> list, int size)
         {
             if (size > list.Count)
                 list.AddRange(Enumerable.Repeat(false, size - list.Count).Select(x => new T()));
@@ -27,16 +27,15 @@ namespace Hexxle.CoordinateSystem
 
         private T CheckedGetValue(ref List<T> list, int index)
         {
-            RearageCheck(ref list, index);
-            return list[index - 1];
+            RearangeCheck(ref list, index);
+            return list[index-1];
         }
 
         private void CheckedSetValue(ref List<T> list, int index, T value)
         {
-            RearageCheck(ref list, index);
-            list[index - 1] = value;
+            RearangeCheck(ref list, index);
+            list[index-1] = value;
         }
-
 
         private T GetValue(int index)
         {
@@ -63,5 +62,6 @@ namespace Hexxle.CoordinateSystem
             get => GetValue(index);
             set => SetValue(index, value);
         }
+
     }
 }

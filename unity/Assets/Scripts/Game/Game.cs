@@ -8,14 +8,15 @@ using Hexxle.ClassSystem;
 
 public class Game : MonoBehaviour
 {
-    Hexagonal<GameObject> map = new Hexagonal<GameObject>();
+    HexagonalMap map;
 
-    public GameObject TileTemplate;
+    public GameObject VoidTile;
 
     // Start is called before the first frame update
     void Start()
     {
-        NewTemplate(new Coordinate());
+        map = new HexagonalMap();
+        SetMiddleTile(new Coordinate());
     }
 
 
@@ -25,13 +26,24 @@ public class Game : MonoBehaviour
         
     }
 
-
-    void NewTemplate(Coordinate coordinate)
+    void AddVoidTilesAroundCoordinate(Coordinate coordinate)
     {
-        map[coordinate] = Instantiate(
-                TileTemplate,
-                new Vector3(0, 0, 0),
-                Quaternion.Euler(-90, 0, 0)
+
+    }
+
+    void SetMiddleTile(Coordinate coordinate)
+    {
+        map[coordinate] = new Tile(Breed.Void);
+        DisplayNewTile(coordinate);
+    }
+
+
+    void DisplayNewTile(Coordinate coordinate)
+    {
+        Instantiate(
+            VoidTile,
+            new Vector3(coordinate.x, coordinate.y, coordinate.z),
+            Quaternion.Euler(-90, 0, 0)
             );
     }
 }

@@ -16,7 +16,7 @@ namespace Assets.Scripts.Logic
 
         public Tile GetTile(Coordinate coordinate)
         {
-            if (!_axisDictionary.ContainsKey(coordinate))
+            if (IsEmpty(coordinate))
             {
                 Tile tile = Tile.CreateInstance(EState.OnField, EType.Void, ENature.None, EBehaviour.None);
                 tile.Coordinate = coordinate;
@@ -30,6 +30,11 @@ namespace Assets.Scripts.Logic
             tile.Coordinate = coordinate;
             _axisDictionary[coordinate] = tile;
             TilePlaced?.Invoke(this, new TileMapEventArgs<Tile>(this, tile));
+        }
+
+        public bool IsEmpty(Coordinate coordinate)
+        {
+            return (!_axisDictionary.ContainsKey(coordinate));
         }
 
         public Tile RemoveTile(Tile tile)

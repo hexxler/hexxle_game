@@ -10,6 +10,11 @@ namespace Assets.Scripts.TileSystem.Nature
 
         public List<Coordinate> RelevantCoordinates(Coordinate coordinate)
         {
+            return AdjacentCoordinates(coordinate);
+        }
+
+        public List<Coordinate> AdjacentCoordinates(Coordinate coordinate)
+        {
             var relevantCoordinates = new List<Coordinate>
             {
                 new Coordinate(coordinate.x + 1, coordinate.y - 1, coordinate.z),

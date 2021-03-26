@@ -74,8 +74,7 @@ namespace Hexxle.TileSystem
                     tileType = new GreenType();
                     break;
                 case EType.Void:
-                    // TODO
-                    tileType = null;
+                    tileType = new VoidType();
                     break;
                 case EType.None:
                 default:

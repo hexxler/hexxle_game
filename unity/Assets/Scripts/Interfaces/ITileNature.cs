@@ -8,5 +8,6 @@ namespace Assets.Scripts.Interfaces
     {
         ENature Nature { get; }
         List<Coordinate> RelevantCoordinates(Coordinate coordinate);
+        List<Coordinate> AdjacentCoordinates(Coordinate coordinate);
     }
 }

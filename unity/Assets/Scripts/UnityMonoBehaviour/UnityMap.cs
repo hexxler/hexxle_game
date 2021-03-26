@@ -3,7 +3,6 @@ using Assets.Scripts.Logic;
 using Assets.Scripts.TileSystem;
 using Hexxle.CoordinateSystem;
 using Hexxle.TileSystem;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,6 +25,75 @@ namespace Assets.Scripts.UnityMonoBehaviour
         {
             map = new TileMap();
             map.TilePlaced += OnTilePlaced;
+        }
+
+        private void Start()
+        {
+            Coordinate start = new Coordinate();
+            PlaceRandomTile(start);
+            PlaceVoidNeighbours(start);
+        }
+
+        private void Update()
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                if (Physics.Raycast(ray, out RaycastHit hit))
+                {
+                    GameObject clickedTile = hit.collider.gameObject;
+
+                    Coordinate coordinate = PointToCoordinate(clickedTile.transform.position);
+                    PlaceRandomTile(coordinate);
+                    PlaceVoidNeighbours(coordinate);
+
+                    GameObject.Destroy(clickedTile);
+                }
+            }
+        }
+
+        private void PlaceRandomTile(Coordinate coordinate)
+        {
+            EType randomType = (EType)Random.Range(2, System.Enum.GetValues(typeof(EType)).Length); // None, Void < 2
+            map.PlaceTile(
+                Tile.CreateInstance(EState.OnField, randomType, ENature.Circle, EBehaviour.NoEffect),
+                coordinate
+                );
+        }
+
+        private void PlaceVoidTile(Coordinate coordinate)
+        {
+            map.PlaceTile(
+                Tile.CreateInstance(EState.OnField, EType.Void, ENature.None, EBehaviour.None),
+                coordinate)
+                ;
+        }
+
+        private void PlaceVoidNeighbours(Coordinate middleCoordinate)
+        {
+            map.GetTile(middleCoordinate).Nature.AdjacentCoordinates(middleCoordinate).ForEach(neighboringCoordinate =>
+            {
+                if (map.IsEmpty(neighboringCoordinate))
+                {
+                    PlaceVoidTile(neighboringCoordinate);
+                }
+            });
+        }
+
+        private Coordinate PointToCoordinate(Vector3 point)
+        {
+            int x = (int)Mathf.Round((Mathf.Sqrt(3f) / 3f * point.x - (point.z / 3f)) / OuterTileRadius);
+            int y = (int)Mathf.Round(-(Mathf.Sqrt(3f) / 3f * point.x + (point.z / 3f)) / OuterTileRadius);
+            int z = (int)(2f / 3f * point.z / OuterTileRadius);
+            return new Coordinate(x, y, z);
+        }
+
+        private Vector3 CoordinateToPoint(Coordinate coordinate)
+        {
+            // see https://stackoverflow.com/questions/2459402/hexagonal-grid-coordinates-to-pixel-coordinates
+            float x = Mathf.Sqrt(3f) * OuterTileRadius * (coordinate.z / 2f + coordinate.x);
+            float z = 3f / 2f * coordinate.z * OuterTileRadius;
+            return new Vector3(x, 0, z);
         }
 
         private void OnTilePlaced(object sender, TileMapEventArgs<Tile> e)
@@ -51,56 +119,9 @@ namespace Assets.Scripts.UnityMonoBehaviour
             }
             Instantiate(
                     template,
-                    TranslateToUnityCoordinates(tile.Coordinate),
+                    CoordinateToPoint(tile.Coordinate),
                     Quaternion.Euler(-90, 0, 0)
                 );
-        }
-
-        private void Start()
-        {
-            NewRedTile(RedTemplate, new Coordinate(0, 0, 0));
-            NewBlueTile(BlueTemplate, new Coordinate(-1, 0, 1));
-            NewGreenTile(GreenTemplate, new Coordinate(1, 0, -1));
-        }
-
-        private void Update()
-        {
-            
-        }
-
-        void NewRedTile(GameObject template, Coordinate coordinate)
-        {
-            map.PlaceTile(
-                Tile.CreateInstance(EState.OnField, EType.Red, ENature.Circle, EBehaviour.NoEffect),
-                coordinate
-                );
-        }
-
-        void NewBlueTile(GameObject template, Coordinate coordinate)
-        {
-            map.PlaceTile(
-                Tile.CreateInstance(EState.OnField, EType.Blue, ENature.Circle, EBehaviour.NoEffect), 
-                coordinate
-                );
-        }
-
-        void NewGreenTile(GameObject template, Coordinate coordinate)
-        {
-            map.PlaceTile(
-                Tile.CreateInstance(EState.OnField, EType.Green, ENature.Circle, EBehaviour.NoEffect),
-                coordinate
-                );
-        }
-
-        private Vector3 TranslateToUnityCoordinates(Coordinate coordinate)
-        {
-            // see https://stackoverflow.com/questions/2459402/hexagonal-grid-coordinates-to-pixel-coordinates
-            return new Vector3
-            {
-                x = Mathf.Sqrt(3) * OuterTileRadius * (coordinate.z / 2f + coordinate.x),
-                y = 0,
-                z = 3 / 2f * OuterTileRadius * coordinate.z
-            };
         }
     }
 }

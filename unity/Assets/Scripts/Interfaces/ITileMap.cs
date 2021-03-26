@@ -10,6 +10,7 @@ namespace Assets.Scripts.Interfaces
         void PlaceTile(T tile, Coordinate coordinate);
         T RemoveTile(T tile);
         T GetTile(Coordinate coordinate);
+        bool IsEmpty(Coordinate coordinate);
         event EventHandler<TileMapEventArgs<T>> TilePlaced;
         event EventHandler<TileMapEventArgs<T>> TileRemoved;
     }

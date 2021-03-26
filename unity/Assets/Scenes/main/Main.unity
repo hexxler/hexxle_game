@@ -239,11 +239,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 1405703740}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e8bb32188670da41bc8377c37957346, type: 3}
+  m_Script: {fileID: 11500000, guid: 4f8c2ca7b474a3f499dc3167d20467b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TileTemplate: {fileID: 6947344560577137970, guid: 5ac649681811d1341bbcd50682a72988,
+  RedTemplate: {fileID: 5750346099356567384, guid: 19c825048a5350147a7e37c230a6132e,
     type: 3}
+  GreenTemplate: {fileID: 979400681619427355, guid: c3e445e8faf18864d8af600ca4a81ff2,
+    type: 3}
+  BlueTemplate: {fileID: 7552377175566673153, guid: fa2f4cbd5afc49d4ab3fad523276b73b,
+    type: 3}
+  VoidTemplate: {fileID: 6947344560577137970, guid: 5ac649681811d1341bbcd50682a72988,
+    type: 3}
+  OuterTileRadius: 0.5
 --- !u!4 &1405703742
 Transform:
   m_ObjectHideFlags: 0

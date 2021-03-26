@@ -4,20 +4,20 @@ using System.Linq;
 
 namespace Assets.Scripts.Logic
 {
-    public class TileResolver<T> : ITileResolver<T> where T : class, ITile, new()
+    public class TileResolver : ITileResolver<ITile>
     {
-        ITileMap<Tile> _map;
-        public TileResolver(TileMap map)
+        ITileMap<ITile> _map;
+        public TileResolver(ITileMap<ITile> map)
         {
             _map = map;
         }
-        public void ApplyBehaviour(T tile)
+        public void ApplyBehaviour(ITile tile)
         {
             tile.Nature.RelevantCoordinates(tile.Coordinate)
                 .ForEach(coordinate => tile.Behaviour.ApplyBehaviour(_map.GetTile(coordinate)));
         }
 
-        public int CalculatePoints(T tile)
+        public int CalculatePoints(ITile tile)
         {
             return tile.Nature.RelevantCoordinates(tile.Coordinate)
                 .Sum(coordinate => tile.Type.ValueOfRelationshipTo(_map.GetTile(coordinate).Type.Type));

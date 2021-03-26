@@ -36,7 +36,7 @@ namespace Hexxle.TileSystem
             {
                 case EBehaviour.NoEffect:
                 default:
-                    tileBehaviour = null;
+                    tileBehaviour = new NoEffectBehaviour();
                     break;
             }
             return tileBehaviour;

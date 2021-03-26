@@ -13,7 +13,8 @@ namespace Assets.Scripts.UnityMonoBehaviour
 {
     public class UnityMap : MonoBehaviour
     {
-        ITileMap<Tile> map;
+        ITileMap<ITile> map;
+        ITileResolver<ITile> resolver;
 
         public GameObject RedTemplate;
         public GameObject GreenTemplate;
@@ -24,6 +25,7 @@ namespace Assets.Scripts.UnityMonoBehaviour
         private void Awake()
         {
             map = new TileMap();
+            resolver = new TileResolver(map);
             map.TilePlaced += OnTilePlaced;
         }
 
@@ -31,7 +33,6 @@ namespace Assets.Scripts.UnityMonoBehaviour
         {
             Coordinate start = new Coordinate();
             PlaceRandomTile(start);
-            PlaceVoidNeighbours(start);
         }
 
         private void Update()
@@ -45,7 +46,6 @@ namespace Assets.Scripts.UnityMonoBehaviour
 
                     Coordinate coordinate = PointToCoordinate(clickedTile.transform.position);
                     PlaceRandomTile(coordinate);
-                    PlaceVoidNeighbours(coordinate);
 
                     GameObject.Destroy(clickedTile);
                 }
@@ -55,10 +55,17 @@ namespace Assets.Scripts.UnityMonoBehaviour
         private void PlaceRandomTile(Coordinate coordinate)
         {
             EType randomType = (EType)Random.Range(2, System.Enum.GetValues(typeof(EType)).Length); // None, Void < 2
+            ITile tileToPlace = Tile.CreateInstance(EState.OnField, randomType, ENature.Circle, EBehaviour.NoEffect);
+            // Place tile
             map.PlaceTile(
-                Tile.CreateInstance(EState.OnField, randomType, ENature.Circle, EBehaviour.NoEffect),
+                tileToPlace,
                 coordinate
                 );
+            PlaceVoidNeighbours(coordinate);
+
+            // Resolve tile
+            int pointsEarned = resolver.CalculatePoints(tileToPlace);
+            resolver.ApplyBehaviour(tileToPlace);
         }
 
         private void PlaceVoidTile(Coordinate coordinate)
@@ -96,7 +103,7 @@ namespace Assets.Scripts.UnityMonoBehaviour
             return new Vector3(x, 0, z);
         }
 
-        private void OnTilePlaced(object sender, TileMapEventArgs<Tile> e)
+        private void OnTilePlaced(object sender, TileMapEventArgs<ITile> e)
         {
             ITile tile = e.Tile;
             GameObject template;

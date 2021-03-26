@@ -47,7 +47,7 @@ jobs:
         targetPlatform:
           - StandaloneWindows64 # Build a Windows 64-bit standalone.
         projectPath:
-          - unity_project
+          - unity
     
     steps:
       - uses: actions/checkout@v2

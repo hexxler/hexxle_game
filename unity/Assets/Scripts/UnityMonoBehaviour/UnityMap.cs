@@ -39,15 +39,18 @@ namespace Assets.Scripts.UnityMonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                if (Physics.Raycast(ray, out RaycastHit hit))
+                if (TileStack.Count() != 0)
                 {
-                    GameObject clickedTile = hit.collider.gameObject;
+                    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                    if (Physics.Raycast(ray, out RaycastHit hit))
+                    {
+                        GameObject clickedTile = hit.collider.gameObject;
 
-                    Coordinate coordinate = PointToCoordinate(clickedTile.transform.position);
-                    PlaceRandomTile(coordinate);
+                        Coordinate coordinate = PointToCoordinate(clickedTile.transform.position);
+                        PlaceNextTile(coordinate);
 
-                    GameObject.Destroy(clickedTile);
+                        GameObject.Destroy(clickedTile);
+                    }
                 }
             }
         }
@@ -71,6 +74,13 @@ namespace Assets.Scripts.UnityMonoBehaviour
         private void PlaceNextTile(Coordinate coordinate)
         {
             // Needs to get top Tile from Stack
+            ITile topTile = TileStack.Pop();
+            map.PlaceTile(topTile, coordinate);
+            PlaceVoidNeighbours(coordinate);
+
+            // Resolve tile
+            int pointsEarned = resolver.CalculatePoints(topTile);
+            resolver.ApplyBehaviour(topTile);
         }
 
         private void PlaceVoidTile(Coordinate coordinate)

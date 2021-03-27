@@ -68,6 +68,11 @@ namespace Assets.Scripts.UnityMonoBehaviour
             resolver.ApplyBehaviour(tileToPlace);
         }
 
+        private void PlaceNextTile(Coordinate coordinate)
+        {
+            // Needs to get top Tile from Stack
+        }
+
         private void PlaceVoidTile(Coordinate coordinate)
         {
             map.PlaceTile(
@@ -124,11 +129,13 @@ namespace Assets.Scripts.UnityMonoBehaviour
                     template = VoidTemplate;
                     break;
             }
+            
             Instantiate(
                     template,
                     CoordinateToPoint(tile.Coordinate),
                     Quaternion.Euler(-90, 0, 0)
                 );
+            
         }
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class UnityUI : MonoBehaviour
 {
-    public void exitGame()
+    public void exitRound()
     {
         SceneManager.LoadScene("titlescreen");
     }

@@ -1,7 +1,9 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class TitleMenu : MonoBehaviour
+public class UnityTitlescreen : MonoBehaviour
 {
     public void PlayGame()
     {

@@ -21,6 +21,7 @@ namespace Assets.Scripts.UnityMonoBehaviour
         public GameObject BlueTemplate;
         public GameObject VoidTemplate;
         public float OuterTileRadius;
+        private UnityStack unityStack;
 
         private void Awake()
         {
@@ -31,6 +32,7 @@ namespace Assets.Scripts.UnityMonoBehaviour
 
         private void Start()
         {
+            unityStack = GameObject.Find("Game").GetComponent("UnityStack") as UnityStack;
             Coordinate start = new Coordinate();
             PlaceRandomTile(start);
         }
@@ -39,7 +41,7 @@ namespace Assets.Scripts.UnityMonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
-                if (TileStack.Count() != 0)
+                if (unityStack.Count() != 0)
                 {
                     Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                     if (Physics.Raycast(ray, out RaycastHit hit))
@@ -74,7 +76,7 @@ namespace Assets.Scripts.UnityMonoBehaviour
         private void PlaceNextTile(Coordinate coordinate)
         {
             // Needs to get top Tile from Stack
-            ITile topTile = TileStack.Pop();
+            ITile topTile = unityStack.GetTopTile();
             map.PlaceTile(topTile, coordinate);
             PlaceVoidNeighbours(coordinate);
 

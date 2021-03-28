@@ -592,9 +592,11 @@
     <Compile Include="Assets\Scripts\Interfaces\ITileMap.cs" />
     <Compile Include="Assets\Scripts\Interfaces\ITileNature.cs" />
     <Compile Include="Assets\Scripts\Interfaces\ITileResolver.cs" />
+    <Compile Include="Assets\Scripts\Interfaces\ITileStack.cs" />
     <Compile Include="Assets\Scripts\Interfaces\ITileType.cs" />
     <Compile Include="Assets\Scripts\Logic\TileMap.cs" />
     <Compile Include="Assets\Scripts\Logic\TileResolver.cs" />
+    <Compile Include="Assets\Scripts\Logic\TileStack.cs" />
     <Compile Include="Assets\Scripts\TileSystem\Behaviour\NoEffectBehaviour.cs" />
     <Compile Include="Assets\Scripts\TileSystem\EBehaviour.cs" />
     <Compile Include="Assets\Scripts\TileSystem\ENature.cs" />
@@ -607,6 +609,9 @@
     <Compile Include="Assets\Scripts\TileSystem\Type\RedType.cs" />
     <Compile Include="Assets\Scripts\TileSystem\Type\VoidType.cs" />
     <Compile Include="Assets\Scripts\UnityMonoBehaviour\UnityMap.cs" />
+    <Compile Include="Assets\Scripts\UnityMonoBehaviour\UnityStack.cs" />
+    <Compile Include="Assets\Scripts\UnityMonoBehaviour\UnityTitlescreen.cs" />
+    <Compile Include="Assets\Scripts\UnityMonoBehaviour\UnityUI.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Scripts\Scripts.asmdef" />

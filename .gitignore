@@ -504,3 +504,4 @@ MigrationBackup/
 #unity sln file
 unity/unity.sln 
 unity/.vsconfig
+unity/Assets/Tests/PlayMode.meta

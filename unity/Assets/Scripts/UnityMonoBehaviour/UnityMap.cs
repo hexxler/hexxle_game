@@ -21,6 +21,7 @@ namespace Assets.Scripts.UnityMonoBehaviour
         public GameObject BlueTemplate;
         public GameObject VoidTemplate;
         public float OuterTileRadius;
+        private UnityStack unityStack;
 
         private void Awake()
         {
@@ -31,6 +32,7 @@ namespace Assets.Scripts.UnityMonoBehaviour
 
         private void Start()
         {
+            unityStack = GameObject.Find("Game").GetComponent("UnityStack") as UnityStack;
             Coordinate start = new Coordinate();
             PlaceRandomTile(start);
         }
@@ -39,15 +41,18 @@ namespace Assets.Scripts.UnityMonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                if (Physics.Raycast(ray, out RaycastHit hit))
+                if (unityStack.Count() != 0)
                 {
-                    GameObject clickedTile = hit.collider.gameObject;
+                    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                    if (Physics.Raycast(ray, out RaycastHit hit))
+                    {
+                        GameObject clickedTile = hit.collider.gameObject;
 
-                    Coordinate coordinate = PointToCoordinate(clickedTile.transform.position);
-                    PlaceRandomTile(coordinate);
+                        Coordinate coordinate = PointToCoordinate(clickedTile.transform.position);
+                        PlaceNextTile(coordinate);
 
-                    GameObject.Destroy(clickedTile);
+                        GameObject.Destroy(clickedTile);
+                    }
                 }
             }
         }
@@ -66,6 +71,18 @@ namespace Assets.Scripts.UnityMonoBehaviour
             // Resolve tile
             int pointsEarned = resolver.CalculatePoints(tileToPlace);
             resolver.ApplyBehaviour(tileToPlace);
+        }
+
+        private void PlaceNextTile(Coordinate coordinate)
+        {
+            // Needs to get top Tile from Stack
+            ITile topTile = unityStack.GetTopTile();
+            map.PlaceTile(topTile, coordinate);
+            PlaceVoidNeighbours(coordinate);
+
+            // Resolve tile
+            int pointsEarned = resolver.CalculatePoints(topTile);
+            resolver.ApplyBehaviour(topTile);
         }
 
         private void PlaceVoidTile(Coordinate coordinate)
@@ -124,11 +141,13 @@ namespace Assets.Scripts.UnityMonoBehaviour
                     template = VoidTemplate;
                     break;
             }
+            
             Instantiate(
                     template,
                     CoordinateToPoint(tile.Coordinate),
                     Quaternion.Euler(-90, 0, 0)
                 );
+            
         }
     }
 }

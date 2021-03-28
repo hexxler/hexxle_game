@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-
+﻿
 using Hexxle.CoordinateSystem;
-using Hexxle.ClassSystem;
-
+using Hexxle.TileSystem;
 
 namespace Hexxle
 {
@@ -13,7 +10,6 @@ namespace Hexxle
     {
         static void Main(string[] args)
         {
-            Hexagonal<Tile> hexgrid = new Hexagonal<Tile>();
 
         }
     }

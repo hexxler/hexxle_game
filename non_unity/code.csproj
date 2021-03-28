@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="..\unity\Assets\Scripts\Interfaces\ITileMap.cs" Link="Interfaces\ITileMap.cs" />
+    <Compile Include="..\unity\Assets\Scripts\Logic\TileMap.cs" Link="Logic\TileMap.cs" />
+    <Compile Include="..\unity\Assets\Scripts\Logic\TileResolver.cs" Link="Logic\TileResolver.cs" />
+    <Compile Include="..\unity\Assets\Scripts\TileSystem\EType.cs" Link="TileSystem\EType.cs" />
+    <Compile Include="..\unity\Assets\Scripts\TileSystem\EBehaviour.cs" Link="TileSystem\EBehaviour.cs" />
+    <Compile Include="..\unity\Assets\Scripts\TileSystem\ENature.cs" Link="TileSystem\ENature.cs" />
+    <Compile Include="..\unity\Assets\Scripts\TileSystem\EState.cs" Link="TileSystem\EState.cs" />
+    <Compile Include="..\unity\Assets\Scripts\TileSystem\Nature\CircleNature.cs" Link="TileSystem\Nature\CircleNature.cs" />
+    <Compile Include="..\unity\Assets\Scripts\TileSystem\Tile.cs" Link="TileSystem\Tile.cs" />
+    <Compile Include="..\unity\Assets\Scripts\TileSystem\Type\BlueType.cs" Link="TileSystem\Type\BlueType.cs" />
+    <Compile Include="..\unity\Assets\Scripts\TileSystem\Type\GreenType.cs" Link="TileSystem\Type\GreenType.cs" />
+    <Compile Include="..\unity\Assets\Scripts\TileSystem\Type\RedType.cs" Link="TileSystem\Type\RedType.cs" />
+    <Compile Include="..\unity\Assets\Scripts\CoordinateSystem\Coordinate.cs" Link="CoordinateSystem\Coordinate.cs" />
+    <Compile Include="..\unity\Assets\Scripts\Interfaces\ITileResolver.cs" Link="Interfaces\ITileResolver.cs" />
+    <Compile Include="..\unity\Assets\Scripts\Interfaces\ITile.cs" Link="Interfaces\ITile.cs" />
+    <Compile Include="..\unity\Assets\Scripts\Interfaces\ITileBehaviour.cs" Link="Interfaces\ITileBehaviour.cs" />
+    <Compile Include="..\unity\Assets\Scripts\Interfaces\ITileNature.cs" Link="Interfaces\ITileNature.cs" />
+    <Compile Include="..\unity\Assets\Scripts\Interfaces\ITileType.cs" Link="Interfaces\ITileType.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Logic\" />
+    <Folder Include="TileSystem\Nature\" />
+    <Folder Include="TileSystem\Type\" />
+    <Folder Include="CoordinateSystem\" />
+  </ItemGroup>
+</Project>

@@ -499,7 +499,3 @@ MigrationBackup/
 .ionide/
 
 # End of https://www.toptal.com/developers/gitignore/api/unity,visualstudio,visualstudiocode,rider
-
-#unity sln file
-unity/unity.sln 
-unity/.vsconfig

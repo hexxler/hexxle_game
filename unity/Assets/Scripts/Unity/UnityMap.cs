@@ -1,7 +1,7 @@
 ﻿using Hexxle.Interfaces;
 using Hexxle.TileSystem;
+using Hexxle.Logic;
 using Hexxle.CoordinateSystem;
-using System.Linq;
 using UnityEngine;
 
 namespace Hexxle.Unity
@@ -34,7 +34,7 @@ namespace Hexxle.Unity
 
         private void Update()
         {
-            if (Input.GetMouseButtonDown(0))
+       /*     if (Input.GetMouseButtonDown(0))
             {
                 if (unityStack.Count() != 0)
                 {
@@ -49,7 +49,7 @@ namespace Hexxle.Unity
                         GameObject.Destroy(clickedTile);
                     }
                 }
-            }
+            }*/
         }
 
         private void PlaceRandomTile(Coordinate coordinate)

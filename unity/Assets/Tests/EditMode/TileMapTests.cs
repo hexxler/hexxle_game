@@ -3,7 +3,7 @@ using Hexxle.Logic;
 using Hexxle.TileSystem;
 using Hexxle.CoordinateSystem;
 
-namespace Tests
+namespace Hexxle.Unity.Tests
 {
     public class TileMapTests
     {

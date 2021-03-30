@@ -1,5 +1,4 @@
 ﻿using Hexxle.Interfaces;
-using Hexxle.TileSystem;
 using System.Linq;
 
 namespace Hexxle.Logic

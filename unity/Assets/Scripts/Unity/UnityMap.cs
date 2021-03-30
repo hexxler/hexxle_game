@@ -1,7 +1,7 @@
 ﻿using Hexxle.Interfaces;
 using Hexxle.TileSystem;
+using Hexxle.Logic;
 using Hexxle.CoordinateSystem;
-using System.Linq;
 using UnityEngine;
 
 namespace Hexxle.Unity

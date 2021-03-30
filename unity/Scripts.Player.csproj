@@ -608,10 +608,10 @@
     <Compile Include="Assets\Scripts\TileSystem\Type\GreenType.cs" />
     <Compile Include="Assets\Scripts\TileSystem\Type\RedType.cs" />
     <Compile Include="Assets\Scripts\TileSystem\Type\VoidType.cs" />
-    <Compile Include="Assets\Scripts\UnityMonoBehaviour\UnityMap.cs" />
-    <Compile Include="Assets\Scripts\UnityMonoBehaviour\UnityStack.cs" />
-    <Compile Include="Assets\Scripts\UnityMonoBehaviour\UnityTitlescreen.cs" />
-    <Compile Include="Assets\Scripts\UnityMonoBehaviour\UnityUI.cs" />
+    <Compile Include="Assets\Scripts\Unity\UnityMap.cs" />
+    <Compile Include="Assets\Scripts\Unity\UnityStack.cs" />
+    <Compile Include="Assets\Scripts\Unity\UnityTitlescreen.cs" />
+    <Compile Include="Assets\Scripts\Unity\UnityUI.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Scripts\Scripts.asmdef" />

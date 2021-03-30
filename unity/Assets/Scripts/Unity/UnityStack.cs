@@ -1,12 +1,11 @@
-﻿using Assets.Scripts.Interfaces;
-using Assets.Scripts.Logic;
+﻿using Hexxle.Interfaces;
+using Hexxle.Logic;
 using Hexxle.TileSystem;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace Assets.Scripts.UnityMonoBehaviour
+namespace Hexxle.Unity
 {
     public class UnityStack : MonoBehaviour
     {

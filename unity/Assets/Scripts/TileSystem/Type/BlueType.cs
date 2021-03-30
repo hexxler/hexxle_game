@@ -1,7 +1,7 @@
-﻿using Assets.Scripts.Interfaces;
+﻿using Hexxle.Interfaces;
 using Hexxle.TileSystem;
 
-namespace Assets.Scripts.TileSystem.Type
+namespace Hexxle.TileSystem.Type
 {
     public class BlueType : ITileType
     {

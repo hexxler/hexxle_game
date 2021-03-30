@@ -1,15 +1,10 @@
-﻿using Assets.Scripts.Interfaces;
-using Assets.Scripts.Logic;
-using Assets.Scripts.TileSystem;
-using Hexxle.CoordinateSystem;
+﻿using Hexxle.Interfaces;
 using Hexxle.TileSystem;
-using System.Collections.Generic;
+using Hexxle.CoordinateSystem;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Assets.Scripts.UnityMonoBehaviour
+namespace Hexxle.Unity
 {
     public class UnityMap : MonoBehaviour
     {

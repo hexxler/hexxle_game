@@ -1,11 +1,10 @@
-﻿using Assets.Scripts.Interfaces;
-using Assets.Scripts.TileSystem;
-using Hexxle.CoordinateSystem;
+﻿using Hexxle.Interfaces;
 using Hexxle.TileSystem;
+using Hexxle.CoordinateSystem;
 using System;
 using System.Collections.Generic;
 
-namespace Assets.Scripts.Logic
+namespace Hexxle.Logic
 {
     public class TileMap : ITileMap<ITile>
     {

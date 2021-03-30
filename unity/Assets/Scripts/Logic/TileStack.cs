@@ -1,12 +1,10 @@
-﻿using Assets.Scripts.Interfaces;
-using Assets.Scripts.TileSystem;
+﻿using Hexxle.Interfaces;
 using Hexxle.TileSystem;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace Assets.Scripts.Logic
+namespace Hexxle.Logic
 {
     public class TileStack : ITileStack
     {

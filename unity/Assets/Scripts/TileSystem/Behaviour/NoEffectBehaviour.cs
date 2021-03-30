@@ -1,15 +1,14 @@
-﻿using Assets.Scripts.Interfaces;
-using Assets.Scripts.TileSystem;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using Hexxle.Interfaces;
 
-public class NoEffectBehaviour : ITileBehaviour
+namespace Hexxle.TileSystem.Behaviour
 {
-    public EBehaviour Behaviour => EBehaviour.NoEffect;
-
-    public void ApplyBehaviour(ITile otherTile)
+    public class NoEffectBehaviour : ITileBehaviour
     {
-        // Do nothing
+        public EBehaviour Behaviour => EBehaviour.NoEffect;
+
+        public void ApplyBehaviour(ITile otherTile)
+        {
+            // Do nothing
+        }
     }
 }

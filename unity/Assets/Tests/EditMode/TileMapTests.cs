@@ -1,8 +1,7 @@
 ﻿using NUnit.Framework;
-using Assets.Scripts.Logic;
-using Assets.Scripts.TileSystem;
-using Hexxle.CoordinateSystem;
+using Hexxle.Logic;
 using Hexxle.TileSystem;
+using Hexxle.CoordinateSystem;
 
 namespace Tests
 {

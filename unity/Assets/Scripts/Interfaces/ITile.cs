@@ -1,7 +1,7 @@
-﻿using Assets.Scripts.TileSystem;
+﻿using Hexxle.TileSystem;
 using Hexxle.CoordinateSystem;
 
-namespace Assets.Scripts.Interfaces
+namespace Hexxle.Interfaces
 {
     public interface ITile
     {

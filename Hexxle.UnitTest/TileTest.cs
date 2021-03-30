@@ -1,5 +1,4 @@
-﻿using Assets.Scripts.Interfaces;
-using Assets.Scripts.TileSystem;
+﻿using Hexxle.Interfaces;
 using Hexxle.TileSystem;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;

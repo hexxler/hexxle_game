@@ -1,7 +1,7 @@
-﻿using Hexxle.Interfaces;
-using Hexxle.TileSystem;
+﻿using Hexxle.CoordinateSystem;
+using Hexxle.Interfaces;
 using Hexxle.Logic;
-using Hexxle.CoordinateSystem;
+using Hexxle.TileSystem;
 using UnityEngine;
 
 namespace Hexxle.Unity
@@ -136,13 +136,13 @@ namespace Hexxle.Unity
                     template = VoidTemplate;
                     break;
             }
-            
+
             Instantiate(
                     template,
                     CoordinateToPoint(tile.Coordinate),
                     Quaternion.Euler(-90, 0, 0)
                 );
-            
+
         }
     }
 }

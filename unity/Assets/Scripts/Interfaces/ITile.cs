@@ -1,5 +1,5 @@
-﻿using Hexxle.TileSystem;
-using Hexxle.CoordinateSystem;
+﻿using Hexxle.CoordinateSystem;
+using Hexxle.TileSystem;
 
 namespace Hexxle.Interfaces
 {

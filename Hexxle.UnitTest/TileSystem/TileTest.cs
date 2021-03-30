@@ -2,10 +2,8 @@
 using Hexxle.TileSystem;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace Hexxle.UnitTest
+namespace Hexxle.Tests.TileSystem
 {
     [TestClass]
     public class TileTest

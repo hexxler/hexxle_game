@@ -1,8 +1,8 @@
-using Hexxle.Interfaces;
-using Hexxle.TileSystem.Nature;
-using Hexxle.TileSystem.Behaviour;
-using Hexxle.TileSystem.Type;
 using Hexxle.CoordinateSystem;
+using Hexxle.Interfaces;
+using Hexxle.TileSystem.Behaviour;
+using Hexxle.TileSystem.Nature;
+using Hexxle.TileSystem.Type;
 
 namespace Hexxle.TileSystem
 {

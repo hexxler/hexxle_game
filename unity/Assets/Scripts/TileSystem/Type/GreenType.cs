@@ -1,5 +1,4 @@
 ﻿using Hexxle.Interfaces;
-using Hexxle.TileSystem;
 
 namespace Hexxle.TileSystem.Type
 {

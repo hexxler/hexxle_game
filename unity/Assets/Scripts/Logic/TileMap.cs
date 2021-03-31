@@ -1,6 +1,6 @@
-﻿using Hexxle.Interfaces;
+﻿using Hexxle.CoordinateSystem;
+using Hexxle.Interfaces;
 using Hexxle.TileSystem;
-using Hexxle.CoordinateSystem;
 using System;
 using System.Collections.Generic;
 

@@ -6,7 +6,7 @@ using UnityEngine.TestTools;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Utilities;
 
-namespace Tests
+namespace Hexxle.Tests.Unity
 {
     public class EscPauseMenuTests : InputTestFixture
     {

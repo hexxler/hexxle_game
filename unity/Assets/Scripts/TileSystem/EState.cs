@@ -1,4 +1,4 @@
-﻿namespace Assets.Scripts.TileSystem
+﻿namespace Hexxle.TileSystem
 {
     public enum EState
     {

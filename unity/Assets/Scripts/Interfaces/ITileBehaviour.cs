@@ -1,6 +1,6 @@
-﻿using Assets.Scripts.TileSystem;
+﻿using Hexxle.TileSystem;
 
-namespace Assets.Scripts.Interfaces
+namespace Hexxle.Interfaces
 {
     public interface ITileBehaviour
     {

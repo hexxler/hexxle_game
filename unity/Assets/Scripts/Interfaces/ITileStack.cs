@@ -1,9 +1,6 @@
-﻿using Assets.Scripts.Interfaces;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using System.Collections.Generic;
 
-namespace Assets.Scripts.Interfaces
+namespace Hexxle.Interfaces
 {
     public interface ITileStack
     {

@@ -1,8 +1,8 @@
-using Assets.Scripts.Interfaces;
-using Assets.Scripts.TileSystem;
-using Assets.Scripts.TileSystem.Nature;
-using Assets.Scripts.TileSystem.Type;
 using Hexxle.CoordinateSystem;
+using Hexxle.Interfaces;
+using Hexxle.TileSystem.Behaviour;
+using Hexxle.TileSystem.Nature;
+using Hexxle.TileSystem.Type;
 
 namespace Hexxle.TileSystem
 {

@@ -8,6 +8,7 @@
     <Compile Include="..\unity\Assets\Scripts\Interfaces\ITileMap.cs" Link="Interfaces\ITileMap.cs" />
     <Compile Include="..\unity\Assets\Scripts\Logic\TileMap.cs" Link="Logic\TileMap.cs" />
     <Compile Include="..\unity\Assets\Scripts\Logic\TileResolver.cs" Link="Logic\TileResolver.cs" />
+    <Compile Include="..\unity\Assets\Scripts\TileSystem\Behaviour\NoEffectBehaviour.cs" Link="TileSystem\Behaviour\NoEffectBehaviour.cs" />
     <Compile Include="..\unity\Assets\Scripts\TileSystem\EType.cs" Link="TileSystem\EType.cs" />
     <Compile Include="..\unity\Assets\Scripts\TileSystem\EBehaviour.cs" Link="TileSystem\EBehaviour.cs" />
     <Compile Include="..\unity\Assets\Scripts\TileSystem\ENature.cs" Link="TileSystem\ENature.cs" />
@@ -23,11 +24,12 @@
     <Compile Include="..\unity\Assets\Scripts\Interfaces\ITileBehaviour.cs" Link="Interfaces\ITileBehaviour.cs" />
     <Compile Include="..\unity\Assets\Scripts\Interfaces\ITileNature.cs" Link="Interfaces\ITileNature.cs" />
     <Compile Include="..\unity\Assets\Scripts\Interfaces\ITileType.cs" Link="Interfaces\ITileType.cs" />
+    <Compile Include="..\unity\Assets\Scripts\TileSystem\Type\VoidType.cs" Link="TileSystem\Type\VoidType.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Logic\" />
     <Folder Include="TileSystem\Nature\" />
-    <Folder Include="TileSystem\Type\" />
+    <Folder Include="TileSystem\Behaviour\" />
     <Folder Include="CoordinateSystem\" />
   </ItemGroup>
 </Project>

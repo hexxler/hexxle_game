@@ -1,12 +1,6 @@
-﻿using Assets.Scripts.Interfaces;
-using Hexxle.TileSystem;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Hexxle.Interfaces;
 
-namespace Assets.Scripts.TileSystem.Type
+namespace Hexxle.TileSystem.Type
 {
     public class VoidType : ITileType
     {

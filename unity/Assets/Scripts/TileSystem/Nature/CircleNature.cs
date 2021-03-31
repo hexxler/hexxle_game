@@ -1,8 +1,8 @@
-﻿using Assets.Scripts.Interfaces;
-using Hexxle.CoordinateSystem;
+﻿using Hexxle.CoordinateSystem;
+using Hexxle.Interfaces;
 using System.Collections.Generic;
 
-namespace Assets.Scripts.TileSystem.Nature
+namespace Hexxle.TileSystem.Nature
 {
     public class CircleNature : ITileNature
     {

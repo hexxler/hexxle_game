@@ -5,9 +5,9 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{64FA9400-A3D8-981B-8564-E8A409867E45}</ProjectGuid>
+    <ProjectGuid>{52318AC8-86D4-14E4-F27A-264BF30FDDEE}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <AssemblyName>Scripts</AssemblyName>
+    <AssemblyName>PlayMode</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
@@ -53,8 +53,17 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="UnityEngine.TestRunner">
+      <HintPath>Library/ScriptAssemblies/UnityEngine.TestRunner.dll</HintPath>
+    </Reference>
+    <Reference Include="Scripts">
+      <HintPath>Library/ScriptAssemblies/Scripts.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.InputSystem">
       <HintPath>Library/ScriptAssemblies/Unity.InputSystem.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.InputSystem.TestFramework">
+      <HintPath>Library/ScriptAssemblies/Unity.InputSystem.TestFramework.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
@@ -239,8 +248,14 @@
     <Reference Include="UnityEngine.XRModule">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.22f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/Variations/mono/Managed/UnityEngine.XRModule.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEditor.TestRunner">
+      <HintPath>Library/ScriptAssemblies/UnityEditor.TestRunner.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEditor.UI">
       <HintPath>Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework">
+      <HintPath>C:/Users/ricar/Documents/GitHub/hexxle_game/unity/Library/PackageCache/com.unity.ext.nunit@1.0.6/net35/unity-custom/nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2019.4.22f1\Editor\Data\NetStandard\ref\2.0.0\netstandard.dll</HintPath>
@@ -589,37 +604,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\CoordinateSystem\Coordinate.cs" />
-    <Compile Include="Assets\Scripts\Interfaces\ITile.cs" />
-    <Compile Include="Assets\Scripts\Interfaces\ITileBehaviour.cs" />
-    <Compile Include="Assets\Scripts\Interfaces\ITileMap.cs" />
-    <Compile Include="Assets\Scripts\Interfaces\ITileNature.cs" />
-    <Compile Include="Assets\Scripts\Interfaces\ITileResolver.cs" />
-    <Compile Include="Assets\Scripts\Interfaces\ITileStack.cs" />
-    <Compile Include="Assets\Scripts\Interfaces\ITileType.cs" />
-    <Compile Include="Assets\Scripts\Logic\TileMap.cs" />
-    <Compile Include="Assets\Scripts\Logic\TileResolver.cs" />
-    <Compile Include="Assets\Scripts\Logic\TileStack.cs" />
-    <Compile Include="Assets\Scripts\TileSystem\Behaviour\NoEffectBehaviour.cs" />
-    <Compile Include="Assets\Scripts\TileSystem\EBehaviour.cs" />
-    <Compile Include="Assets\Scripts\TileSystem\ENature.cs" />
-    <Compile Include="Assets\Scripts\TileSystem\EState.cs" />
-    <Compile Include="Assets\Scripts\TileSystem\EType.cs" />
-    <Compile Include="Assets\Scripts\TileSystem\Nature\CircleNature.cs" />
-    <Compile Include="Assets\Scripts\TileSystem\Tile.cs" />
-    <Compile Include="Assets\Scripts\TileSystem\Type\BlueType.cs" />
-    <Compile Include="Assets\Scripts\TileSystem\Type\GreenType.cs" />
-    <Compile Include="Assets\Scripts\TileSystem\Type\RedType.cs" />
-    <Compile Include="Assets\Scripts\TileSystem\Type\VoidType.cs" />
-    <Compile Include="Assets\Scripts\Unity\Input\EscapeEventHandler.cs" />
-    <Compile Include="Assets\Scripts\Unity\Input\InputManager.cs" />
-    <Compile Include="Assets\Scripts\Unity\UnityMap.cs" />
-    <Compile Include="Assets\Scripts\Unity\UnityStack.cs" />
-    <Compile Include="Assets\Scripts\Unity\UnityTitlescreen.cs" />
-    <Compile Include="Assets\Scripts\Unity\UnityUI.cs" />
+    <Compile Include="Assets\Tests\PlayMode\EscPauseMenuTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\Scripts\Scripts.asmdef" />
+    <None Include="Assets\Tests\PlayMode\PlayMode.asmdef" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

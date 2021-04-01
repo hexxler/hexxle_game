@@ -9,10 +9,10 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{BA4A617E-2A4A-391C-1435-AFCA02E0062B}</ProjectGuid>
+    <ProjectGuid>{5F6E41BB-411F-3495-8595-AAECBBC5CBD6}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <AssemblyName>Scripts</AssemblyName>
+    <AssemblyName>Unity.InputSystem.IntegrationTests</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <BaseDirectory>.</BaseDirectory>
@@ -64,35 +64,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\CoordinateSystem\Coordinate.cs" />
-    <Compile Include="Assets\Scripts\Interfaces\ITile.cs" />
-    <Compile Include="Assets\Scripts\Interfaces\ITileBehaviour.cs" />
-    <Compile Include="Assets\Scripts\Interfaces\ITileMap.cs" />
-    <Compile Include="Assets\Scripts\Interfaces\ITileNature.cs" />
-    <Compile Include="Assets\Scripts\Interfaces\ITileResolver.cs" />
-    <Compile Include="Assets\Scripts\Interfaces\ITileStack.cs" />
-    <Compile Include="Assets\Scripts\Interfaces\ITileType.cs" />
-    <Compile Include="Assets\Scripts\Logic\TileMap.cs" />
-    <Compile Include="Assets\Scripts\Logic\TileResolver.cs" />
-    <Compile Include="Assets\Scripts\Logic\TileStack.cs" />
-    <Compile Include="Assets\Scripts\TileSystem\Behaviour\NoEffectBehaviour.cs" />
-    <Compile Include="Assets\Scripts\TileSystem\EBehaviour.cs" />
-    <Compile Include="Assets\Scripts\TileSystem\ENature.cs" />
-    <Compile Include="Assets\Scripts\TileSystem\EState.cs" />
-    <Compile Include="Assets\Scripts\TileSystem\EType.cs" />
-    <Compile Include="Assets\Scripts\TileSystem\Nature\CircleNature.cs" />
-    <Compile Include="Assets\Scripts\TileSystem\Tile.cs" />
-    <Compile Include="Assets\Scripts\TileSystem\Type\BlueType.cs" />
-    <Compile Include="Assets\Scripts\TileSystem\Type\GreenType.cs" />
-    <Compile Include="Assets\Scripts\TileSystem\Type\RedType.cs" />
-    <Compile Include="Assets\Scripts\TileSystem\Type\VoidType.cs" />
-    <Compile Include="Assets\Scripts\Unity\Input\EscapeEventHandler.cs" />
-    <Compile Include="Assets\Scripts\Unity\Input\InputManager.cs" />
-    <Compile Include="Assets\Scripts\Unity\UnityMap.cs" />
-    <Compile Include="Assets\Scripts\Unity\UnityStack.cs" />
-    <Compile Include="Assets\Scripts\Unity\UnityTitlescreen.cs" />
-    <Compile Include="Assets\Scripts\Unity\UnityUI.cs" />
-    <None Include="Assets\Scripts\Scripts.asmdef" />
+    <Compile Include="Library\PackageCache\com.unity.inputsystem@1.0.2\Tests\IntegrationTests\IntegrationTests.cs" />
+    <None Include="Library\PackageCache\com.unity.inputsystem@1.0.2\Tests\IntegrationTests\Unity.InputSystem.IntegrationTests.asmdef" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.22f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
@@ -276,20 +249,8 @@
     <Reference Include="UnityEditor">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.22f1/Editor/Data/Managed/UnityEditor.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEditor.VR">
-      <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.22f1/Editor/Data/UnityExtensions/Unity/UnityVR/Editor/UnityEditor.VR.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.Graphs">
-      <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.22f1/Editor/Data/Managed/UnityEditor.Graphs.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.WindowsStandalone.Extensions">
-      <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.22f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.WebGL.Extensions">
-      <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.22f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll</HintPath>
-    </Reference>
-    <Reference Include="SyntaxTree.VisualStudio.Unity.Bridge">
-      <HintPath>C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/16.0/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
+    <Reference Include="nunit.framework">
+      <HintPath>C:/Users/ricar/Documents/GitHub/hexxle_game/unity/Library/PackageCache/com.unity.ext.nunit@1.0.6/net35/unity-custom/nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.22f1/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>
@@ -647,6 +608,18 @@
     <ProjectReference Include="Unity.InputSystem.csproj">
       <Project>{720346F4-F464-B896-D392-0281C0555DA6}</Project>
       <Name>Unity.InputSystem</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.InputSystem.TestFramework.csproj">
+      <Project>{3F54D6FA-F525-6438-BDB8-C2B77CF6E852}</Project>
+      <Name>Unity.InputSystem.TestFramework</Name>
+    </ProjectReference>
+    <ProjectReference Include="UnityEngine.TestRunner.csproj">
+      <Project>{7F5633AA-FF44-497D-9629-F9A7DB2F14FB}</Project>
+      <Name>UnityEngine.TestRunner</Name>
+    </ProjectReference>
+    <ProjectReference Include="UnityEditor.TestRunner.csproj">
+      <Project>{00FA63EE-66F3-34A4-D434-A87722E49AF8}</Project>
+      <Name>UnityEditor.TestRunner</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

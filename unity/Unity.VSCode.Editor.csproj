@@ -9,10 +9,10 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{E37C8ED7-EAB9-FE04-698B-773957C3EC44}</ProjectGuid>
+    <ProjectGuid>{C1B9863B-B2A8-6A84-855C-CB82904FAD06}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <AssemblyName>EditMode</AssemblyName>
+    <AssemblyName>Unity.VSCode.Editor</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <BaseDirectory>.</BaseDirectory>
@@ -48,7 +48,7 @@
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <UnityProjectGenerator>Unity/VSTU</UnityProjectGenerator>
     <UnityProjectGeneratorVersion>4.9.1.0</UnityProjectGeneratorVersion>
-    <UnityProjectType>Game:1</UnityProjectType>
+    <UnityProjectType>Editor:5</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows64:19</UnityBuildTarget>
     <UnityVersion>2019.4.22f1</UnityVersion>
   </PropertyGroup>
@@ -64,8 +64,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Tests\EditMode\TileMapTests.cs" />
-    <None Include="Assets\Tests\EditMode\EditMode.asmdef" />
+    <Compile Include="Library\PackageCache\com.unity.ide.vscode@1.2.3\Editor\ProjectGeneration\AssemblyNameProvider.cs" />
+    <Compile Include="Library\PackageCache\com.unity.ide.vscode@1.2.3\Editor\ProjectGeneration\FileIO.cs" />
+    <Compile Include="Library\PackageCache\com.unity.ide.vscode@1.2.3\Editor\ProjectGeneration\GUIDGenerator.cs" />
+    <Compile Include="Library\PackageCache\com.unity.ide.vscode@1.2.3\Editor\ProjectGeneration\ProjectGeneration.cs" />
+    <Compile Include="Library\PackageCache\com.unity.ide.vscode@1.2.3\Editor\ProjectGeneration\ProjectGenerationFlag.cs" />
+    <Compile Include="Library\PackageCache\com.unity.ide.vscode@1.2.3\Editor\VSCodeDiscovery.cs" />
+    <Compile Include="Library\PackageCache\com.unity.ide.vscode@1.2.3\Editor\VSCodeScriptEditor.cs" />
+    <None Include="Library\PackageCache\com.unity.ide.vscode@1.2.3\Editor\Unity.com.unity.vscode.Editor.asmdef" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.22f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
@@ -629,25 +635,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="UnityEngine.TestRunner.csproj">
-      <Project>{7F5633AA-FF44-497D-9629-F9A7DB2F14FB}</Project>
-      <Name>UnityEngine.TestRunner</Name>
-    </ProjectReference>
     <ProjectReference Include="UnityEditor.TestRunner.csproj">
       <Project>{00FA63EE-66F3-34A4-D434-A87722E49AF8}</Project>
       <Name>UnityEditor.TestRunner</Name>
     </ProjectReference>
-    <ProjectReference Include="Scripts.csproj">
-      <Project>{BA4A617E-2A4A-391C-1435-AFCA02E0062B}</Project>
-      <Name>Scripts</Name>
-    </ProjectReference>
-    <ProjectReference Include="Unity.InputSystem.csproj">
-      <Project>{720346F4-F464-B896-D392-0281C0555DA6}</Project>
-      <Name>Unity.InputSystem</Name>
-    </ProjectReference>
-    <ProjectReference Include="Unity.InputSystem.TestFramework.csproj">
-      <Project>{3F54D6FA-F525-6438-BDB8-C2B77CF6E852}</Project>
-      <Name>Unity.InputSystem.TestFramework</Name>
+    <ProjectReference Include="UnityEngine.TestRunner.csproj">
+      <Project>{7F5633AA-FF44-497D-9629-F9A7DB2F14FB}</Project>
+      <Name>UnityEngine.TestRunner</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

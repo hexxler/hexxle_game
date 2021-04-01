@@ -604,7 +604,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Tests\PlayMode\EscPauseMenuTests.cs" />
+    <Compile Include="Assets\Tests\PlayMode\Unity\EscPauseMenuTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Tests\PlayMode\PlayMode.asmdef" />

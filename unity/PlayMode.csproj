@@ -64,7 +64,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Tests\PlayMode\EscPauseMenuTests.cs" />
+    <Compile Include="Assets\Tests\PlayMode\Unity\EscPauseMenuTests.cs" />
     <None Include="Assets\Tests\PlayMode\PlayMode.asmdef" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.22f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

@@ -2,6 +2,7 @@
 using Hexxle.Interfaces;
 using Hexxle.Logic;
 using Hexxle.TileSystem;
+using UnityEngine.InputSystem;
 using UnityEngine;
 
 namespace Hexxle.Unity
@@ -23,7 +24,11 @@ namespace Hexxle.Unity
             map = new TileMap();
             resolver = new TileResolver(map);
             map.TilePlaced += OnTilePlaced;
+            var inputManager = new InputManager();
+            inputManager.TilePlacement.MouseClick.Enable();
+            inputManager.TilePlacement.MouseClick.performed += context => PlaceTileOnMouseClick(context);
         }
+
 
         private void Start()
         {
@@ -32,25 +37,25 @@ namespace Hexxle.Unity
             PlaceRandomTile(start);
         }
 
-        private void Update()
+        private void PlaceTileOnMouseClick(InputAction.CallbackContext context)
         {
-       /*     if (Input.GetMouseButtonDown(0))
+            if (unityStack.Count() != 0)
             {
-                if (unityStack.Count() != 0)
+                var vec = Mouse.current.position.ReadValue();
+                Ray ray = Camera.main.ScreenPointToRay(new Vector3(vec.x, vec.y, 0));
+                if (Physics.Raycast(ray, out RaycastHit hit))
                 {
-                    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                    if (Physics.Raycast(ray, out RaycastHit hit))
-                    {
-                        GameObject clickedTile = hit.collider.gameObject;
+                    GameObject clickedTile = hit.collider.gameObject;
 
-                        Coordinate coordinate = PointToCoordinate(clickedTile.transform.position);
-                        PlaceNextTile(coordinate);
+                    Coordinate coordinate = PointToCoordinate(clickedTile.transform.position);
+                    Debug.Log(coordinate.x + " " + coordinate.y + " " + coordinate.z);
+                    PlaceNextTile(coordinate);
 
-                        GameObject.Destroy(clickedTile);
-                    }
+                    GameObject.Destroy(clickedTile);
                 }
-            }*/
+            }
         }
+
 
         private void PlaceRandomTile(Coordinate coordinate)
         {

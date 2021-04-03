@@ -27,6 +27,33 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "TilePlacement",
+            "id": "f353c50b-9338-456f-8f81-3dab28bed78b",
+            "actions": [
+                {
+                    "name": "MouseClick",
+                    "type": "Button",
+                    "id": "c023fc43-5d3d-4238-abc1-1f548f16b5e2",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press"
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "936ef65c-3f0f-4df3-9270-ef9913b5c2e8",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard and Mouse",
+                    "action": "MouseClick",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [

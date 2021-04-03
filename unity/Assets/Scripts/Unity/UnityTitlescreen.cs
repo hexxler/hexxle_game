@@ -8,7 +8,7 @@ namespace Hexxle.Unity
         public void PlayGame()
         {
             Debug.Log("play_game");
-            SceneManager.LoadScene("Main");
+            SceneManager.LoadScene("Main", LoadSceneMode.Single);
         }
 
         public void QuitGame()

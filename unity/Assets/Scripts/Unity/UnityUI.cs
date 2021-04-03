@@ -7,7 +7,7 @@ namespace Hexxle.Unity
     {
         public void exitRound()
         {
-            SceneManager.LoadScene("titlescreen");
+            SceneManager.LoadScene("titlescreen", LoadSceneMode.Single);
         }
     }
 }

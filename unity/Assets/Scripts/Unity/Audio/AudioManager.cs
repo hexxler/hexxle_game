@@ -7,8 +7,23 @@ public class AudioManager : MonoBehaviour
 
     public Sound[] sounds;
 
+    public static AudioManager instance;
+
     void Awake()
     {
+
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        DontDestroyOnLoad(gameObject);
+
         foreach (Sound s in sounds)
         {
             s.source = gameObject.AddComponent<AudioSource>();
@@ -22,7 +37,7 @@ public class AudioManager : MonoBehaviour
     void Start()
     {
         //start main theme here
-        //Play("Theme");
+        Play("Elevator_Theme");
     }
 
     public void Play(string name)

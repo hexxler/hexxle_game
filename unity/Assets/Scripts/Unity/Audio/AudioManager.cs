@@ -1,4 +1,5 @@
 ﻿using System;
+using Random = System.Random;
 using UnityEngine.Audio;
 using UnityEngine;
 
@@ -8,6 +9,8 @@ public class AudioManager : MonoBehaviour
     public Sound[] sounds;
 
     public static AudioManager instance;
+
+    private Random rnd = new Random();
 
     void Awake()
     {
@@ -48,6 +51,14 @@ public class AudioManager : MonoBehaviour
             Debug.LogWarning("Sound: " + name + " not found!");
             return;
         }
+        s.source.Play();
+    }
+
+    public void PlayRandomPop()
+    {
+        String popsound = "pop" + rnd.Next(1, 6);
+        Debug.Log(popsound);
+        Sound s = Array.Find(sounds, sound => sound.name == popsound);
         s.source.Play();
     }
 }

@@ -1042,14 +1042,38 @@ MonoBehaviour:
     pitch: 1
     source: {fileID: 0}
     loop: 1
-  - name: pop
-    clip: {fileID: 8300000, guid: cc4b4047581620a45a849cb9093995e8, type: 3}
+  - name: pop1
+    clip: {fileID: 8300000, guid: 51289b3840291644b97f1abf0a338bd0, type: 3}
     volume: 0.5
     pitch: 1
     source: {fileID: 0}
     loop: 0
   - name: pause
     clip: {fileID: 8300000, guid: eed2ea265c18ccd41a4b17dab3356010, type: 3}
+    volume: 0.5
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0
+  - name: pop2
+    clip: {fileID: 8300000, guid: e9f974ea94794a54a9ce55f0106eb65a, type: 3}
+    volume: 0.5
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0
+  - name: pop3
+    clip: {fileID: 8300000, guid: 21a6d7b817f6cfa44ae74ae61b1a4a98, type: 3}
+    volume: 0.5
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0
+  - name: pop4
+    clip: {fileID: 8300000, guid: e457cbf2e4a3b684793e8b4f1e52f0ea, type: 3}
+    volume: 0.5
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0
+  - name: pop5
+    clip: {fileID: 8300000, guid: 25381ea2441fc97489786e05d983400e, type: 3}
     volume: 0.5
     pitch: 1
     source: {fileID: 0}

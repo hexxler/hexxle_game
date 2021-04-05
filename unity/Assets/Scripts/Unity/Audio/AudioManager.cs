@@ -56,9 +56,8 @@ public class AudioManager : MonoBehaviour
 
     public void PlayRandomPop()
     {
-        String popsound = "pop" + rnd.Next(1, 6);
-        Debug.Log(popsound);
-        Sound s = Array.Find(sounds, sound => sound.name == popsound);
-        s.source.Play();
+        String popSound = "pop" + rnd.Next(1, 6);
+        Debug.Log(popSound);
+        Play(popSound);
     }
 }

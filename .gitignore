@@ -457,6 +457,9 @@ __pycache__/
 # Cake - Uncomment if you are using it
 # tools/**
 # !tools/packages.config
+unity/Assets/BrokenVector/LowPolyRockPack
+unity/Assets/BrokenVector/LowPolyTreePack
+unity/Assets/Low Poly Buildings Lite
 
 # Tabs Studio
 *.tss

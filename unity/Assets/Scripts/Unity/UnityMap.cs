@@ -142,10 +142,17 @@ namespace Hexxle.Unity
                     break;
             }
 
+            var x = -90;
+            var z = 60;
+            if(!(tile.Type.Type.Equals(EType.Void) || tile.Type.Type.Equals(EType.Blue)))
+            {
+                z *= Random.Range(0, 5);
+            }
+
             Instantiate(
                     template,
                     CoordinateToPoint(tile.Coordinate),
-                    Quaternion.Euler(-90, 0, 0)
+                    Quaternion.Euler(x, 0, z)
                 );
 
         }

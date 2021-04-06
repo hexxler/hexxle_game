@@ -648,6 +648,9 @@
     <Reference Include="Unity.InputSystem.TestFramework">
       <HintPath>E:/Exchange/ZHAW/FS2021/PSIT4/Hexxle/hexxle_game/unity/Library/ScriptAssemblies/Unity.InputSystem.TestFramework.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.TextMeshPro">
+      <HintPath>E:/Exchange/ZHAW/FS2021/PSIT4/Hexxle/hexxle_game/unity/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEditor.UI">
       <HintPath>E:/Exchange/ZHAW/FS2021/PSIT4/Hexxle/hexxle_game/unity/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>

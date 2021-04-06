@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace Assets.Scripts.Interfaces
 {
-    interface IScore
+    public interface IGameScore
     {
         void IncreaseScore(int amount);
         int GetCurrentScore();
         int GetNextScoreThreshold();
+        int PointsUntilNextThreshold();
     }
 }

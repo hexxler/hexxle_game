@@ -65,7 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\CoordinateSystem\Coordinate.cs" />
-    <Compile Include="Assets\Scripts\Interfaces\IScore.cs" />
+    <Compile Include="Assets\Scripts\Interfaces\IGameScore.cs" />
     <Compile Include="Assets\Scripts\Interfaces\ITile.cs" />
     <Compile Include="Assets\Scripts\Interfaces\ITileBehaviour.cs" />
     <Compile Include="Assets\Scripts\Interfaces\ITileMap.cs" />

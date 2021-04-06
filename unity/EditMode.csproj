@@ -64,6 +64,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Tests\EditMode\Logic\ScoreTests.cs" />
     <Compile Include="Assets\Tests\EditMode\Logic\TileMapTests.cs" />
     <None Include="Assets\Tests\EditMode\EditMode.asmdef" />
     <Reference Include="UnityEngine">

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Assets.Scripts.Logic
 {
-    public class Score : IScore
+    public class Score : IGameScore
     {
         private int _score;
         private int _nextThreshold;
@@ -38,6 +38,11 @@ namespace Assets.Scripts.Logic
                 // TODO: implement interval logic
                 _nextThreshold += 10;
             }
+        }
+
+        public int PointsUntilNextThreshold()
+        {
+            return _nextThreshold - _score;
         }
     }
 }

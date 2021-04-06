@@ -18,6 +18,7 @@ namespace Hexxle.Unity
         public GameObject VoidTemplate;
         public float OuterTileRadius;
         private UnityStack unityStack;
+        private UnityPoints unityPoints;
 
         private void Awake()
         {
@@ -32,7 +33,8 @@ namespace Hexxle.Unity
 
         private void Start()
         {
-            unityStack = GameObject.Find("Game").GetComponent("UnityStack") as UnityStack;
+            unityStack = GameObject.FindGameObjectWithTag("Stack").GetComponent<UnityStack>();
+            unityPoints = GameObject.FindGameObjectWithTag("Points").GetComponent<UnityPoints>();
             Coordinate start = new Coordinate();
             PlaceRandomTile(start);
         }
@@ -70,6 +72,7 @@ namespace Hexxle.Unity
 
             // Resolve tile
             int pointsEarned = resolver.CalculatePoints(tileToPlace);
+            unityPoints.IncreasePoints(pointsEarned);
             resolver.ApplyBehaviour(tileToPlace);
         }
 
@@ -82,6 +85,7 @@ namespace Hexxle.Unity
 
             // Resolve tile
             int pointsEarned = resolver.CalculatePoints(topTile);
+            unityPoints.IncreasePoints(pointsEarned);
             resolver.ApplyBehaviour(topTile);
         }
 
@@ -142,12 +146,12 @@ namespace Hexxle.Unity
                     break;
             }
 
-            Instantiate(
+            var newTile = Instantiate(
                     template,
                     CoordinateToPoint(tile.Coordinate),
                     Quaternion.Euler(-90, 0, 0)
                 );
-
+            newTile.transform.parent = this.transform;
         }
     }
 }

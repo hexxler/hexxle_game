@@ -60,6 +60,7 @@ namespace Hexxle.Unity
                         Quaternion.Euler(-90, 0, 0)
                     );
                 toDelete.Add(newTile);
+                newTile.transform.parent = this.transform;
             }
             stackCount = tileStack.Count();
         }

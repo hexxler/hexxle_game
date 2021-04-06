@@ -35,7 +35,8 @@ namespace Assets.Scripts.Logic
             _score = Math.Max(_lastThreshold, _score);
             if (_score >= _nextThreshold)
             {
-                // TODO: implement interval logic
+                // TODO: implement points interval logic
+                //       (next interval and allowing player to get more tiles)
                 _nextThreshold += 10;
             }
         }

@@ -32,7 +32,7 @@ namespace Hexxle.Unity
 
         private void Start()
         {
-            unityStack = GameObject.Find("Game").GetComponent("UnityStack") as UnityStack;
+            unityStack = GameObject.FindGameObjectWithTag("Stack").GetComponent<UnityStack>();
             Coordinate start = new Coordinate();
             PlaceRandomTile(start);
         }
@@ -142,12 +142,12 @@ namespace Hexxle.Unity
                     break;
             }
 
-            Instantiate(
+            var newTile = Instantiate(
                     template,
                     CoordinateToPoint(tile.Coordinate),
                     Quaternion.Euler(-90, 0, 0)
                 );
-
+            newTile.transform.parent = this.transform;
         }
     }
 }

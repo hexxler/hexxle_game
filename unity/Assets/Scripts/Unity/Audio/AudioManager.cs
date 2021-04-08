@@ -7,9 +7,7 @@ public class AudioManager : MonoBehaviour
 {
 
     public Sound[] sounds;
-
     public static AudioManager instance;
-
     private Random rnd = new Random();
 
     void Awake()

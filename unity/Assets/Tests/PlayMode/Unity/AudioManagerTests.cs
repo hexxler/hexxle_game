@@ -3,8 +3,6 @@ using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.TestTools;
-using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.Utilities;
 
 namespace Hexxle.Tests.Unity
 {
@@ -29,6 +27,7 @@ namespace Hexxle.Tests.Unity
                 if (sound.name.Equals("Elevator_Theme"))
                 {
                     audioSource = sound.source;
+                    break;
                 }
             }
 

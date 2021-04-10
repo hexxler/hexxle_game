@@ -38,7 +38,7 @@ public class AudioManager : MonoBehaviour
     void Start()
     {
         //start main theme here
-        Play("Elevator_Theme");
+        Play("ElevatorTheme");
     }
 
     public void Play(string name)
@@ -54,7 +54,7 @@ public class AudioManager : MonoBehaviour
 
     public void PlayRandomPop()
     {
-        String popSound = "pop" + rnd.Next(1, 6);
+        String popSound = "Pop" + rnd.Next(1, 6);
         Debug.Log(popSound);
         Play(popSound);
     }

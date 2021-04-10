@@ -8,7 +8,7 @@ namespace Hexxle.Unity
         public void exitRound()
         {
             //play soundeffect
-            FindObjectOfType<AudioManager>().Play("pause");
+            FindObjectOfType<AudioManager>().Play("Pause");
 
             SceneManager.LoadScene("titlescreen", LoadSceneMode.Single);
         }

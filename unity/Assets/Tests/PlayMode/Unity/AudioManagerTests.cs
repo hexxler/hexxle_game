@@ -26,7 +26,7 @@ namespace Hexxle.Tests.Unity
             //search for Elevator_Theme
             foreach (Sound sound in audioManager.sounds)
             {
-                if (sound.name.Equals("Elevator_Theme"))
+                if (sound.name.Equals("ElevatorTheme"))
                 {
                     audioSource = sound.source;
                     break;
@@ -50,7 +50,7 @@ namespace Hexxle.Tests.Unity
             //search for Elevator_Theme
             foreach (Sound sound in audioManager.sounds)
             {
-                if (sound.name.Equals("Elevator_Theme"))
+                if (sound.name.Equals("ElevatorTheme"))
                 {
                     audioSource = sound.source;
                     break;
@@ -58,6 +58,32 @@ namespace Hexxle.Tests.Unity
             }
 
             yield return new WaitForSecondsRealtime(1);
+
+            Assert.True(audioSource.isPlaying);
+        }
+
+        [UnityTest]
+        public IEnumerator PlayPauseSound()
+        {
+
+            SceneManager.LoadScene("Titlescreen", LoadSceneMode.Single);
+
+            AudioManager audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+            AudioSource audioSource = null;
+
+            audioManager.Play("Pause");
+
+            //search for Elevator_Theme
+            foreach (Sound sound in audioManager.sounds)
+            {
+                if (sound.name.Equals("Pause"))
+                {
+                    audioSource = sound.source;
+                    break;
+                }
+            }
+
+            yield return new WaitForSecondsRealtime(0);
 
             Assert.True(audioSource.isPlaying);
         }

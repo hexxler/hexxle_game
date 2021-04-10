@@ -51,15 +51,11 @@ namespace Hexxle.Unity
             List<ITile> firstTen = tileStack.GetFirstTenTiles();
             toDelete = new List<GameObject>();
 
-            for (int i = 0; i < firstTen.Count; i++)
+            for (int i = firstTen.Count -1; i >= 0; i--)
             {
                 ITile tile = firstTen.ElementAt(i);
                 GameObject template = GetTypeOfTile(tile);
-                GameObject newTile = Instantiate(
-                        template,
-                        new Vector3((float)-3.75, (float)(i * 0.2), (float)-3.5),
-                        Quaternion.Euler(-90, 0, 0)
-                    );
+                GameObject newTile = Instantiate(template, Content.transform);
                 toDelete.Add(newTile);
                 newTile.transform.parent = Content.transform;
             }

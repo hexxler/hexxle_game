@@ -18,7 +18,7 @@ namespace Hexxle.Tests.Unity
         public IEnumerator MainThemeSoundIsPlaying()
         {
 
-            AudioManager audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+            AudioManager audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
             AudioSource audioSource = null;
 
             //search for Elevator_Theme

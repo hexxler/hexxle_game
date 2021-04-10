@@ -67,6 +67,151 @@ public class @InputManager : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""CameraMovement"",
+            ""id"": ""911f02e1-9526-4281-aacf-bf2264f22694"",
+            ""actions"": [
+                {
+                    ""name"": ""Move"",
+                    ""type"": ""Value"",
+                    ""id"": ""6fdbd460-ba95-4202-beb1-d80886c3a3bc"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Zoom"",
+                    ""type"": ""Value"",
+                    ""id"": ""f8c8f6ca-6e5c-4078-8365-1dc3de381583"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""79eb0345-0434-456d-ac89-50c7dd7aabb1"",
+                    ""path"": ""<Mouse>/scroll"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and Mouse"",
+                    ""action"": ""Zoom"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Keyboard WASD"",
+                    ""id"": ""1edd01ae-a473-49d7-aab5-d2e040796081"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""1ae6ee74-214c-4c36-a04e-a4bb9d6104c6"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and Mouse"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""032e25e4-e8df-47a8-a99c-bdb161266c9b"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and Mouse"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""6a4751e9-3cd4-4b22-b59b-1e2bd1264730"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and Mouse"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""b90c6e10-41ff-428e-b7fb-7e434c311f29"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and Mouse"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Keyboard Arrows"",
+                    ""id"": ""37b7613e-9c81-45da-a907-0dce4d075da5"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""c5837279-8e42-46ed-ba9b-5e8085c0a522"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and Mouse"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""7966c6e8-f203-4fbe-a762-76d592a3f077"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and Mouse"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""a95ba138-3927-4416-ace7-80236a39f6d4"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and Mouse"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""f5bf0ae4-da61-429d-9f5d-c67944bdb4f1"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and Mouse"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -85,6 +230,16 @@ public class @InputManager : IInputActionCollection, IDisposable
                     ""isOR"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Touch Only"",
+            ""bindingGroup"": ""Touch Only"",
+            ""devices"": []
+        },
+        {
+            ""name"": ""Gamepad"",
+            ""bindingGroup"": ""Gamepad"",
+            ""devices"": []
         }
     ]
 }");
@@ -94,6 +249,10 @@ public class @InputManager : IInputActionCollection, IDisposable
         // TilePlacement
         m_TilePlacement = asset.FindActionMap("TilePlacement", throwIfNotFound: true);
         m_TilePlacement_MouseClick = m_TilePlacement.FindAction("MouseClick", throwIfNotFound: true);
+        // CameraMovement
+        m_CameraMovement = asset.FindActionMap("CameraMovement", throwIfNotFound: true);
+        m_CameraMovement_Move = m_CameraMovement.FindAction("Move", throwIfNotFound: true);
+        m_CameraMovement_Zoom = m_CameraMovement.FindAction("Zoom", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -205,6 +364,47 @@ public class @InputManager : IInputActionCollection, IDisposable
         }
     }
     public TilePlacementActions @TilePlacement => new TilePlacementActions(this);
+
+    // CameraMovement
+    private readonly InputActionMap m_CameraMovement;
+    private ICameraMovementActions m_CameraMovementActionsCallbackInterface;
+    private readonly InputAction m_CameraMovement_Move;
+    private readonly InputAction m_CameraMovement_Zoom;
+    public struct CameraMovementActions
+    {
+        private @InputManager m_Wrapper;
+        public CameraMovementActions(@InputManager wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Move => m_Wrapper.m_CameraMovement_Move;
+        public InputAction @Zoom => m_Wrapper.m_CameraMovement_Zoom;
+        public InputActionMap Get() { return m_Wrapper.m_CameraMovement; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(CameraMovementActions set) { return set.Get(); }
+        public void SetCallbacks(ICameraMovementActions instance)
+        {
+            if (m_Wrapper.m_CameraMovementActionsCallbackInterface != null)
+            {
+                @Move.started -= m_Wrapper.m_CameraMovementActionsCallbackInterface.OnMove;
+                @Move.performed -= m_Wrapper.m_CameraMovementActionsCallbackInterface.OnMove;
+                @Move.canceled -= m_Wrapper.m_CameraMovementActionsCallbackInterface.OnMove;
+                @Zoom.started -= m_Wrapper.m_CameraMovementActionsCallbackInterface.OnZoom;
+                @Zoom.performed -= m_Wrapper.m_CameraMovementActionsCallbackInterface.OnZoom;
+                @Zoom.canceled -= m_Wrapper.m_CameraMovementActionsCallbackInterface.OnZoom;
+            }
+            m_Wrapper.m_CameraMovementActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Move.started += instance.OnMove;
+                @Move.performed += instance.OnMove;
+                @Move.canceled += instance.OnMove;
+                @Zoom.started += instance.OnZoom;
+                @Zoom.performed += instance.OnZoom;
+                @Zoom.canceled += instance.OnZoom;
+            }
+        }
+    }
+    public CameraMovementActions @CameraMovement => new CameraMovementActions(this);
     private int m_KeyboardandMouseSchemeIndex = -1;
     public InputControlScheme KeyboardandMouseScheme
     {
@@ -214,6 +414,24 @@ public class @InputManager : IInputActionCollection, IDisposable
             return asset.controlSchemes[m_KeyboardandMouseSchemeIndex];
         }
     }
+    private int m_TouchOnlySchemeIndex = -1;
+    public InputControlScheme TouchOnlyScheme
+    {
+        get
+        {
+            if (m_TouchOnlySchemeIndex == -1) m_TouchOnlySchemeIndex = asset.FindControlSchemeIndex("Touch Only");
+            return asset.controlSchemes[m_TouchOnlySchemeIndex];
+        }
+    }
+    private int m_GamepadSchemeIndex = -1;
+    public InputControlScheme GamepadScheme
+    {
+        get
+        {
+            if (m_GamepadSchemeIndex == -1) m_GamepadSchemeIndex = asset.FindControlSchemeIndex("Gamepad");
+            return asset.controlSchemes[m_GamepadSchemeIndex];
+        }
+    }
     public interface IMenuInteractionActions
     {
         void OnPause(InputAction.CallbackContext context);
@@ -221,5 +439,10 @@ public class @InputManager : IInputActionCollection, IDisposable
     public interface ITilePlacementActions
     {
         void OnMouseClick(InputAction.CallbackContext context);
+    }
+    public interface ICameraMovementActions
+    {
+        void OnMove(InputAction.CallbackContext context);
+        void OnZoom(InputAction.CallbackContext context);
     }
 }

@@ -83,9 +83,15 @@ namespace Hexxle.Tests.Unity
                 }
             }
 
-            yield return new WaitForSecondsRealtime(0);
+            int counter = 0;
+            int counterMaxValue = 20;
+            while(!audioSource.isPlaying && counter < counterMaxValue)
+            {
+                counter++;
+                yield return null; // new WaitForSecondsRealtime(0);
+            }
 
-            Assert.True(audioSource.isPlaying);
+            Assert.True(counter < counterMaxValue);
         }
 
     }

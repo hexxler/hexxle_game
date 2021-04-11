@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Linq;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -21,18 +22,10 @@ namespace Hexxle.Tests.Unity
             SceneManager.LoadScene("Main", LoadSceneMode.Single);
 
             AudioManager audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
-            AudioSource audioSource = null;
-
-            foreach(Sound sound in audioManager.backgroundSounds){
-                if (sound.source.isPlaying)
-                {
-                    audioSource = sound.source;
-                }
-            }
 
             yield return new WaitForSecondsRealtime(1);
 
-            Assert.True(audioSource.isPlaying);
+            Assert.True(audioManager.backgroundMusics.Any(s => s.source.isPlaying));
         }
 
         [UnityTest]
@@ -42,19 +35,10 @@ namespace Hexxle.Tests.Unity
             SceneManager.LoadScene("Titlescreen", LoadSceneMode.Single);
 
             AudioManager audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
-            AudioSource audioSource = null;
-
-            foreach (Sound sound in audioManager.backgroundSounds)
-            {
-                if (sound.source.isPlaying)
-                {
-                    audioSource = sound.source;
-                }
-            }
 
             yield return new WaitForSecondsRealtime(1);
 
-            Assert.True(audioSource.isPlaying);
+            Assert.True(audioManager.backgroundMusics.Any(s => s.source.isPlaying));
         }
 
         [UnityTest]

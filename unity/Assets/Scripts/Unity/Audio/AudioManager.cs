@@ -9,7 +9,7 @@ public class AudioManager : MonoBehaviour
     public static AudioManager instance;
     private Random rnd = new Random();
     public List<Sound> popSounds = new List<Sound>();
-    public List<Sound> backgroundSounds = new List<Sound>();
+    public List<Sound> backgroundMusics = new List<Sound>();
     public Sound pauseSound;
 
     void Awake()
@@ -28,7 +28,7 @@ public class AudioManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
         AddAudioSource(popSounds);
-        AddAudioSource(backgroundSounds);
+        AddAudioSource(backgroundMusics);
         AddAudioSource(new List<Sound>{pauseSound});
 
     }
@@ -44,7 +44,7 @@ public class AudioManager : MonoBehaviour
         switch(soundType){
             case GameSoundTypes.BACKGROUND:
                 {
-                    backgroundSounds[rnd.Next(backgroundSounds.Count)].source.Play();
+                    backgroundMusics[rnd.Next(backgroundMusics.Count)].source.Play();
                     break;
                 }
             case GameSoundTypes.POP:

@@ -24,7 +24,7 @@ namespace Hexxle.Tests.Unity
             AudioSource audioSource = null;
 
             //search for Elevator_Theme
-            foreach (Sound sound in audioManager.sounds)
+            foreach (Sound sound in audioManager.backgroundSounds)
             {
                 if (sound.name.Equals("ElevatorTheme"))
                 {
@@ -48,7 +48,7 @@ namespace Hexxle.Tests.Unity
             AudioSource audioSource = null;
 
             //search for Elevator_Theme
-            foreach (Sound sound in audioManager.sounds)
+            foreach (Sound sound in audioManager.backgroundSounds)
             {
                 if (sound.name.Equals("ElevatorTheme"))
                 {
@@ -71,10 +71,10 @@ namespace Hexxle.Tests.Unity
             AudioManager audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
             AudioSource audioSource = null;
 
-            audioManager.Play("Pause");
+            audioManager.Play(GameSoundTypes.PAUSE);
 
             //search for Elevator_Theme
-            foreach (Sound sound in audioManager.sounds)
+            foreach (Sound sound in audioManager.pauseSounds)
             {
                 if (sound.name.Equals("Pause"))
                 {

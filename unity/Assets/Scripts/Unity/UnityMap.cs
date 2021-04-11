@@ -56,7 +56,7 @@ namespace Hexxle.Unity
                     GameObject.Destroy(clickedTile);
 
                     //play soundeffect
-                    FindObjectOfType<AudioManager>().PlayRandomPop();
+                    FindObjectOfType<AudioManager>().Play(GameSoundTypes.POP);
                 }
             }
         }

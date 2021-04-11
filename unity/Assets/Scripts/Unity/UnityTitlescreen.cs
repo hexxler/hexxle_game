@@ -9,7 +9,7 @@ namespace Hexxle.Unity
         {
             Debug.Log("play_game");
             //play soundeffect
-            FindObjectOfType<AudioManager>().PlayRandomPop();
+            FindObjectOfType<AudioManager>().Play(GameSoundTypes.POP);
 
             SceneManager.LoadScene("Main", LoadSceneMode.Single);
         }
@@ -18,7 +18,7 @@ namespace Hexxle.Unity
         {
             Debug.Log("Quit_game");
             //play soundeffect
-            FindObjectOfType<AudioManager>().PlayRandomPop();
+            FindObjectOfType<AudioManager>().Play(GameSoundTypes.POP);
 
             Application.Quit();
         }

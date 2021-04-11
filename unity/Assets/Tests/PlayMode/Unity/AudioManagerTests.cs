@@ -30,9 +30,6 @@ namespace Hexxle.Tests.Unity
         [UnityTest]
         public IEnumerator MainThemeSoundIsPlayingInTitlescreenScene()
         {
-
-            SceneManager.LoadScene("Titlescreen", LoadSceneMode.Single);
-
             AudioManager audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
 
             yield return null;
@@ -42,9 +39,6 @@ namespace Hexxle.Tests.Unity
         [UnityTest]
         public IEnumerator PlayPauseSound()
         {
-
-            SceneManager.LoadScene("Titlescreen", LoadSceneMode.Single);
-
             AudioManager audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
             AudioSource audioSource = audioManager.pauseSound.source;
 

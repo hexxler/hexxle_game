@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.Util;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -8,14 +9,11 @@ namespace Hexxle.Unity
     {
         public void PauseRound()
         {
-            var uiPanel = GameObject.FindGameObjectWithTag("UI").transform.GetChild(0).gameObject;
-
             // activate PausePanel
-            var pauseCanvas = GameObject.FindGameObjectWithTag("Pause");
-            pauseCanvas.transform.GetChild(0).gameObject.SetActive(true);
+            GameObjectFinder.PausePanel.SetActive(true);
 
             // disable Buttons in UI
-            foreach (Button button in uiPanel.GetComponentsInChildren<Button>())
+            foreach (Button button in GameObjectFinder.UIPanel.GetComponentsInChildren<Button>())
             {
                 button.enabled = false;
             }

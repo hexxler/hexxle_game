@@ -4,6 +4,7 @@ using Hexxle.Logic;
 using Hexxle.TileSystem;
 using UnityEngine.InputSystem;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace Hexxle.Unity
 {
@@ -41,22 +42,27 @@ namespace Hexxle.Unity
 
         private void PlaceTileOnMouseClick(InputAction.CallbackContext context)
         {
-            if (unityStack.Count() != 0)
+            // Check if Mouse is not over UI object
+            if (!EventSystem.current.IsPointerOverGameObject())
             {
-                var vec = Mouse.current.position.ReadValue();
-                Ray ray = Camera.main.ScreenPointToRay(new Vector3(vec.x, vec.y, 0));
-                if (Physics.Raycast(ray, out RaycastHit hit))
+                // Only try to place a tile if the stack has one or more tiles left
+                if (unityStack.Count() != 0)
                 {
-                    GameObject clickedTile = hit.collider.gameObject;
+                    var vec = Mouse.current.position.ReadValue();
+                    Ray ray = Camera.main.ScreenPointToRay(new Vector3(vec.x, vec.y, 0));
+                    if (Physics.Raycast(ray, out RaycastHit hit))
+                    {
+                        GameObject clickedTile = hit.collider.gameObject;
 
-                    Coordinate coordinate = PointToCoordinate(clickedTile.transform.position);
-                    Debug.Log(coordinate.x + " " + coordinate.y + " " + coordinate.z);
-                    PlaceNextTile(coordinate);
+                        Coordinate coordinate = PointToCoordinate(clickedTile.transform.position);
+                        Debug.Log(coordinate.x + " " + coordinate.y + " " + coordinate.z);
+                        PlaceNextTile(coordinate);
 
-                    GameObject.Destroy(clickedTile);
-
-                    //play soundeffect
-                    FindObjectOfType<AudioManager>().Play(GameSoundTypes.POP);
+                        GameObject.Destroy(clickedTile);
+                        
+                        //play soundeffect
+                        FindObjectOfType<AudioManager>().Play(GameSoundTypes.POP);
+                    }
                 }
             }
         }

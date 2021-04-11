@@ -8,6 +8,8 @@ TagManager:
   - Stack
   - Points
   - Audio
+  - UI
+  - Pause
   layers:
   - Default
   - TransparentFX

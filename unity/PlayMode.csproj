@@ -65,6 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Tests\PlayMode\Unity\AudioManagerTests.cs" />
+    <Compile Include="Assets\Tests\PlayMode\Unity\CameraMovementTests.cs" />
     <Compile Include="Assets\Tests\PlayMode\Unity\EscPauseMenuTests.cs" />
     <None Include="Assets\Tests\PlayMode\PlayMode.asmdef" />
     <Reference Include="UnityEngine">

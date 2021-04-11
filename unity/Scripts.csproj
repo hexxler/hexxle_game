@@ -92,11 +92,14 @@
     <Compile Include="Assets\Scripts\Unity\Audio\Sound.cs" />
     <Compile Include="Assets\Scripts\Unity\Input\EscapeEventHandler.cs" />
     <Compile Include="Assets\Scripts\Unity\Input\InputManager.cs" />
+    <Compile Include="Assets\Scripts\Unity\UnityCamera.cs" />
     <Compile Include="Assets\Scripts\Unity\UnityMap.cs" />
+    <Compile Include="Assets\Scripts\Unity\UnityPause.cs" />
     <Compile Include="Assets\Scripts\Unity\UnityPoints.cs" />
     <Compile Include="Assets\Scripts\Unity\UnityStack.cs" />
     <Compile Include="Assets\Scripts\Unity\UnityTitlescreen.cs" />
     <Compile Include="Assets\Scripts\Unity\UnityUI.cs" />
+    <Compile Include="Assets\Scripts\Util\GameObjectFinder.cs" />
     <None Include="Assets\Scripts\Scripts.asmdef" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.22f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

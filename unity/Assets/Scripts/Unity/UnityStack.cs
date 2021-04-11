@@ -12,6 +12,7 @@ namespace Hexxle.Unity
         public GameObject RedTemplate;
         public GameObject GreenTemplate;
         public GameObject BlueTemplate;
+        public GameObject Content;
         private List<GameObject> toDelete = new List<GameObject>();
         private ITileStack tileStack;
         private int stackCount = 0;
@@ -50,17 +51,13 @@ namespace Hexxle.Unity
             List<ITile> firstTen = tileStack.GetFirstTenTiles();
             toDelete = new List<GameObject>();
 
-            for (int i = 0; i < firstTen.Count; i++)
+            for (int i = firstTen.Count -1; i >= 0; i--)
             {
                 ITile tile = firstTen.ElementAt(i);
                 GameObject template = GetTypeOfTile(tile);
-                GameObject newTile = Instantiate(
-                        template,
-                        new Vector3((float)-3.7, (float)(i * 0.3), -4),
-                        Quaternion.Euler(-90, 0, 0)
-                    );
+                GameObject newTile = Instantiate(template, Content.transform);
                 toDelete.Add(newTile);
-                newTile.transform.parent = this.transform;
+                newTile.transform.SetParent(Content.transform, false);
             }
             stackCount = tileStack.Count();
         }

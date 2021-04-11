@@ -90,6 +90,7 @@
     <Compile Include="Assets\Scripts\TileSystem\Type\VoidType.cs" />
     <Compile Include="Assets\Scripts\Unity\Input\EscapeEventHandler.cs" />
     <Compile Include="Assets\Scripts\Unity\Input\InputManager.cs" />
+    <Compile Include="Assets\Scripts\Unity\UnityCamera.cs" />
     <Compile Include="Assets\Scripts\Unity\UnityMap.cs" />
     <Compile Include="Assets\Scripts\Unity\UnityPoints.cs" />
     <Compile Include="Assets\Scripts\Unity\UnityStack.cs" />

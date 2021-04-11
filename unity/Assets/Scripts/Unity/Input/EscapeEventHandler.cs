@@ -1,5 +1,7 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.Util;
+using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class EscapeEventHandler : MonoBehaviour
 {
@@ -17,9 +19,20 @@ public class EscapeEventHandler : MonoBehaviour
     private void ReturnToMainMenu()
     {
         Debug.Log(SceneManager.GetActiveScene().name);
-        if(SceneManager.GetActiveScene().name.Equals("Main"))
+        if (SceneManager.GetActiveScene().name.Equals("Main"))
         {
-            SceneManager.LoadSceneAsync("titlescreen", LoadSceneMode.Single);
+            // activate pausePanel if game is paused, deactivate if unpaused
+            // deactivate buttons if game is paused, activate if unpaused
+            var pausePanel = GameObjectFinder.PausePanel;
+            bool isPaused = pausePanel.activeSelf;
+            // activate/deactivate PausePanel
+            GameObjectFinder.PausePanel.SetActive(!isPaused);
+
+            // enable/disable Buttons in UI
+            foreach (Button button in GameObjectFinder.UIPanel.GetComponentsInChildren<Button>())
+            {
+                button.enabled = isPaused;
+            }
         }
     }
 }

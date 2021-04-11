@@ -7,7 +7,7 @@ namespace Hexxle.Unity
     {
         public void PlayGame()
         {
-            Debug.Log("play_game");
+            Debug.Log("Play_game");
             //play soundeffect
             FindObjectOfType<AudioManager>().Play(GameSoundTypes.POP);
 

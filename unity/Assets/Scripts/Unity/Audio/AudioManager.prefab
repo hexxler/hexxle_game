@@ -44,45 +44,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   popSounds:
-  - name: Pop1
-    clip: {fileID: 8300000, guid: 51289b3840291644b97f1abf0a338bd0, type: 3}
+  - clip: {fileID: 8300000, guid: 51289b3840291644b97f1abf0a338bd0, type: 3}
     volume: 1
     pitch: 1
     source: {fileID: 0}
     loop: 0
-  - name: Pop1
-    clip: {fileID: 8300000, guid: e9f974ea94794a54a9ce55f0106eb65a, type: 3}
+  - clip: {fileID: 8300000, guid: e9f974ea94794a54a9ce55f0106eb65a, type: 3}
     volume: 1
     pitch: 1
     source: {fileID: 0}
     loop: 0
-  - name: Pop1
-    clip: {fileID: 8300000, guid: 21a6d7b817f6cfa44ae74ae61b1a4a98, type: 3}
+  - clip: {fileID: 8300000, guid: 21a6d7b817f6cfa44ae74ae61b1a4a98, type: 3}
     volume: 1
     pitch: 1
     source: {fileID: 0}
     loop: 0
-  - name: Pop1
-    clip: {fileID: 8300000, guid: e457cbf2e4a3b684793e8b4f1e52f0ea, type: 3}
+  - clip: {fileID: 8300000, guid: e457cbf2e4a3b684793e8b4f1e52f0ea, type: 3}
     volume: 1
     pitch: 1
     source: {fileID: 0}
     loop: 0
-  - name: Pop1
-    clip: {fileID: 8300000, guid: 25381ea2441fc97489786e05d983400e, type: 3}
+  - clip: {fileID: 8300000, guid: 25381ea2441fc97489786e05d983400e, type: 3}
     volume: 1
     pitch: 1
     source: {fileID: 0}
     loop: 0
   backgroundSounds:
-  - name: ElevatorTheme
-    clip: {fileID: 8300000, guid: fd91424ef770ab3479f549873c450999, type: 3}
+  - clip: {fileID: 8300000, guid: fd91424ef770ab3479f549873c450999, type: 3}
     volume: 0.1
     pitch: 1
     source: {fileID: 0}
     loop: 1
-  pauseSounds:
-  - name: Pause
+  pauseSound:
     clip: {fileID: 8300000, guid: eed2ea265c18ccd41a4b17dab3356010, type: 3}
     volume: 1
     pitch: 1

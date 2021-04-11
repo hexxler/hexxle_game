@@ -23,13 +23,10 @@ namespace Hexxle.Tests.Unity
             AudioManager audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
             AudioSource audioSource = null;
 
-            //search for Elevator_Theme
-            foreach (Sound sound in audioManager.backgroundSounds)
-            {
-                if (sound.name.Equals("ElevatorTheme"))
+            foreach(Sound sound in audioManager.backgroundSounds){
+                if (sound.source.isPlaying)
                 {
                     audioSource = sound.source;
-                    break;
                 }
             }
 
@@ -47,13 +44,11 @@ namespace Hexxle.Tests.Unity
             AudioManager audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
             AudioSource audioSource = null;
 
-            //search for Elevator_Theme
             foreach (Sound sound in audioManager.backgroundSounds)
             {
-                if (sound.name.Equals("ElevatorTheme"))
+                if (sound.source.isPlaying)
                 {
                     audioSource = sound.source;
-                    break;
                 }
             }
 
@@ -69,19 +64,9 @@ namespace Hexxle.Tests.Unity
             SceneManager.LoadScene("Titlescreen", LoadSceneMode.Single);
 
             AudioManager audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
-            AudioSource audioSource = null;
+            AudioSource audioSource = audioManager.pauseSound.source;
 
             audioManager.Play(GameSoundTypes.PAUSE);
-
-            //search for Elevator_Theme
-            foreach (Sound sound in audioManager.pauseSounds)
-            {
-                if (sound.name.Equals("Pause"))
-                {
-                    audioSource = sound.source;
-                    break;
-                }
-            }
 
             int counter = 0;
             int counterMaxValue = 20;

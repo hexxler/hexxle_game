@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts.Util;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -12,19 +13,28 @@ public class EscapeEventHandler : MonoBehaviour
     private void Awake()
     {
         inputManager = new InputManager();
-        inputManager.MenuInteraction.Pause.Enable();
-        inputManager.MenuInteraction.Pause.performed += context => ReturnToMainMenu();
     }
-   
-    private void ReturnToMainMenu()
+
+    private void OnEnable()
     {
-        Debug.Log(SceneManager.GetActiveScene().name);
+        inputManager.MenuInteraction.Pause.Enable();
+        inputManager.MenuInteraction.Pause.performed += PauseOrUnpause;
+    }
+
+    private void OnDisable()
+    {
+        inputManager.MenuInteraction.Pause.Disable();
+        inputManager.MenuInteraction.Pause.performed -= PauseOrUnpause;
+    }
+
+    private void PauseOrUnpause(InputAction.CallbackContext context)
+    {
+        // activate pausePanel if game is paused, deactivate if unpaused
+        // deactivate buttons if game is paused, activate if unpaused
+        var pausePanel = GameObjectFinder.PausePanel;
+        bool isPaused = pausePanel.activeSelf;
         if (SceneManager.GetActiveScene().name.Equals("Main"))
         {
-            // activate pausePanel if game is paused, deactivate if unpaused
-            // deactivate buttons if game is paused, activate if unpaused
-            var pausePanel = GameObjectFinder.PausePanel;
-            bool isPaused = pausePanel.activeSelf;
             // activate/deactivate PausePanel
             GameObjectFinder.PausePanel.SetActive(!isPaused);
 

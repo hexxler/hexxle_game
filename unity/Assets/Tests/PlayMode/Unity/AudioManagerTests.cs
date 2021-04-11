@@ -83,7 +83,7 @@ namespace Hexxle.Tests.Unity
                 }
             }
 
-            yield return null; // new WaitForSecondsRealtime(0);
+            yield return new WaitForSecondsRealtime(0.5f); ; // new WaitForSecondsRealtime(0);
 
 
             Assert.True(audioSource.isPlaying);

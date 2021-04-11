@@ -23,7 +23,7 @@ namespace Hexxle.Tests.Unity
 
             AudioManager audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
 
-            yield return new WaitForSecondsRealtime(1);
+            yield return new WaitForSecondsRealtime(5);
 
             Assert.True(audioManager.backgroundMusics.Any(s => s.source.isPlaying));
         }
@@ -36,7 +36,7 @@ namespace Hexxle.Tests.Unity
 
             AudioManager audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
 
-            yield return new WaitForSecondsRealtime(1);
+            yield return new WaitForSecondsRealtime(5);
 
             Assert.True(audioManager.backgroundMusics.Any(s => s.source.isPlaying));
         }

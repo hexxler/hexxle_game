@@ -57,7 +57,7 @@ namespace Hexxle.Unity
                 GameObject template = GetTypeOfTile(tile);
                 GameObject newTile = Instantiate(template, Content.transform);
                 toDelete.Add(newTile);
-                newTile.transform.parent = Content.transform;
+                newTile.transform.SetParent(Content.transform, false);
             }
             stackCount = tileStack.Count();
         }

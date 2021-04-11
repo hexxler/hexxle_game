@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.TestTools;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Utilities;
+using Assets.Scripts.Util;
 
 namespace Hexxle.Tests.Unity
 {
@@ -43,9 +44,8 @@ namespace Hexxle.Tests.Unity
 
             yield return new WaitForSecondsRealtime(1);
 
-
-            Assert.AreEqual("titlescreen", SceneManager.GetActiveScene().name);
-
+            Assert.AreEqual("Main", SceneManager.GetActiveScene().name);
+            Assert.IsTrue(GameObjectFinder.PausePanel.activeSelf);
         }
 
 

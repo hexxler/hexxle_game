@@ -1,0 +1,26 @@
+﻿using UnityEngine;
+using UnityEngine.SceneManagement;
+
+namespace Hexxle.Unity
+{
+    public class UnityTitlescreen : MonoBehaviour
+    {
+        public void PlayGame()
+        {
+            Debug.Log("Play_game");
+            //play soundeffect
+            FindObjectOfType<AudioManager>().Play(GameSoundTypes.POP);
+
+            SceneManager.LoadScene("Main", LoadSceneMode.Single);
+        }
+
+        public void QuitGame()
+        {
+            Debug.Log("Quit_game");
+            //play soundeffect
+            FindObjectOfType<AudioManager>().Play(GameSoundTypes.POP);
+
+            Application.Quit();
+        }
+    }
+}

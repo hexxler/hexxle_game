@@ -1,8 +1,8 @@
-﻿using Assets.Scripts.TileSystem;
-using Hexxle.CoordinateSystem;
+﻿using Hexxle.CoordinateSystem;
+using Hexxle.TileSystem;
 using System.Collections.Generic;
 
-namespace Assets.Scripts.Interfaces
+namespace Hexxle.Interfaces
 {
     public interface ITileNature
     {

@@ -1,7 +1,6 @@
-﻿using Assets.Scripts.Interfaces;
-using Hexxle.TileSystem;
+﻿using Hexxle.Interfaces;
 
-namespace Assets.Scripts.TileSystem.Type
+namespace Hexxle.TileSystem.Type
 {
     public class GreenType : ITileType
     {

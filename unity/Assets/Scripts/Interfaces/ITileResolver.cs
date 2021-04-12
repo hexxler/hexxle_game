@@ -1,4 +1,4 @@
-﻿namespace Assets.Scripts.Interfaces
+﻿namespace Hexxle.Interfaces
 {
     public interface ITileResolver<T> where T : class, ITile
     {

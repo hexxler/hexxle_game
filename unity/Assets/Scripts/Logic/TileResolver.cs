@@ -1,8 +1,7 @@
-﻿using Assets.Scripts.Interfaces;
-using Hexxle.TileSystem;
+﻿using Hexxle.Interfaces;
 using System.Linq;
 
-namespace Assets.Scripts.Logic
+namespace Hexxle.Logic
 {
     public class TileResolver : ITileResolver<ITile>
     {

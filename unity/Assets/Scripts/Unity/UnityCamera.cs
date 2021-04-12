@@ -27,7 +27,11 @@ public class UnityCamera : MonoBehaviour
 
     private void Update()
     {
-        if (held) Camera.main.transform.Translate(direction * moveSpeed * Time.deltaTime);
+        if (held) 
+        {
+            Vector3 relative = Camera.main.transform.InverseTransformDirection(direction * moveSpeed * Time.deltaTime);
+            Camera.main.transform.Translate(relative);
+        }
     }
 
     private void ZoomCamera(InputAction.CallbackContext context)
@@ -40,7 +44,9 @@ public class UnityCamera : MonoBehaviour
 
     private void MoveCamera(InputAction.CallbackContext context)
     {
-        direction = context.ReadValue<Vector2>();
+        var moveVector = context.ReadValue<Vector2>();
+        direction.x = moveVector.x;
+        direction.z = moveVector.y;
         if (context.performed) held = true;
         if (context.canceled) held = false;
     }

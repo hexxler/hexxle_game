@@ -604,6 +604,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Tests\PlayMode\Unity\AudioManagerTests.cs" />
+    <Compile Include="Assets\Tests\PlayMode\Unity\CameraMovementTests.cs" />
     <Compile Include="Assets\Tests\PlayMode\Unity\EscPauseMenuTests.cs" />
   </ItemGroup>
   <ItemGroup>

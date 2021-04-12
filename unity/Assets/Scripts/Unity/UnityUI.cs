@@ -11,6 +11,9 @@ namespace Hexxle.Unity
         {
             // activate PausePanel
             GameObjectFinder.PausePanel.SetActive(true);
+            
+            //play soundeffect
+            FindObjectOfType<AudioManager>().Play(GameSoundTypes.PAUSE);
 
             // disable Buttons in UI
             foreach (Button button in GameObjectFinder.UIPanel.GetComponentsInChildren<Button>())

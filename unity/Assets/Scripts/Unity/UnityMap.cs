@@ -59,6 +59,9 @@ namespace Hexxle.Unity
                         PlaceNextTile(coordinate);
 
                         GameObject.Destroy(clickedTile);
+                        
+                        //play soundeffect
+                        FindObjectOfType<AudioManager>().Play(GameSoundTypes.POP);
                     }
                 }
             }

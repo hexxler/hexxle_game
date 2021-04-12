@@ -35,7 +35,15 @@ namespace Hexxle.Tests.Unity
 
             AudioManager audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
 
-            Assert.True(audioManager.backgroundMusics.Any(s => s.source.isPlaying));
+            int counter = 0;
+            int counterMaxValue = 20;
+            while (!audioManager.backgroundMusics.Any(s => s.source.isPlaying) && counter < counterMaxValue)
+            {
+                counter++;
+                yield return null;
+            }
+
+            Assert.True(counter < counterMaxValue);
         }
 
         [UnityTest]
@@ -45,7 +53,15 @@ namespace Hexxle.Tests.Unity
 
             Assert.AreEqual("titlescreen", SceneManager.GetActiveScene().name);
 
-            Assert.True(audioManager.backgroundMusics.Any(s => s.source.isPlaying));
+            int counter = 0;
+            int counterMaxValue = 20;
+            while (!audioManager.backgroundMusics.Any(s => s.source.isPlaying) && counter < counterMaxValue)
+            {
+                counter++;
+                yield return null;
+            }
+
+            Assert.True(counter < counterMaxValue);
 
             yield return null;
         }

@@ -29,18 +29,17 @@ namespace Hexxle.Tests.Unity
         {
             SceneManager.LoadScene("Main", LoadSceneMode.Single);
 
-            yield return new WaitForSecondsRealtime(1);
+            yield return new WaitForSecondsRealtime(2);
 
             Assert.AreEqual("Main", SceneManager.GetActiveScene().name);
 
             AudioManager audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
 
             int counter = 0;
-            int counterMaxValue = 20;
+            int counterMaxValue = 50;
             while (!audioManager.backgroundMusics.Any(s => s.source.isPlaying) && counter < counterMaxValue)
             {
                 counter++;
-                yield return null;
             }
 
             Assert.True(counter < counterMaxValue);
@@ -53,17 +52,18 @@ namespace Hexxle.Tests.Unity
 
             Assert.AreEqual("titlescreen", SceneManager.GetActiveScene().name);
 
+
+            yield return new WaitForSecondsRealtime(2);
+
             int counter = 0;
-            int counterMaxValue = 20;
+            int counterMaxValue = 50;
             while (!audioManager.backgroundMusics.Any(s => s.source.isPlaying) && counter < counterMaxValue)
             {
                 counter++;
-                yield return null;
             }
 
             Assert.True(counter < counterMaxValue);
 
-            yield return null;
         }
 
         [UnityTest]
@@ -75,14 +75,14 @@ namespace Hexxle.Tests.Unity
             audioManager.Play(GameSoundTypes.PAUSE);
 
             int counter = 0;
-            int counterMaxValue = 20;
+            int counterMaxValue = 50;
             while(!audioSource.isPlaying && counter < counterMaxValue)
             {
                 counter++;
-                yield return null;
             }
 
             Assert.True(counter < counterMaxValue);
+            yield return null;
         }
 
     }

@@ -10,10 +10,18 @@ namespace Hexxle.Tests.Unity
     public class AudioManagerTests
     {
 
+        private string sceneToLoad = "titlescreen";
+
         [SetUp]
         public void Setup()
         {
-            SceneManager.LoadScene("Titlescreen", LoadSceneMode.Single);
+            SceneManager.LoadScene(sceneToLoad, LoadSceneMode.Single);
+        }
+
+        [TearDown]
+        public void TearDown()
+        {
+            SceneManager.LoadScene(sceneToLoad, LoadSceneMode.Single);
         }
 
         [UnityTest]
@@ -21,9 +29,12 @@ namespace Hexxle.Tests.Unity
         {
             SceneManager.LoadScene("Main", LoadSceneMode.Single);
 
+            yield return new WaitForSecondsRealtime(1);
+
+            Assert.AreEqual("Main", SceneManager.GetActiveScene().name);
+
             AudioManager audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
 
-            yield return null;
             Assert.True(audioManager.backgroundMusics.Any(s => s.source.isPlaying));
         }
 
@@ -32,8 +43,11 @@ namespace Hexxle.Tests.Unity
         {
             AudioManager audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
 
-            yield return null;
+            Assert.AreEqual("titlescreen", SceneManager.GetActiveScene().name);
+
             Assert.True(audioManager.backgroundMusics.Any(s => s.source.isPlaying));
+
+            yield return null;
         }
 
         [UnityTest]

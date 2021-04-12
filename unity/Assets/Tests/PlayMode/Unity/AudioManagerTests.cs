@@ -35,6 +35,9 @@ namespace Hexxle.Tests.Unity
 
             AudioManager audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
 
+
+            yield return new WaitForSecondsRealtime(3);
+
             int counter = 0;
             int counterMaxValue = 50;
             while (!audioManager.backgroundMusics.Any(s => s.source.isPlaying) && counter < counterMaxValue)
@@ -53,7 +56,7 @@ namespace Hexxle.Tests.Unity
             Assert.AreEqual("titlescreen", SceneManager.GetActiveScene().name);
 
 
-            yield return new WaitForSecondsRealtime(2);
+            yield return new WaitForSecondsRealtime(3);
 
             int counter = 0;
             int counterMaxValue = 50;

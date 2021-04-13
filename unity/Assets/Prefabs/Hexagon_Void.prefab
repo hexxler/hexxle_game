@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 8965074599514146938}
   - component: {fileID: 6597387046677642416}
   - component: {fileID: -501403973527943322}
+  - component: {fileID: 1352148691047512219}
   m_Layer: 0
   m_Name: Hexagon_Void
-  m_TagString: Untagged
+  m_TagString: Void
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -94,3 +95,15 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -4575734979276873811, guid: 83bcf4b5ecf9884468ddd2ea1084dcdf, type: 3}
+--- !u!114 &1352148691047512219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4651757585288158565}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d55af2aef464f6c48882d3b27a87e473, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 2379595694837963054}
   - component: {fileID: 496225972879453668}
   - component: {fileID: 3173373250583723635}
+  - component: {fileID: 3014378360323002436}
   m_Layer: 0
   m_Name: Hexagon_Red
-  m_TagString: Untagged
+  m_TagString: Tile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -89,8 +90,20 @@ MeshCollider:
   m_GameObject: {fileID: 2153299603328519217}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -4575734979276873811, guid: 83bcf4b5ecf9884468ddd2ea1084dcdf, type: 3}
+--- !u!114 &3014378360323002436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2153299603328519217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d55af2aef464f6c48882d3b27a87e473, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

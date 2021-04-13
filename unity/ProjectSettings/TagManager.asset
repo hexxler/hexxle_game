@@ -10,6 +10,8 @@ TagManager:
   - Audio
   - UI
   - Pause
+  - Tile
+  - Void
   layers:
   - Default
   - TransparentFX

@@ -65,9 +65,9 @@ namespace Hexxle.Tests.Unity
         }
 
         [UnityTest]
-        public IEnumerator PressingWIncreasesYPosition()
+        public IEnumerator PressingWIncreasesZPosition()
         {
-            float initialY = Camera.main.transform.position.y;
+            float initialZ = Camera.main.transform.position.z;
             movementAction.Enable();
             Press(keyboard.wKey);
 
@@ -79,13 +79,13 @@ namespace Hexxle.Tests.Unity
                 Assert.AreEqual(1, trace.count);
             }
             yield return new WaitForSecondsRealtime(1);
-            Assert.Greater(Camera.main.transform.position.y, initialY);
+            Assert.Greater(Camera.main.transform.position.z, initialZ);
         }
 
         [UnityTest]
-        public IEnumerator PressingSDecreasesYPosition()
+        public IEnumerator PressingSDecreasesZPosition()
         {
-            float initialY = Camera.main.transform.position.y;
+            float initialZ = Camera.main.transform.position.z;
             movementAction.Enable();
             Press(keyboard.sKey);
 
@@ -97,7 +97,7 @@ namespace Hexxle.Tests.Unity
                 Assert.AreEqual(1, trace.count);
             }
             yield return new WaitForSecondsRealtime(1);
-            Assert.Less(Camera.main.transform.position.y, initialY);
+            Assert.Less(Camera.main.transform.position.z, initialZ);
         }
 
         [UnityTest]

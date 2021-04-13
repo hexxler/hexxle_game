@@ -28,22 +28,19 @@ namespace Hexxle.Unity.Input
         // Update is called once per frame
         void Update()
         {   
-            if(Mouse.current != null)
+            var vec = Mouse.current.position.ReadValue();
+            Ray ray = Camera.main.ScreenPointToRay(new Vector3(vec.x, vec.y, 0));
+            if (Physics.Raycast(ray, out RaycastHit hit))
             {
-                var vec = Mouse.current.position.ReadValue();
-                Ray ray = Camera.main.ScreenPointToRay(new Vector3(vec.x, vec.y, 0));
-                if (Physics.Raycast(ray, out RaycastHit hit))
-                {
-                    oldTile = currentCollisionTile;
-                    currentCollisionTile = hit.collider.gameObject;
-                }
-                else
-                {
-                    oldTile = currentCollisionTile;
-                    currentCollisionTile = null;
-                }
-                updateTiles();
+                oldTile = currentCollisionTile;
+                currentCollisionTile = hit.collider.gameObject;
             }
+            else
+            {
+                oldTile = currentCollisionTile;
+                currentCollisionTile = null;
+            }
+            updateTiles();
         }
 
         void updateTiles()
@@ -64,7 +61,7 @@ namespace Hexxle.Unity.Input
             {
                 UnityMap unityMap = GameObjectFinder.UnityMap;
                 Coordinate coordinate = unityMap.PointToCoordinate(currentCollisionTile.transform.position);
-                Debug.Log(coordinate.x + " " + coordinate.y + " " + coordinate.z);
+                Debug.Log(coordinate.X + " " + coordinate.Y + " " + coordinate.Z);
                 unityMap.PlaceNextTile(coordinate);
 
                 GameObject.Destroy(currentCollisionTile);

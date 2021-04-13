@@ -13,14 +13,10 @@ namespace Hexxle.Unity
         ITileMap<ITile> map;
         ITileResolver<ITile> resolver;
 
-        public GameObject RedTemplate;
-        public GameObject GreenTemplate;
-        public GameObject BlueTemplate;
-        public GameObject VioletTemplate;
-        public GameObject YellowTemplate;
-        public GameObject VoidTemplate;
-        public GameObject PlaceholderTemplate;
+        public GameObject TileTemplate;
+        public Material[] materials;
         public float OuterTileRadius;
+
         private UnityStack unityStack;
         private UnityPoints unityPoints;
 
@@ -140,33 +136,14 @@ namespace Hexxle.Unity
         private void OnTilePlaced(object sender, TileMapEventArgs<ITile> e)
         {
             ITile tile = e.Tile;
-            GameObject template;
-            switch (tile.Type.Type)
+            GameObject template = TileTemplate;
+            Material material;
+            material = materials[(int)e.Tile.Type.Type];
+            template.GetComponent<MeshRenderer>().material = material;
+            if (tile.Type.Type.Equals(EType.Void))
             {
-                case EType.Red:
-                    template = RedTemplate;
-                    break;
-                case EType.Blue:
-                    template = BlueTemplate;
-                    break;
-                case EType.Green:
-                    template = GreenTemplate;
-                    break;
-                case EType.Violet:
-                    template = VioletTemplate;
-                    break;
-                case EType.Yellow:
-                    template = YellowTemplate;
-                    break;
-                case EType.Void:
-                    template = VoidTemplate;
-                    break;
-                case EType.None:
-                default:
-                    template = PlaceholderTemplate;
-                    break;
+                template.GetComponent<MeshCollider>().enabled = true;
             }
-
             var newTile = Instantiate(
                     template,
                     CoordinateToPoint(tile.Coordinate),

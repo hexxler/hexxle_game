@@ -1176,6 +1176,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f8c2ca7b474a3f499dc3167d20467b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TileTemplate: {fileID: 2805244402447506873, guid: a227d169e77e7a046bef9feb63c6df9a,
+    type: 3}
   RedTemplate: {fileID: 2153299603328519217, guid: 1e64476198a6f5f44a7fd4d6062bfd57,
     type: 3}
   GreenTemplate: {fileID: 239510380013443648, guid: 044928151c7231b49b9ca6d5d30ad6fb,
@@ -1190,6 +1192,17 @@ MonoBehaviour:
     type: 3}
   PlaceholderTemplate: {fileID: 2201649888903706105, guid: 4a73b49435acb84499dbeb7090603933,
     type: 3}
+  materials:
+  - {fileID: 0}
+  - {fileID: 2100000, guid: a40dfeecfd8aba804960a7199c538c47, type: 2}
+  - {fileID: 2100000, guid: 3e661a0623c2ca79b8553e0cf71d06bb, type: 2}
+  - {fileID: 2100000, guid: 856b9cd9c20e1df659276ce684600d9f, type: 2}
+  - {fileID: 2100000, guid: 95338a5fb01ca039799b71bdb63fc8e0, type: 2}
+  - {fileID: 2100000, guid: be292b7323a223f47be7b20f48f1d240, type: 2}
+  - {fileID: 2100000, guid: f0c8fc80d7143d140a4cf813acc25932, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   OuterTileRadius: 0.57
 --- !u!1 &431115801
 GameObject:

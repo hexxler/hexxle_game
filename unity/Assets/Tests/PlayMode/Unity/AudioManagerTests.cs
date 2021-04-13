@@ -4,6 +4,7 @@ using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.TestTools;
+using Hexxle.Unity.Audio;
 
 namespace Hexxle.Tests.Unity
 {

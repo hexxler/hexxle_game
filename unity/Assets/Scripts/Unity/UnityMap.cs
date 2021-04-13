@@ -55,7 +55,9 @@ namespace Hexxle.Unity
                         GameObject clickedTile = hit.collider.gameObject;
 
                         Coordinate coordinate = PointToCoordinate(clickedTile.transform.position);
-                        Debug.Log(coordinate.x + " " + coordinate.y + " " + coordinate.z);
+                        Debug.Log(
+                            $"Coordinate: {coordinate.X} {coordinate.Y} {coordinate.Z}\n" +
+                            $"Point: {clickedTile.transform.position.ToString()}");
                         PlaceNextTile(coordinate);
 
                         GameObject.Destroy(clickedTile);
@@ -119,18 +121,17 @@ namespace Hexxle.Unity
 
         private Coordinate PointToCoordinate(Vector3 point)
         {
-            int x = (int)Mathf.Round((Mathf.Sqrt(3f) / 3f * point.x - (point.z / 3f)) / OuterTileRadius);
-            int y = (int)Mathf.Round(-(Mathf.Sqrt(3f) / 3f * point.x + (point.z / 3f)) / OuterTileRadius);
-            int z = (int)(2f / 3f * point.z / OuterTileRadius);
-            return new Coordinate(x, y, z);
+            // Modify point by OuterTileRadius
+            var p = point / OuterTileRadius;
+            return Coordinate.PointToCoordinate(p);
         }
 
         private Vector3 CoordinateToPoint(Coordinate coordinate)
         {
-            // see https://stackoverflow.com/questions/2459402/hexagonal-grid-coordinates-to-pixel-coordinates
-            float x = Mathf.Sqrt(3f) * OuterTileRadius * (coordinate.z / 2f + coordinate.x);
-            float z = 3f / 2f * coordinate.z * OuterTileRadius;
-            return new Vector3(x, 0, z);
+            var p = Coordinate.CoordinateToPoint(coordinate);
+            // Modify point by OuterTileRadius
+            p *= OuterTileRadius;
+            return p;
         }
 
         private void OnTilePlaced(object sender, TileMapEventArgs<ITile> e)

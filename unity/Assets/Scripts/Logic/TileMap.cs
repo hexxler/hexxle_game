@@ -40,5 +40,10 @@ namespace Hexxle.Logic
         {
             throw new NotImplementedException();
         }
+
+        public int TileCount()
+        {
+            return _axisDictionary.Count;
+        }
     }
 }

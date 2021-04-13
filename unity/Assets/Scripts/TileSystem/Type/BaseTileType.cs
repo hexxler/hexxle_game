@@ -57,7 +57,6 @@ namespace Hexxle.TileSystem.Type
                     break;
                 default:
                     throw new ArgumentException("Type relationship not yet declared");
-                    break;
             }
             return relationship;
         }

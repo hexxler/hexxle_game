@@ -12,11 +12,9 @@ namespace Hexxle.Unity
     {
         ITileMap<ITile> map;
         ITileResolver<ITile> resolver;
-
         public GameObject TileTemplate;
         public Material[] materials;
-        public float OuterTileRadius;
-
+        public float OuterTileRadius = 0.5f;
         private UnityStack unityStack;
         private UnityPoints unityPoints;
 
@@ -25,9 +23,6 @@ namespace Hexxle.Unity
             map = new TileMap();
             resolver = new TileResolver(map);
             map.TilePlaced += OnTilePlaced;
-            var inputManager = new InputManager();
-            inputManager.TilePlacement.MouseClick.Enable();
-            inputManager.TilePlacement.MouseClick.performed += context => PlaceTileOnMouseClick(context);
         }
 
 
@@ -37,35 +32,6 @@ namespace Hexxle.Unity
             unityPoints = GameObject.FindGameObjectWithTag("Points").GetComponent<UnityPoints>();
             Coordinate start = new Coordinate();
             PlaceRandomTile(start);
-        }
-
-        private void PlaceTileOnMouseClick(InputAction.CallbackContext context)
-        {
-            // Check if Mouse is not over UI object
-            if (!EventSystem.current.IsPointerOverGameObject())
-            {
-                // Only try to place a tile if the stack has one or more tiles left
-                if (unityStack.Count() != 0)
-                {
-                    var vec = Mouse.current.position.ReadValue();
-                    Ray ray = Camera.main.ScreenPointToRay(new Vector3(vec.x, vec.y, 0));
-                    if (Physics.Raycast(ray, out RaycastHit hit))
-                    {
-                        GameObject clickedTile = hit.collider.gameObject;
-
-                        Coordinate coordinate = PointToCoordinate(clickedTile.transform.position);
-                        Debug.Log(
-                            $"Coordinate: {coordinate.X} {coordinate.Y} {coordinate.Z}\n" +
-                            $"Point: {clickedTile.transform.position.ToString()}");
-                        PlaceNextTile(coordinate);
-
-                        GameObject.Destroy(clickedTile);
-                        
-                        //play soundeffect
-                        FindObjectOfType<AudioManager>().Play(GameSoundTypes.POP);
-                    }
-                }
-            }
         }
 
 
@@ -86,7 +52,7 @@ namespace Hexxle.Unity
             resolver.ApplyBehaviour(tileToPlace);
         }
 
-        private void PlaceNextTile(Coordinate coordinate)
+        public void PlaceNextTile(Coordinate coordinate)
         {
             // Needs to get top Tile from Stack
             ITile topTile = unityStack.GetTopTile();
@@ -118,14 +84,14 @@ namespace Hexxle.Unity
             });
         }
 
-        private Coordinate PointToCoordinate(Vector3 point)
+        public Coordinate PointToCoordinate(Vector3 point)
         {
             // Modify point by OuterTileRadius
             var p = point / OuterTileRadius;
             return Coordinate.PointToCoordinate(p);
         }
 
-        private Vector3 CoordinateToPoint(Coordinate coordinate)
+        public Vector3 CoordinateToPoint(Coordinate coordinate)
         {
             var p = Coordinate.CoordinateToPoint(coordinate);
             // Modify point by OuterTileRadius
@@ -133,7 +99,7 @@ namespace Hexxle.Unity
             return p;
         }
 
-        private void OnTilePlaced(object sender, TileMapEventArgs<ITile> e)
+        public void OnTilePlaced(object sender, TileMapEventArgs<ITile> e)
         {
             ITile tile = e.Tile;
             GameObject template = TileTemplate;

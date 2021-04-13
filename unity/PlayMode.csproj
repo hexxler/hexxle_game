@@ -67,6 +67,7 @@
     <Compile Include="Assets\Tests\PlayMode\Unity\AudioManagerTests.cs" />
     <Compile Include="Assets\Tests\PlayMode\Unity\CameraMovementTests.cs" />
     <Compile Include="Assets\Tests\PlayMode\Unity\EscPauseMenuTests.cs" />
+    <Compile Include="Assets\Tests\PlayMode\Unity\UnityTileHighlighterTests.cs" />
     <None Include="Assets\Tests\PlayMode\PlayMode.asmdef" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.22f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

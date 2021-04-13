@@ -67,6 +67,7 @@
     <Compile Include="Assets\Tests\EditMode\Logic\CoordinateTests.cs" />
     <Compile Include="Assets\Tests\EditMode\Logic\ScoreTests.cs" />
     <Compile Include="Assets\Tests\EditMode\Logic\TileMapTests.cs" />
+    <Compile Include="Assets\Tests\EditMode\Logic\UnityTileHighlighterTests.cs" />
     <None Include="Assets\Tests\EditMode\EditMode.asmdef" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.22f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

@@ -16,7 +16,10 @@ namespace Hexxle.Unity
         public GameObject RedTemplate;
         public GameObject GreenTemplate;
         public GameObject BlueTemplate;
+        public GameObject VioletTemplate;
+        public GameObject YellowTemplate;
         public GameObject VoidTemplate;
+        public GameObject PlaceholderTemplate;
         public float OuterTileRadius;
         private UnityStack unityStack;
         private UnityPoints unityPoints;
@@ -149,10 +152,18 @@ namespace Hexxle.Unity
                 case EType.Green:
                     template = GreenTemplate;
                     break;
+                case EType.Violet:
+                    template = VioletTemplate;
+                    break;
+                case EType.Yellow:
+                    template = YellowTemplate;
+                    break;
                 case EType.Void:
+                    template = VoidTemplate;
+                    break;
                 case EType.None:
                 default:
-                    template = VoidTemplate;
+                    template = PlaceholderTemplate;
                     break;
             }
 

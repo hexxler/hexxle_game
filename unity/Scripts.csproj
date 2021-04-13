@@ -84,10 +84,13 @@
     <Compile Include="Assets\Scripts\TileSystem\EType.cs" />
     <Compile Include="Assets\Scripts\TileSystem\Nature\CircleNature.cs" />
     <Compile Include="Assets\Scripts\TileSystem\Tile.cs" />
+    <Compile Include="Assets\Scripts\TileSystem\Type\BaseTileType.cs" />
     <Compile Include="Assets\Scripts\TileSystem\Type\BlueType.cs" />
     <Compile Include="Assets\Scripts\TileSystem\Type\GreenType.cs" />
     <Compile Include="Assets\Scripts\TileSystem\Type\RedType.cs" />
+    <Compile Include="Assets\Scripts\TileSystem\Type\VioletType.cs" />
     <Compile Include="Assets\Scripts\TileSystem\Type\VoidType.cs" />
+    <Compile Include="Assets\Scripts\TileSystem\Type\YellowType.cs" />
     <Compile Include="Assets\Scripts\Unity\Audio\AudioManager.cs" />
     <Compile Include="Assets\Scripts\Unity\Audio\Sound.cs" />
     <Compile Include="Assets\Scripts\Unity\Input\EscapeEventHandler.cs" />

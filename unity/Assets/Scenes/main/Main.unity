@@ -1182,7 +1182,13 @@ MonoBehaviour:
     type: 3}
   BlueTemplate: {fileID: 2524927570398090053, guid: 474fd7a5da38dc343ae7530c236ed412,
     type: 3}
+  VioletTemplate: {fileID: 6182163547222859890, guid: 3b12f9e932f223d4484bcc1276b9125c,
+    type: 3}
+  YellowTemplate: {fileID: 3506229238931485212, guid: 819d63d4a6fb86f4dbc0e009a8a85148,
+    type: 3}
   VoidTemplate: {fileID: 4651757585288158565, guid: c6b410c6374f640448e69072c1f0e630,
+    type: 3}
+  PlaceholderTemplate: {fileID: 2201649888903706105, guid: 4a73b49435acb84499dbeb7090603933,
     type: 3}
   OuterTileRadius: 0.57
 --- !u!1 &431115801
@@ -2985,6 +2991,12 @@ MonoBehaviour:
   GreenTemplate: {fileID: 3486659804241656838, guid: 123bbbafd80f381418da266b0316e144,
     type: 3}
   BlueTemplate: {fileID: 4728817293634147899, guid: 984028d28c63de648b6256e865cd6a17,
+    type: 3}
+  VioletTemplate: {fileID: 4728817293634147899, guid: 984028d28c63de648b6256e865cd6a17,
+    type: 3}
+  YellowTemplate: {fileID: 4728817293634147899, guid: 984028d28c63de648b6256e865cd6a17,
+    type: 3}
+  PlaceholderTemplate: {fileID: 7810978462456090998, guid: 90046fd1ec1396b4080aeaeba320eff8,
     type: 3}
   Content: {fileID: 846107101}
 --- !u!1001 &1832093258

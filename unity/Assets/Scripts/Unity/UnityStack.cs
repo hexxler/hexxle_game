@@ -1,6 +1,7 @@
 ﻿using Hexxle.Interfaces;
 using Hexxle.Logic;
 using Hexxle.TileSystem;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -12,6 +13,9 @@ namespace Hexxle.Unity
         public GameObject RedTemplate;
         public GameObject GreenTemplate;
         public GameObject BlueTemplate;
+        public GameObject VioletTemplate;
+        public GameObject YellowTemplate;
+        public GameObject PlaceholderTemplate;
         public GameObject Content;
         private List<GameObject> toDelete = new List<GameObject>();
         private ITileStack tileStack;
@@ -80,8 +84,14 @@ namespace Hexxle.Unity
                     return BlueTemplate;
                 case EType.Green:
                     return GreenTemplate;
+                case EType.Violet:
+                    return VioletTemplate;
+                case EType.Yellow:
+                    return YellowTemplate;
+                case EType.None:
+                case EType.Void:
                 default:
-                    return null;
+                    return PlaceholderTemplate;
             }
         }
     }

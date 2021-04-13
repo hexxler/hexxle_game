@@ -40,5 +40,14 @@ namespace Hexxle.Tests.Logic
             Assert.AreEqual(tile, tileMap.GetTile(coordinate));
         }
 
+        [Test]
+        public void PlaceTile_Hexxle91()
+        {
+            Coordinate c1 = new Coordinate(-8, -8, 16);
+            Coordinate c2 = new Coordinate(-9, -8, 17);
+            tileMap.PlaceTile(tile, c1);
+            tileMap.PlaceTile(tile, c2);
+            Assert.True(tileMap.TileCount() == 2);
+        }
     }
 }

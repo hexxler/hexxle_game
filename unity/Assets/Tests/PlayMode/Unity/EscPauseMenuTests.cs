@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.TestTools;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Utilities;
-using Assets.Scripts.Util;
+using Hexxle.Unity.Util;
 
 namespace Hexxle.Tests.Unity
 {

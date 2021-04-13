@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Assets.Scripts.Util
+namespace Hexxle.Unity.Util
 {
     public class GameObjectFinder
     {
@@ -22,5 +17,7 @@ namespace Assets.Scripts.Util
         // Others
         public static GameObject Stack => GameObject.FindGameObjectWithTag("Stack");
         public static GameObject Points => GameObject.FindGameObjectWithTag("Points");
+
+        public static UnityMap UnityMap => GameObject.FindGameObjectWithTag("Map").GetComponent<UnityMap>();
     }
 }

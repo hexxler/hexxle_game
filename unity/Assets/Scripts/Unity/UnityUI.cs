@@ -1,7 +1,7 @@
-﻿using Assets.Scripts.Util;
+﻿using Hexxle.Unity.Util;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Hexxle.Unity.Audio;
 
 namespace Hexxle.Unity
 {

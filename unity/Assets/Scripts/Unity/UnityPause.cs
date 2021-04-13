@@ -1,6 +1,4 @@
-﻿using Assets.Scripts.Util;
-using System.Collections;
-using System.Collections.Generic;
+﻿using Hexxle.Unity.Util;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;

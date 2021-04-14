@@ -5,7 +5,9 @@ namespace Hexxle.TileSystem
         None = 0,
         Void,
         Red,
+        Blue,
         Green,
-        Blue
+        Violet,
+        Yellow
     }
 }

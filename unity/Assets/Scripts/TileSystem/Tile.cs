@@ -73,6 +73,12 @@ namespace Hexxle.TileSystem
                 case EType.Green:
                     tileType = new GreenType();
                     break;
+                case EType.Violet:
+                    tileType = new VioletType();
+                    break;
+                case EType.Yellow:
+                    tileType = new YellowType();
+                    break;
                 case EType.Void:
                     tileType = new VoidType();
                     break;

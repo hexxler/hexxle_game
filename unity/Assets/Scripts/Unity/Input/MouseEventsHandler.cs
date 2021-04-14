@@ -34,15 +34,22 @@ namespace Hexxle.Unity.Input
                 Ray ray = Camera.main.ScreenPointToRay(new Vector3(vec.x, vec.y, 0));
                 if (Physics.Raycast(ray, out RaycastHit hit))
                 {
-                    oldTile = currentCollisionTile;
-                    currentCollisionTile = hit.collider.gameObject;
+                    if (!hit.collider.gameObject.Equals(currentCollisionTile))
+                    {
+                        oldTile = currentCollisionTile;
+                        currentCollisionTile = hit.collider.gameObject;
+                        updateTiles();
+                    }
                 }
                 else
                 {
                     oldTile = currentCollisionTile;
                     currentCollisionTile = null;
+                    if (oldTile != null)
+                    {
+                        updateTiles();
+                    }
                 }
-                updateTiles();
             }
         }
 

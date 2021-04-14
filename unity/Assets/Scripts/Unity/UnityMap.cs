@@ -109,6 +109,10 @@ namespace Hexxle.Unity
                     CoordinateToPoint(tile.Coordinate),
                     Quaternion.Euler(-90, 0, 0)
                 );
+            if(e.Tile.Type.Type > EType.Void)
+            {
+                newTile.tag = "Tile";
+            }
             newTile.transform.parent = this.transform;
         }
     }

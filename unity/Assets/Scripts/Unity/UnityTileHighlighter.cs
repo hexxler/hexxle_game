@@ -11,6 +11,7 @@ namespace Hexxle.Unity
         private readonly float INVERSE_PERIOD_DURATION = 0.4f;
         private readonly float MAX_EMISSION_POWER = 0.2f;
         private readonly Color GLOW_COLOR = Color.white;
+        
 
         // Start is called before the first frame update
         void Start()
@@ -43,14 +44,12 @@ namespace Hexxle.Unity
 
         public void TurnOn()
         {
-            Debug.Log("Turning highlight on");
             isHighlighted = true;
             setToBlackOnce = false;
         }
 
         public void TurnOff()
         {
-            Debug.Log("Turning highlight off");
             isHighlighted = false;
             setToBlackOnce = true;
         }

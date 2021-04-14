@@ -56,7 +56,8 @@ namespace Hexxle.Unity
             {
                 ITile tile = firstTen.ElementAt(i);
                 Texture texture = GetTextureForTileType(tile);
-                GameObject newTile = Instantiate(Template, Content.transform);
+                GameObject newTile = Instantiate(Template);
+                newTile.tag = "Tile";
                 toDelete.Add(newTile);
                 newTile.transform.SetParent(Content.transform, false);
                 newTile.GetComponent<RawImage>().texture = texture;

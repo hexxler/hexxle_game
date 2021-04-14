@@ -2,9 +2,7 @@
 using Hexxle.Interfaces;
 using Hexxle.Logic;
 using Hexxle.TileSystem;
-using UnityEngine.InputSystem;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 namespace Hexxle.Unity
 {
@@ -104,12 +102,8 @@ namespace Hexxle.Unity
             ITile tile = e.Tile;
             GameObject template = TileTemplate;
             Material material;
-            material = materials[(int)e.Tile.Type.Type];
+            material = materials[(int)e.Tile.Type.Type - 1];
             template.GetComponent<MeshRenderer>().material = material;
-            if (tile.Type.Type.Equals(EType.Void))
-            {
-                template.GetComponent<MeshCollider>().enabled = true;
-            }
             var newTile = Instantiate(
                     template,
                     CoordinateToPoint(tile.Coordinate),

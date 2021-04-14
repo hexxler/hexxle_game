@@ -5,17 +5,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Hexxle.Unity
 {
     public class UnityStack : MonoBehaviour
     {
-        public GameObject RedTemplate;
-        public GameObject GreenTemplate;
-        public GameObject BlueTemplate;
-        public GameObject VioletTemplate;
-        public GameObject YellowTemplate;
-        public GameObject PlaceholderTemplate;
+        public GameObject Template;
+        public Texture[] Textures;
         public GameObject Content;
         private List<GameObject> toDelete = new List<GameObject>();
         private ITileStack tileStack;
@@ -58,10 +55,11 @@ namespace Hexxle.Unity
             for (int i = firstTen.Count -1; i >= 0; i--)
             {
                 ITile tile = firstTen.ElementAt(i);
-                GameObject template = GetTypeOfTile(tile);
-                GameObject newTile = Instantiate(template, Content.transform);
+                Texture texture = GetTextureForTileType(tile);
+                GameObject newTile = Instantiate(Template, Content.transform);
                 toDelete.Add(newTile);
                 newTile.transform.SetParent(Content.transform, false);
+                newTile.GetComponent<RawImage>().texture = texture;
             }
             stackCount = tileStack.Count();
         }
@@ -74,25 +72,10 @@ namespace Hexxle.Unity
             }
         }
 
-        private GameObject GetTypeOfTile(ITile tile)
+        private Texture GetTextureForTileType(ITile tile)
         {
-            switch (tile.Type.Type)
-            {
-                case EType.Red:
-                    return RedTemplate;
-                case EType.Blue:
-                    return BlueTemplate;
-                case EType.Green:
-                    return GreenTemplate;
-                case EType.Violet:
-                    return VioletTemplate;
-                case EType.Yellow:
-                    return YellowTemplate;
-                case EType.None:
-                case EType.Void:
-                default:
-                    return PlaceholderTemplate;
-            }
+            EType type = tile.Type.Type;
+            return Textures[(int)type];
         }
     }
 }

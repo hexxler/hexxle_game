@@ -1178,20 +1178,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TileTemplate: {fileID: 2805244402447506873, guid: a227d169e77e7a046bef9feb63c6df9a,
     type: 3}
-  RedTemplate: {fileID: 2153299603328519217, guid: 1e64476198a6f5f44a7fd4d6062bfd57,
-    type: 3}
-  GreenTemplate: {fileID: 239510380013443648, guid: 044928151c7231b49b9ca6d5d30ad6fb,
-    type: 3}
-  BlueTemplate: {fileID: 2524927570398090053, guid: 474fd7a5da38dc343ae7530c236ed412,
-    type: 3}
-  VioletTemplate: {fileID: 6182163547222859890, guid: 3b12f9e932f223d4484bcc1276b9125c,
-    type: 3}
-  YellowTemplate: {fileID: 3506229238931485212, guid: 819d63d4a6fb86f4dbc0e009a8a85148,
-    type: 3}
-  VoidTemplate: {fileID: 4651757585288158565, guid: c6b410c6374f640448e69072c1f0e630,
-    type: 3}
-  PlaceholderTemplate: {fileID: 2201649888903706105, guid: 4a73b49435acb84499dbeb7090603933,
-    type: 3}
   materials:
   - {fileID: 0}
   - {fileID: 2100000, guid: a40dfeecfd8aba804960a7199c538c47, type: 2}
@@ -2999,18 +2985,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9148b94a97b62a140afc3a8c6c9986ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RedTemplate: {fileID: 2405615082884524334, guid: ae83f98a2e32d6342a348dafc4ee81cc,
+  Template: {fileID: 7810978462456090998, guid: 90046fd1ec1396b4080aeaeba320eff8,
     type: 3}
-  GreenTemplate: {fileID: 3486659804241656838, guid: 123bbbafd80f381418da266b0316e144,
-    type: 3}
-  BlueTemplate: {fileID: 4728817293634147899, guid: 984028d28c63de648b6256e865cd6a17,
-    type: 3}
-  VioletTemplate: {fileID: 4728817293634147899, guid: 984028d28c63de648b6256e865cd6a17,
-    type: 3}
-  YellowTemplate: {fileID: 4728817293634147899, guid: 984028d28c63de648b6256e865cd6a17,
-    type: 3}
-  PlaceholderTemplate: {fileID: 7810978462456090998, guid: 90046fd1ec1396b4080aeaeba320eff8,
-    type: 3}
+  Textures:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 2800000, guid: 9c867f9a1249e7b42ab8ffd8cf30797e, type: 3}
+  - {fileID: 2800000, guid: 3c35ee9309ef0c74192f32d0b8867b17, type: 3}
+  - {fileID: 2800000, guid: 53fddff2cfe155c4c99dbd8e7afa1e21, type: 3}
+  - {fileID: 2800000, guid: 268bc5e54a8aa5e4ebfe94c7876c2ebd, type: 3}
+  - {fileID: 2800000, guid: 33db9c457bf83f148ab1ca984227810b, type: 3}
   Content: {fileID: 846107101}
 --- !u!1001 &1832093258
 PrefabInstance:

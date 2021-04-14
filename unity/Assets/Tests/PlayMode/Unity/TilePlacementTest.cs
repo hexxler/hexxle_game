@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.TestTools;
 
-namespace Hexxle.Unity.Tests
+namespace Hexxle.Tests.Unity
 {
     public class TilePlacementTest
     {

@@ -15,22 +15,25 @@ namespace Hexxle.Tests.Unity
 
 
         [Test]
-        public void TurningHighlighterOnSetsInteralVariableToTrue()
+        public void TurningHighlighterOnSetsInteralVariableToTrueAndSetToBlackOnceToFalse()
         {
             Assert.IsFalse(tileHighlighter.isHighlighted);
             tileHighlighter.TurnOn();
             Assert.IsTrue(tileHighlighter.isHighlighted);
+            Assert.IsFalse(tileHighlighter.setToBlackOnce);
 
         }
 
         [Test]
-        public void TurningHighlighterOffSetsInteralVariableToFalse()
+        public void TurningHighlighterOffSetsInteralVariableToFalseAndSetToBlackOnceToTrue()
         {
             Assert.IsFalse(tileHighlighter.isHighlighted);
             tileHighlighter.TurnOn();
             Assert.IsTrue(tileHighlighter.isHighlighted);
+            Assert.IsFalse(tileHighlighter.setToBlackOnce);
             tileHighlighter.TurnOff();
             Assert.IsFalse(tileHighlighter.isHighlighted);
+            Assert.IsTrue(tileHighlighter.setToBlackOnce);
 
         }
     }

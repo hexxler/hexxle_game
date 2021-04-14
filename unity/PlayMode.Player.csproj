@@ -607,7 +607,7 @@
     <Compile Include="Assets\Tests\PlayMode\Unity\AudioManagerTests.cs" />
     <Compile Include="Assets\Tests\PlayMode\Unity\CameraMovementTests.cs" />
     <Compile Include="Assets\Tests\PlayMode\Unity\EscPauseMenuTests.cs" />
-    <Compile Include="Assets\Tests\PlayMode\Unity\UnityTileHighlighterTests.cs" />
+    <Compile Include="Assets\Tests\PlayMode\Unity\TilePlacementTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Tests\PlayMode\PlayMode.asmdef" />

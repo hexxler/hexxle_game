@@ -6,7 +6,7 @@ namespace Hexxle.Unity
     {
 
         public bool isHighlighted { get; private set; }
-        private bool setToBlackOnce;
+        public bool setToBlackOnce { get; private set; }
         //smaller -> slower
         private readonly float INVERSE_PERIOD_DURATION = 0.4f;
         private readonly float MAX_EMISSION_POWER = 0.2f;

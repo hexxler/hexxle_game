@@ -64,7 +64,7 @@ namespace Hexxle.Unity.Input
             {
                 UnityMap unityMap = GameObjectFinder.UnityMap;
                 Coordinate coordinate = unityMap.PointToCoordinate(currentCollisionTile.transform.position);
-                Debug.Log(coordinate.x + " " + coordinate.y + " " + coordinate.z);
+                Debug.Log(coordinate.X + " " + coordinate.Y + " " + coordinate.Z);
                 unityMap.PlaceNextTile(coordinate);
 
                 GameObject.Destroy(currentCollisionTile);

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Hexxle.Unity.Input;
+using UnityEngine;
 
 namespace Hexxle.Unity.Util
 {
@@ -19,5 +20,7 @@ namespace Hexxle.Unity.Util
         public static GameObject Points => GameObject.FindGameObjectWithTag("Points");
 
         public static UnityMap UnityMap => GameObject.FindGameObjectWithTag("Map").GetComponent<UnityMap>();
+
+        public static MouseEventsHandler MouseEventLogic => GameObject.Find("Game").GetComponent<MouseEventsHandler>();
     }
 }

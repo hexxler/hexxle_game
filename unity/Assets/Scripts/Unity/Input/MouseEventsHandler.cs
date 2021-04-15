@@ -10,6 +10,7 @@ namespace Hexxle.Unity.Input
     {
         GameObject oldTile;
         GameObject currentCollisionTile;
+        public bool isGamePaused { get; private set; } = false;
 
         private void Awake()
         {
@@ -28,7 +29,7 @@ namespace Hexxle.Unity.Input
         // Update is called once per frame
         void Update()
         {   
-            if(Mouse.current != null)
+            if(Mouse.current != null && !isGamePaused)
             {
                 var vec = Mouse.current.position.ReadValue();
                 Ray ray = Camera.main.ScreenPointToRay(new Vector3(vec.x, vec.y, 0));
@@ -53,7 +54,26 @@ namespace Hexxle.Unity.Input
             }
         }
 
-        void updateTiles()
+        public void PauseGame()
+        {
+           isGamePaused = true;
+           if(currentCollisionTile != null)
+           {
+                currentCollisionTile.GetComponent<UnityTileHighlighter>().TurnOff();
+           }
+            
+        }
+
+        public void ResumeGame()
+        {
+            isGamePaused = false;
+            if (currentCollisionTile != null)
+            {
+                currentCollisionTile.GetComponent<UnityTileHighlighter>().TurnOn();
+            }
+        }
+
+        private void updateTiles()
         {
             if (oldTile != null)
             {
@@ -67,7 +87,7 @@ namespace Hexxle.Unity.Input
 
         private void MouseClickAction()
         {
-            if(currentCollisionTile != null && currentCollisionTile.CompareTag("Void"))
+            if(currentCollisionTile != null && currentCollisionTile.CompareTag("Void") && !isGamePaused)
             {
                 UnityMap unityMap = GameObjectFinder.UnityMap;
                 Coordinate coordinate = unityMap.PointToCoordinate(currentCollisionTile.transform.position);

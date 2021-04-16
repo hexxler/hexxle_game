@@ -39,14 +39,7 @@ namespace Hexxle.Unity.Input
             {
                 // activate/deactivate PausePanel
                 GameObjectFinder.PausePanel.SetActive(!isPaused);
-                if(!isPaused)
-                {
-                    GameObjectFinder.MouseEventLogic.PauseGame();
-                }
-                else
-                {
-                    GameObjectFinder.MouseEventLogic.ResumeGame();
-                }
+                GameObjectFinder.MouseEventLogic.enabled = isPaused;
                 
 
                 // enable/disable Buttons in UI

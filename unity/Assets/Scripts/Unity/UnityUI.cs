@@ -11,7 +11,7 @@ namespace Hexxle.Unity
         {
             // activate PausePanel
             GameObjectFinder.PausePanel.SetActive(true);
-            GameObjectFinder.MouseEventLogic.PauseGame();
+            GameObjectFinder.MouseEventLogic.enabled = false;
 
             //play soundeffect
             FindObjectOfType<AudioManager>().Play(GameSoundTypes.PAUSE);

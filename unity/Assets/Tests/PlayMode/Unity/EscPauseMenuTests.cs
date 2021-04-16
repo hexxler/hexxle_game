@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.TestTools;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.Utilities;
 using Hexxle.Unity.Util;
 
 namespace Hexxle.Tests.Unity
@@ -49,23 +48,23 @@ namespace Hexxle.Tests.Unity
         public IEnumerator PausingGameSetsMouseEventHandlerToPauseMode()
         {
             Assert.AreEqual("Main", SceneManager.GetActiveScene().name);
-            Assert.IsFalse(GameObjectFinder.MouseEventLogic.isGamePaused);
+            Assert.IsTrue(GameObjectFinder.MouseEventLogic.enabled);
             PressAndRelease(keyboard.escapeKey);
             yield return new WaitForSecondsRealtime(1);
-            Assert.IsTrue(GameObjectFinder.MouseEventLogic.isGamePaused);
+            Assert.IsFalse(GameObjectFinder.MouseEventLogic.enabled);
         }
 
         [UnityTest]
         public IEnumerator ResumingGameSetsMouseEventHandlerToNormalMode()
         {
             Assert.AreEqual("Main", SceneManager.GetActiveScene().name);
-            Assert.IsFalse(GameObjectFinder.MouseEventLogic.isGamePaused);
+            Assert.IsTrue(GameObjectFinder.MouseEventLogic.enabled);
             PressAndRelease(keyboard.escapeKey);
             yield return new WaitForSecondsRealtime(1);
             PressAndRelease(keyboard.escapeKey);
             yield return new WaitForSecondsRealtime(1);
 
-            Assert.IsFalse(GameObjectFinder.MouseEventLogic.isGamePaused);
+            Assert.IsTrue(GameObjectFinder.MouseEventLogic.enabled);
         }
 
     }

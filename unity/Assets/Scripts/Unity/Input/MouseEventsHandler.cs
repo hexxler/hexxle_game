@@ -10,26 +10,41 @@ namespace Hexxle.Unity.Input
     {
         GameObject oldTile;
         GameObject currentCollisionTile;
-        public bool isGamePaused { get; private set; } = false;
+        InputManager inputManager;
 
         private void Awake()
         {
             oldTile = null;
             currentCollisionTile = null;
+            inputManager = new InputManager();
         }
 
-        // Start is called before the first frame update
-        void Start()
+
+        private void OnEnable()
         {
-            var inputManager = new InputManager();
             inputManager.TilePlacement.MouseClick.Enable();
             inputManager.TilePlacement.MouseClick.performed += context => MouseClickAction();
+            if (currentCollisionTile != null)
+            {
+                currentCollisionTile.GetComponent<UnityTileHighlighter>().enabled = true;
+            }
+        }
+
+        private void OnDisable()
+        {
+            inputManager.TilePlacement.MouseClick.Disable();
+            inputManager.TilePlacement.MouseClick.performed -= context => MouseClickAction();
+            if (currentCollisionTile != null)
+            {
+                currentCollisionTile.GetComponent<UnityTileHighlighter>().enabled = false;
+            }
+
         }
 
         // Update is called once per frame
         void Update()
         {   
-            if(Mouse.current != null && !isGamePaused)
+            if(Mouse.current != null)
             {
                 var vec = Mouse.current.position.ReadValue();
                 Ray ray = Camera.main.ScreenPointToRay(new Vector3(vec.x, vec.y, 0));
@@ -54,40 +69,21 @@ namespace Hexxle.Unity.Input
             }
         }
 
-        public void PauseGame()
-        {
-           isGamePaused = true;
-           if(currentCollisionTile != null)
-           {
-                currentCollisionTile.GetComponent<UnityTileHighlighter>().TurnOff();
-           }
-            
-        }
-
-        public void ResumeGame()
-        {
-            isGamePaused = false;
-            if (currentCollisionTile != null)
-            {
-                currentCollisionTile.GetComponent<UnityTileHighlighter>().TurnOn();
-            }
-        }
-
         private void updateTiles()
         {
             if (oldTile != null)
             {
-                oldTile.GetComponent<UnityTileHighlighter>().TurnOff();
+                oldTile.GetComponent<UnityTileHighlighter>().enabled = false;
             }
             if (currentCollisionTile != null)
             {
-                currentCollisionTile.GetComponent<UnityTileHighlighter>().TurnOn();
+                currentCollisionTile.GetComponent<UnityTileHighlighter>().enabled = true;
             }
         }
 
         private void MouseClickAction()
         {
-            if(currentCollisionTile != null && currentCollisionTile.CompareTag("Void") && !isGamePaused)
+            if(currentCollisionTile != null && currentCollisionTile.CompareTag("Void"))
             {
                 UnityMap unityMap = GameObjectFinder.UnityMap;
                 Coordinate coordinate = unityMap.PointToCoordinate(currentCollisionTile.transform.position);

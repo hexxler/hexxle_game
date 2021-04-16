@@ -1,6 +1,4 @@
-﻿using Assets.Scripts.Util;
-using System.Collections;
-using System.Collections.Generic;
+﻿using Hexxle.Unity.Util;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -18,6 +16,7 @@ public class UnityPause : MonoBehaviour
     {
         // deactivate PausePanel
         GameObjectFinder.PausePanel.SetActive(false);
+        GameObjectFinder.MouseEventLogic.enabled = true;
 
         // enable Buttons in UI
         foreach (Button button in GameObjectFinder.UIPanel.GetComponentsInChildren<Button>())

@@ -1,48 +1,54 @@
-﻿using Assets.Scripts.Util;
+﻿using Hexxle.Unity.Util;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class EscapeEventHandler : MonoBehaviour
+namespace Hexxle.Unity.Input
 {
-    // Start is called before the first frame update
-
-    InputManager inputManager;
-
-    private void Awake()
+    public class EscapeEventHandler : MonoBehaviour
     {
-        inputManager = new InputManager();
-    }
+        // Start is called before the first frame update
 
-    private void OnEnable()
-    {
-        inputManager.MenuInteraction.Pause.Enable();
-        inputManager.MenuInteraction.Pause.performed += PauseOrUnpause;
-    }
+        InputManager inputManager;
 
-    private void OnDisable()
-    {
-        inputManager.MenuInteraction.Pause.Disable();
-        inputManager.MenuInteraction.Pause.performed -= PauseOrUnpause;
-    }
-
-    private void PauseOrUnpause(InputAction.CallbackContext context)
-    {
-        // activate pausePanel if game is paused, deactivate if unpaused
-        // deactivate buttons if game is paused, activate if unpaused
-        var pausePanel = GameObjectFinder.PausePanel;
-        bool isPaused = pausePanel.activeSelf;
-        if (SceneManager.GetActiveScene().name.Equals("Main"))
+        private void Awake()
         {
-            // activate/deactivate PausePanel
-            GameObjectFinder.PausePanel.SetActive(!isPaused);
+            inputManager = new InputManager();
+        }
 
-            // enable/disable Buttons in UI
-            foreach (Button button in GameObjectFinder.UIPanel.GetComponentsInChildren<Button>())
+        private void OnEnable()
+        {
+            inputManager.MenuInteraction.Pause.Enable();
+            inputManager.MenuInteraction.Pause.performed += PauseOrUnpause;
+        }
+
+        private void OnDisable()
+        {
+            inputManager.MenuInteraction.Pause.Disable();
+            inputManager.MenuInteraction.Pause.performed -= PauseOrUnpause;
+        }
+
+        private void PauseOrUnpause(InputAction.CallbackContext context)
+        {
+            // activate pausePanel if game is paused, deactivate if unpaused
+            // deactivate buttons if game is paused, activate if unpaused
+            var pausePanel = GameObjectFinder.PausePanel;
+            bool isPaused = pausePanel.activeSelf;
+            if (SceneManager.GetActiveScene().name.Equals("Main"))
             {
-                button.enabled = isPaused;
+                // activate/deactivate PausePanel
+                GameObjectFinder.PausePanel.SetActive(!isPaused);
+                GameObjectFinder.MouseEventLogic.enabled = isPaused;
+                
+
+                // enable/disable Buttons in UI
+                foreach (Button button in GameObjectFinder.UIPanel.GetComponentsInChildren<Button>())
+                {
+                    button.enabled = isPaused;
+                }
             }
         }
     }
 }
+

@@ -1179,17 +1179,14 @@ MonoBehaviour:
   TileTemplate: {fileID: 2805244402447506873, guid: a227d169e77e7a046bef9feb63c6df9a,
     type: 3}
   materials:
-  - {fileID: 0}
   - {fileID: 2100000, guid: a40dfeecfd8aba804960a7199c538c47, type: 2}
   - {fileID: 2100000, guid: 3e661a0623c2ca79b8553e0cf71d06bb, type: 2}
   - {fileID: 2100000, guid: 856b9cd9c20e1df659276ce684600d9f, type: 2}
   - {fileID: 2100000, guid: 95338a5fb01ca039799b71bdb63fc8e0, type: 2}
   - {fileID: 2100000, guid: be292b7323a223f47be7b20f48f1d240, type: 2}
   - {fileID: 2100000, guid: f0c8fc80d7143d140a4cf813acc25932, type: 2}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  OuterTileRadius: 0.57
+  - {fileID: 2100000, guid: f0c8fc80d7143d140a4cf813acc25932, type: 2}
+  OuterTileRadius: 0.5
 --- !u!1 &431115801
 GameObject:
   m_ObjectHideFlags: 0
@@ -2819,6 +2816,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1405703742}
+  - component: {fileID: 1405703741}
   m_Layer: 0
   m_Name: Game
   m_TagString: Untagged
@@ -2826,6 +2824,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1405703741
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1405703740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5509a7c43908f424da531a6b388d555e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1405703742
 Transform:
   m_ObjectHideFlags: 0

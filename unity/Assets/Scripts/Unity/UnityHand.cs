@@ -14,7 +14,8 @@ namespace Hexxle.Unity
         public Hand LogicHand = new Hand(HandSize);
         private UnityStack Stack;
         public GameObject UIHand;
-        public GameObject Template;
+        public GameObject TileTemplate;
+        public Button ButtonTemplate;
         private bool Changed = true;
         private List<GameObject> RenderedTiles = new List<GameObject>();
         public Texture[] Textures;
@@ -37,6 +38,12 @@ namespace Hexxle.Unity
             }
         }
 
+        void SelectTile(ITile tile)
+        {
+            Changed = true;
+            LogicHand.SelectTile(tile);
+        }
+
         public ITile[] Initialize()
         {
             ITile[] firstTiles = new ITile[HandSize];
@@ -51,12 +58,6 @@ namespace Hexxle.Unity
         {
             Changed = true;
             return LogicHand.ReplaceTile(Stack.GetTopTile());
-        }
-
-        public void Select(TileHand tile)
-        {
-            Changed = true;
-            LogicHand.SelectTile(tile);
         }
 
         private void DeleteOldHand()
@@ -74,10 +75,15 @@ namespace Hexxle.Unity
             {
                 ITile tile = tiles[i];
                 Texture texture = GetTextureForTileType(tile);
-                GameObject newTile = Instantiate(Template);
+                GameObject newTile = Instantiate(TileTemplate);
                 RenderedTiles.Add(newTile);
                 newTile.transform.SetParent(UIHand.transform, false);
                 newTile.GetComponent<RawImage>().texture = texture;
+
+                //Add Button to Tile
+                Button button = Instantiate(ButtonTemplate);
+                button.GetComponent<Button>().onClick.AddListener(delegate { SelectTile(tile); });
+                button.transform.SetParent(newTile.transform, false);
             }
         }
 

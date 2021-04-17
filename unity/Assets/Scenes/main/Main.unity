@@ -1854,7 +1854,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UIHand: {fileID: 1679872353}
-  Template: {fileID: 7810978462456090998, guid: 90046fd1ec1396b4080aeaeba320eff8,
+  TileTemplate: {fileID: 7810978462456090998, guid: 90046fd1ec1396b4080aeaeba320eff8,
+    type: 3}
+  ButtonTemplate: {fileID: 5600928465541467875, guid: 4fb4f9fad5f1f3c419f300181dd55ecd,
     type: 3}
   Textures:
   - {fileID: 2800000, guid: 9c867f9a1249e7b42ab8ffd8cf30797e, type: 3}

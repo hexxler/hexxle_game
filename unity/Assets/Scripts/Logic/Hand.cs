@@ -45,9 +45,16 @@ namespace Hexxle.Logic
             throw new System.Exception("No tile in hand selected!");
         }
 
-        public void SelectTile(TileHand tileHand)
+        public void SelectTile(ITile tile)
         {
-            SelectedTile = tileHand;
+            foreach(TileHand tileHand in Slots)
+            {
+                if(tileHand.GetTile() == tile)
+                {
+                    SelectedTile = tileHand;
+                    break;
+                }
+            }
         }
 
         public List<ITile> GetTiles()

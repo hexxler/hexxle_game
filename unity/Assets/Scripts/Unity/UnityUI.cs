@@ -22,5 +22,10 @@ namespace Hexxle.Unity
                 button.enabled = false;
             }
         }
+
+        public void SelectTile(Button button)
+        {
+            print("TEST");
+        }
     }
 }

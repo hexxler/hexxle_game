@@ -67,5 +67,10 @@ namespace Hexxle.Logic
             return tiles;
         }
 
+        public bool IsTileSelected()
+        {
+            return SelectedTile != null;
+        }
+
     }
 }

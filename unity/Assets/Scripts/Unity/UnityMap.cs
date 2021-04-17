@@ -53,7 +53,7 @@ namespace Hexxle.Unity
         public void PlaceNextTile(Coordinate coordinate)
         {
             // Needs to get top Tile from Hand
-            ITile topTile = unityHand.PlaceTile();
+            ITile topTile = unityHand.TakeTile();
             if(topTile != null)
             {
                 map.PlaceTile(topTile, coordinate);

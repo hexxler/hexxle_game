@@ -54,10 +54,14 @@ namespace Hexxle.Unity
             return firstTiles;
         }
 
-        public ITile PlaceTile()
+        public ITile TakeTile()
         {
-            Changed = true;
-            return LogicHand.ReplaceTile(Stack.GetTopTile());
+            if (LogicHand.IsTileSelected())
+            {
+                Changed = true;
+                return LogicHand.ReplaceTile(Stack.GetTopTile());
+            }
+            return null;
         }
 
         private void DeleteOldHand()

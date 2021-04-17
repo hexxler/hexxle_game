@@ -12,6 +12,7 @@ TagManager:
   - Pause
   - Tile
   - Void
+  - Hand
   layers:
   - Default
   - TransparentFX

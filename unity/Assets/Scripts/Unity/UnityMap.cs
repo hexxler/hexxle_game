@@ -13,7 +13,7 @@ namespace Hexxle.Unity
         public GameObject TileTemplate;
         public Material[] materials;
         public float OuterTileRadius = 0.5f;
-        private UnityStack unityStack;
+        private UnityHand unityHand;
         private UnityPoints unityPoints;
 
         private void Awake()
@@ -26,7 +26,7 @@ namespace Hexxle.Unity
 
         private void Start()
         {
-            unityStack = GameObject.FindGameObjectWithTag("Stack").GetComponent<UnityStack>();
+            unityHand = GameObject.FindGameObjectWithTag("Hand").GetComponent<UnityHand>();
             unityPoints = GameObject.FindGameObjectWithTag("Points").GetComponent<UnityPoints>();
             Coordinate start = new Coordinate();
             PlaceRandomTile(start);
@@ -52,15 +52,18 @@ namespace Hexxle.Unity
 
         public void PlaceNextTile(Coordinate coordinate)
         {
-            // Needs to get top Tile from Stack
-            ITile topTile = unityStack.GetTopTile();
-            map.PlaceTile(topTile, coordinate);
-            PlaceVoidNeighbours(coordinate);
+            // Needs to get top Tile from Hand
+            ITile topTile = unityHand.PlaceTile();
+            if(topTile != null)
+            {
+                map.PlaceTile(topTile, coordinate);
+                PlaceVoidNeighbours(coordinate);
 
-            // Resolve tile
-            int pointsEarned = resolver.CalculatePoints(topTile);
-            unityPoints.IncreasePoints(pointsEarned);
-            resolver.ApplyBehaviour(topTile);
+                // Resolve tile
+                int pointsEarned = resolver.CalculatePoints(topTile);
+                unityPoints.IncreasePoints(pointsEarned);
+                resolver.ApplyBehaviour(topTile);
+            }
         }
 
         private void PlaceVoidTile(Coordinate coordinate)

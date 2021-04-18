@@ -15,6 +15,7 @@ namespace Hexxle.Unity
         public float OuterTileRadius = 0.5f;
         private UnityStack unityStack;
         private UnityPoints unityPoints;
+        private UnityPossiblePoints unityPossiblePoints;
 
         private void Awake()
         {
@@ -28,6 +29,7 @@ namespace Hexxle.Unity
         {
             unityStack = GameObject.FindGameObjectWithTag("Stack").GetComponent<UnityStack>();
             unityPoints = GameObject.FindGameObjectWithTag("Points").GetComponent<UnityPoints>();
+            unityPossiblePoints = GameObject.FindGameObjectWithTag("ScoreChange").GetComponent<UnityPossiblePoints>();
             Coordinate start = new Coordinate();
             PlaceRandomTile(start);
         }
@@ -114,6 +116,25 @@ namespace Hexxle.Unity
                 newTile.tag = "Tile";
             }
             newTile.transform.parent = this.transform;
+        }
+
+        public void ShowPossibleScoreForCoordinate(Coordinate coordinate)
+        {
+            if(unityStack.Peek() != null)
+            {
+                if (map.GetTile(coordinate).Type.Type.Equals(EType.Void))
+                {
+                    ITile tile = unityStack.Peek();
+                    tile.Coordinate = coordinate;
+                    int pointsEarned = resolver.CalculatePoints(tile);
+                    unityPossiblePoints.possibleScore = pointsEarned;
+                }
+                else
+                {
+                    unityPossiblePoints.possibleScore = 0;
+                }
+            }
+
         }
     }
 }

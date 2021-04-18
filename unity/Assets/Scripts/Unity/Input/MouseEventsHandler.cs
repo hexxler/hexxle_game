@@ -77,6 +77,9 @@ namespace Hexxle.Unity.Input
             }
             if (currentCollisionTile != null)
             {
+                UnityMap unityMap = GameObjectFinder.UnityMap;
+                Coordinate coordinate = unityMap.PointToCoordinate(currentCollisionTile.transform.position);
+                unityMap.ShowPossibleScoreForCoordinate(coordinate);
                 currentCollisionTile.GetComponent<UnityTileHighlighter>().enabled = true;
             }
         }

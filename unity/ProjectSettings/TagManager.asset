@@ -12,6 +12,7 @@ TagManager:
   - Pause
   - Tile
   - Void
+  - ScoreChange
   layers:
   - Default
   - TransparentFX

@@ -19,7 +19,7 @@ namespace Hexxle.Logic
         public int CalculatePoints(ITile tile)
         {
             return tile.Nature.RelevantCoordinates(tile.Coordinate)
-                .Sum(coordinate => tile.Type.ValueOfRelationshipTo(_map.GetTile(coordinate).Type.Type));
+                .Sum(coordinate => _map.GetTile(coordinate) != null ? tile.Type.ValueOfRelationshipTo(_map.GetTile(coordinate).Type.Type) : 0);
         }
     }
 }

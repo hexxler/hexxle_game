@@ -628,6 +628,7 @@
     <Compile Include="Assets\Scripts\Unity\UnityMap.cs" />
     <Compile Include="Assets\Scripts\Unity\UnityPause.cs" />
     <Compile Include="Assets\Scripts\Unity\UnityPoints.cs" />
+    <Compile Include="Assets\Scripts\Unity\UnityPossiblePoints.cs" />
     <Compile Include="Assets\Scripts\Unity\UnityStack.cs" />
     <Compile Include="Assets\Scripts\Unity\UnityTileHighlighter.cs" />
     <Compile Include="Assets\Scripts\Unity\UnityTitlescreen.cs" />

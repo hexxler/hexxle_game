@@ -15,12 +15,7 @@ namespace Hexxle.Logic
 
         public ITile GetTile(Coordinate coordinate)
         {
-            if (IsEmpty(coordinate))
-            {
-                ITile tile = Tile.CreateInstance(EState.OnField, EType.Void, ENature.None, EBehaviour.None);
-                tile.Coordinate = coordinate;
-            }
-            return _axisDictionary[coordinate];
+            return IsEmpty(coordinate) ? null : _axisDictionary[coordinate];
         }
 
         public void PlaceTile(ITile tile, Coordinate coordinate)

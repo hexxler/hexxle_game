@@ -41,6 +41,11 @@ namespace Hexxle.Unity
             return tileStack.Pop();
         }
 
+        public ITile Peek()
+        {
+            return tileStack.Peek();
+        }
+
         public int Count()
         {
             return tileStack.Count();

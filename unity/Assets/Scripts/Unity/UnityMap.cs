@@ -3,6 +3,7 @@ using Hexxle.Interfaces;
 using Hexxle.Logic;
 using Hexxle.TileSystem;
 using UnityEngine;
+using Hexxle.Unity.Audio;
 
 namespace Hexxle.Unity
 {
@@ -50,7 +51,7 @@ namespace Hexxle.Unity
             resolver.ApplyBehaviour(tileToPlace);
         }
 
-        public void PlaceNextTile(Coordinate coordinate)
+        public void PlaceNextTile(Coordinate coordinate, GameObject currentCollisionTile)
         {
             // Needs to get top Tile from Hand
             ITile topTile = unityHand.TakeTile();
@@ -63,6 +64,9 @@ namespace Hexxle.Unity
                 int pointsEarned = resolver.CalculatePoints(topTile);
                 unityPoints.IncreasePoints(pointsEarned);
                 resolver.ApplyBehaviour(topTile);
+
+                GameObject.Destroy(currentCollisionTile);
+                FindObjectOfType<AudioManager>().Play(GameSoundTypes.POP);
             }
         }
 

@@ -47,13 +47,20 @@ namespace Hexxle.Logic
 
         public void SelectTile(ITile tile)
         {
-            foreach(TileHand tileHand in Slots)
+            if(tile != null)
             {
-                if(tileHand.GetTile() == tile)
+                foreach (TileHand tileHand in Slots)
                 {
-                    SelectedTile = tileHand;
-                    break;
+                    if (tileHand.GetTile() == tile)
+                    {
+                        SelectedTile = tileHand;
+                        break;
+                    }
                 }
+            }
+            else
+            {
+                SelectedTile = null;
             }
         }
 

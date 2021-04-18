@@ -16,6 +16,7 @@ namespace Hexxle.Unity
         public GameObject UIHand;
         public GameObject TileTemplate;
         public Button ButtonTemplate;
+        public Texture VoidTexture;
         private bool Changed = true;
         private List<GameObject> RenderedTiles = new List<GameObject>();
         public Texture[] Textures;
@@ -78,7 +79,15 @@ namespace Hexxle.Unity
             for (int i = 0; i < HandSize; i++)
             {
                 ITile tile = tiles[i];
-                Texture texture = GetTextureForTileType(tile);
+                Texture texture = null;
+                if (tile != null)
+                {
+                    texture = GetTextureForTileType(tile);
+                }
+                else
+                {
+                    texture = VoidTexture;
+                }
                 GameObject newTile = Instantiate(TileTemplate);
                 RenderedTiles.Add(newTile);
                 newTile.transform.SetParent(UIHand.transform, false);

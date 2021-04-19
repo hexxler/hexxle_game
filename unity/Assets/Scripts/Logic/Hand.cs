@@ -15,11 +15,11 @@ namespace Hexxle.Logic
         {
             HandSize = handSize;
             Slots = new List<ITile>();
-
             for (int i = 0; i < HandSize; i++)
             {
-                Slots.Add(tiles[i]);
+                Slots.Add(null);
             }
+            FillHand(tiles);
         }
 
         public ITile ReplaceTile(ITile newTile)
@@ -47,6 +47,31 @@ namespace Hexxle.Logic
         public bool IsTileSelected()
         {
             return SelectedTile != null;
+        }
+
+        public void FillHand(ITile[] tiles)
+        {
+            int counter = 0;
+            for(int i = 0; i < HandSize; i++)
+            {
+                if(counter < tiles.Length && Slots[i] == null)
+                {
+                    Slots[i] = tiles[counter++];
+                }
+            }
+        }
+
+        public int EmptySlots()
+        {
+            int counter = 0;
+            for(int i = 0; i < HandSize; i++)
+            {
+                if(Slots[i] == null)
+                {
+                    counter++;
+                }
+            }
+            return counter;
         }
 
     }

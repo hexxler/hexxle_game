@@ -11,7 +11,7 @@ namespace Hexxle.Unity
     public class UnityHand : MonoBehaviour
     {
         public static int HandSize = 5;
-        public Hand LogicHand = new Hand(HandSize);
+        public Hand LogicHand;
         private UnityStack Stack;
         public GameObject UIHand;
         public GameObject TileTemplate;
@@ -25,7 +25,12 @@ namespace Hexxle.Unity
         void Start()
         {
             Stack = GameObject.FindGameObjectWithTag("Stack").GetComponent<UnityStack>();
-            LogicHand.Fill(Initialize());
+            ITile[] firstTiles = new ITile[HandSize];
+            for (int i = 0; i < HandSize; i++)
+            {
+                firstTiles[i] = Stack.GetTopTile();
+            }
+            LogicHand = new Hand(HandSize, firstTiles);
         }
 
         // Update is called once per frame
@@ -43,16 +48,6 @@ namespace Hexxle.Unity
         {
             Changed = true;
             LogicHand.SelectTile(tile);
-        }
-
-        public ITile[] Initialize()
-        {
-            ITile[] firstTiles = new ITile[HandSize];
-            for(int i=0; i < HandSize; i++)
-            {
-                firstTiles[i] = Stack.GetTopTile();
-            }
-            return firstTiles;
         }
 
         public ITile TakeTile()

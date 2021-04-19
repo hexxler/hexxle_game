@@ -11,26 +11,14 @@ namespace Hexxle.Logic
         private int HandSize;
         private ITile SelectedTile = null;
 
-        public Hand(int handSize)
+        public Hand(int handSize, ITile[] tiles)
         {
-            Slots = new List<ITile>();
             HandSize = handSize;
-            Initialize();
-        }
+            Slots = new List<ITile>();
 
-        private void Initialize()
-        {
-            for(int i = 0; i < HandSize; i++)
+            for (int i = 0; i < HandSize; i++)
             {
-                Slots.Add(null);
-            }
-        }
-
-        public void Fill(ITile[] tiles)
-        {
-            for(int i = 0; i < HandSize; i++)
-            {
-                Slots[i] = tiles[i];
+                Slots.Add(tiles[i]);
             }
         }
 
@@ -46,23 +34,9 @@ namespace Hexxle.Logic
             throw new System.Exception("No tile in hand selected!");
         }
 
-        public void SelectTile(ITile tile)
+        public void SelectTile(ITile selectedTile)
         {
-            if(tile != null)
-            {
-                foreach (ITile tileHand in Slots)
-                {
-                    if (tileHand == tile)
-                    {
-                        SelectedTile = tileHand;
-                        break;
-                    }
-                }
-            }
-            else
-            {
-                SelectedTile = null;
-            }
+            SelectedTile = selectedTile;
         }
 
         public List<ITile> GetTiles()

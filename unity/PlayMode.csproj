@@ -67,6 +67,7 @@
     <Compile Include="Assets\Tests\PlayMode\Unity\AudioManagerTests.cs" />
     <Compile Include="Assets\Tests\PlayMode\Unity\CameraMovementTests.cs" />
     <Compile Include="Assets\Tests\PlayMode\Unity\EscPauseMenuTests.cs" />
+    <Compile Include="Assets\Tests\PlayMode\Unity\PossibleScoreTests.cs" />
     <Compile Include="Assets\Tests\PlayMode\Unity\TilePlacementTest.cs" />
     <Compile Include="Assets\Tests\PlayMode\Unity\UnityTileHighlighterTests.cs" />
     <None Include="Assets\Tests\PlayMode\PlayMode.asmdef" />
@@ -628,6 +629,10 @@
     <ProjectReference Include="Unity.InputSystem.TestFramework.csproj">
       <Project>{3F54D6FA-F525-6438-BDB8-C2B77CF6E852}</Project>
       <Name>Unity.InputSystem.TestFramework</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.TextMeshPro.csproj">
+      <Project>{0EC6B5F2-0218-AE7B-3C70-1901B4B53FF9}</Project>
+      <Name>Unity.TextMeshPro</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

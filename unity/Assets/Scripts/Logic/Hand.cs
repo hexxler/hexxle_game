@@ -7,13 +7,13 @@ namespace Hexxle.Logic
 {
     public class Hand
     {
-        public List<TileHand> Slots;
+        private List<ITile> Slots;
         private int HandSize;
-        private TileHand SelectedTile = null;
+        private ITile SelectedTile = null;
 
         public Hand(int handSize)
         {
-            Slots = new List<TileHand>();
+            Slots = new List<ITile>();
             HandSize = handSize;
             Initialize();
         }
@@ -22,7 +22,7 @@ namespace Hexxle.Logic
         {
             for(int i = 0; i < HandSize; i++)
             {
-                Slots.Add(new TileHand());
+                Slots.Add(null);
             }
         }
 
@@ -30,7 +30,7 @@ namespace Hexxle.Logic
         {
             for(int i = 0; i < HandSize; i++)
             {
-                Slots[i].SetTile(tiles[i]);
+                Slots[i] = tiles[i];
             }
         }
 
@@ -38,8 +38,9 @@ namespace Hexxle.Logic
         {
             if(SelectedTile != null)
             {
-                ITile oldTile = SelectedTile.GetTile();
-                SelectedTile.SetTile(newTile);
+                ITile oldTile = SelectedTile;
+                SelectedTile = newTile;
+                Slots[Slots.FindIndex(slot => slot == oldTile)] = newTile;
                 return oldTile;
             }
             throw new System.Exception("No tile in hand selected!");
@@ -49,9 +50,9 @@ namespace Hexxle.Logic
         {
             if(tile != null)
             {
-                foreach (TileHand tileHand in Slots)
+                foreach (ITile tileHand in Slots)
                 {
-                    if (tileHand.GetTile() == tile)
+                    if (tileHand == tile)
                     {
                         SelectedTile = tileHand;
                         break;
@@ -66,12 +67,7 @@ namespace Hexxle.Logic
 
         public List<ITile> GetTiles()
         {
-            List<ITile> tiles = new List<ITile>();
-            for(int i=0; i < HandSize; i++)
-            {
-                tiles.Add(Slots[i].GetTile());
-            }
-            return tiles;
+            return Slots;
         }
 
         public bool IsTileSelected()

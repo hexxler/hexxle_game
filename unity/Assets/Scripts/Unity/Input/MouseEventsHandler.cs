@@ -23,7 +23,7 @@ namespace Hexxle.Unity.Input
         private void OnEnable()
         {
             inputManager.TilePlacement.MouseClick.Enable();
-            inputManager.TilePlacement.MouseClick.performed += context => MouseClickAction();
+            inputManager.TilePlacement.MouseClick.performed += _ => MouseClickAction();
             if (currentCollisionTile != null)
             {
                 currentCollisionTile.GetComponent<UnityTileHighlighter>().enabled = true;

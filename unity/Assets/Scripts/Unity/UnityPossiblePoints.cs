@@ -8,6 +8,8 @@ namespace Hexxle.Unity
     {
         public TMP_Text possiblePointsText;
         public int possibleScore { get; set; } = 0;
+        public Color32 positiveColor = new Color32(102, 193, 40, 255);
+        public Color32 negativeColor = new Color32(255, 48, 40, 255);
         private Color32 originalColor;
 
         private void Awake()
@@ -15,17 +17,17 @@ namespace Hexxle.Unity
             originalColor = possiblePointsText.color;
         }
 
-        void Update()
+        void FixedUpdate()
         {
             string text = "";
             if (possibleScore > 0)
             {
-                possiblePointsText.color = new Color32(102, 193, 40, 255);
+                possiblePointsText.color = positiveColor;
                 text += "+";
             }
             else if (possibleScore < 0)
             {
-                possiblePointsText.color = new Color32(255, 48, 40, 255);
+                possiblePointsText.color = negativeColor;
             }
             else
             {

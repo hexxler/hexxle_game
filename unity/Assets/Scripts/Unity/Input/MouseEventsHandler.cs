@@ -58,6 +58,8 @@ namespace Hexxle.Unity.Input
                 }
                 else
                 {
+
+                    GameObjectFinder.UnityMap.ShowPossibleScoreForCoordinate(new Coordinate());
                     oldTile = currentCollisionTile;
                     currentCollisionTile = null;
                     if (oldTile != null)

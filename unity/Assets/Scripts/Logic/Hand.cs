@@ -49,6 +49,11 @@ namespace Hexxle.Logic
             return SelectedTile != null;
         }
 
+        public ITile GetSelectedTile()
+        {
+            return SelectedTile;
+        }
+
         public void FillHand(ITile[] tiles)
         {
             int counter = 0;

@@ -70,6 +70,7 @@ namespace Hexxle.Unity
 
         private void RenderNewHand()
         {
+            ITile selectedTile = LogicHand.GetSelectedTile();
             List<ITile> tiles = LogicHand.GetTiles();
             for (int i = 0; i < HandSize; i++)
             {
@@ -88,10 +89,22 @@ namespace Hexxle.Unity
                 newTile.transform.SetParent(UIHand.transform, false);
                 newTile.GetComponent<RawImage>().texture = texture;
 
-                //Add Button to Tile
+                // Add Button to Tile
                 Button button = Instantiate(ButtonTemplate);
                 button.GetComponent<Button>().onClick.AddListener(delegate { SelectTile(tile); });
                 button.transform.SetParent(newTile.transform, false);
+                if (selectedTile == tile)
+                {
+                    ColorBlock cb = button.colors;
+                    cb.normalColor = new Color(255f, 0f, 0f, 0.1f);
+                    button.colors = cb;
+                }
+                else
+                {
+                    ColorBlock cb = button.colors;
+                    cb.normalColor = new Color(255f, 0f, 0f, 0f);
+                    button.colors = cb;
+                }
             }
         }
 
@@ -99,6 +112,11 @@ namespace Hexxle.Unity
         {
             EType type = tile.Type.Type;
             return Textures[(int)type];
+        }
+
+        public bool IsTileSelected()
+        {
+            return LogicHand.IsTileSelected();
         }
     }
 

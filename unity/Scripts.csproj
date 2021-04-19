@@ -83,7 +83,9 @@
     <Compile Include="Assets\Scripts\TileSystem\ENature.cs" />
     <Compile Include="Assets\Scripts\TileSystem\EState.cs" />
     <Compile Include="Assets\Scripts\TileSystem\EType.cs" />
+    <Compile Include="Assets\Scripts\TileSystem\Nature\BaseTileNature.cs" />
     <Compile Include="Assets\Scripts\TileSystem\Nature\CircleNature.cs" />
+    <Compile Include="Assets\Scripts\TileSystem\Nature\StarNature.cs" />
     <Compile Include="Assets\Scripts\TileSystem\Tile.cs" />
     <Compile Include="Assets\Scripts\TileSystem\Type\BaseTileType.cs" />
     <Compile Include="Assets\Scripts\TileSystem\Type\BlueType.cs" />

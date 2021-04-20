@@ -52,10 +52,15 @@ namespace Hexxle.Unity
 
         public ITile TakeTile()
         {
-            if (LogicHand.IsTileSelected())
+            if (LogicHand.IsTileSelected() && Stack.Count() > 0)
             {
                 Changed = true;
                 return LogicHand.ReplaceTile(Stack.GetTopTile());
+            }
+            else if(LogicHand.IsTileSelected() && Stack.Count() == 0)
+            {
+                Changed = true;
+                return LogicHand.ReplaceTile(null);
             }
             return null;
         }

@@ -50,8 +50,7 @@ namespace Hexxle.Logic
             }
             else
             {
-                //throw new System.Exception("Stack is empty");
-                return null;
+                throw new System.Exception("Stack is empty");
             }
         }
 

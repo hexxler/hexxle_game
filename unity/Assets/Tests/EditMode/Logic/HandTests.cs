@@ -12,67 +12,67 @@ namespace Hexxle.Tests.Logic
 {
     public class HandTests
     {
-        Hand LogicHand;
-        TileStack Stack;
-        int HandSize = 5;
-        ITile[] FirstTiles;
+        Hand logicHand;
+        TileStack stack;
+        int handSize = 5;
+        ITile[] firstTiles;
 
         [SetUp]
         public void Setup()
         {
-            Stack = new TileStack();
-            Stack.InitializeStack();
+            stack = new TileStack();
+            stack.InitializeStack();
 
-            FirstTiles = new ITile[HandSize];
-            for (int i = 0; i < HandSize; i++)
+            firstTiles = new ITile[handSize];
+            for (int i = 0; i < handSize; i++)
             {
-                FirstTiles[i] = Stack.Pop();
+                firstTiles[i] = stack.Pop();
             }
 
-            LogicHand = new Hand(HandSize, FirstTiles);
+            logicHand = new Hand(handSize, firstTiles);
         }
 
         [Test]
         public void CheckFirstTiles()
         {
-            CollectionAssert.AreEqual(FirstTiles, LogicHand.GetTiles());
+            CollectionAssert.AreEqual(firstTiles, logicHand.GetTiles());
         }
 
         [Test]
         public void CheckSelectTile()
         {
             Random rnd = new Random();
-            int rndInt = rnd.Next(0, HandSize);
-            LogicHand.SelectTile(FirstTiles[rndInt]);
-            Assert.True(LogicHand.IsTileSelected());
-            Assert.AreEqual(FirstTiles[rndInt], LogicHand.GetSelectedTile());
+            int rndInt = rnd.Next(0, handSize);
+            logicHand.SelectTile(firstTiles[rndInt]);
+            Assert.True(logicHand.IsTileSelected());
+            Assert.AreEqual(firstTiles[rndInt], logicHand.GetSelectedTile());
         }
 
         [Test]
         public void CheckEmptySlots()
         {
             Random rnd = new Random();
-            int rndInt = rnd.Next(0, HandSize);
-            LogicHand.SelectTile(FirstTiles[rndInt]);
-            ITile selectedTile = LogicHand.ReplaceTile(null);
-            Assert.AreEqual(selectedTile, FirstTiles[rndInt]);
-            Assert.AreEqual(1, LogicHand.EmptySlots());
+            int rndInt = rnd.Next(0, handSize);
+            logicHand.SelectTile(firstTiles[rndInt]);
+            ITile selectedTile = logicHand.ReplaceTile(null);
+            Assert.AreEqual(selectedTile, firstTiles[rndInt]);
+            Assert.AreEqual(1, logicHand.EmptySlots());
         }
 
         [Test]
         public void CheckFillHand()
         {
-            LogicHand.SelectTile(FirstTiles[1]);
-            LogicHand.ReplaceTile(null);
-            LogicHand.SelectTile(FirstTiles[3]);
-            LogicHand.ReplaceTile(null);
+            logicHand.SelectTile(firstTiles[1]);
+            logicHand.ReplaceTile(null);
+            logicHand.SelectTile(firstTiles[3]);
+            logicHand.ReplaceTile(null);
             ITile[] tiles = new Tile[2];
-            tiles[0] = Stack.Pop();
-            tiles[1] = Stack.Pop();
-            LogicHand.FillHand(tiles);
-            FirstTiles[1] = tiles[0];
-            FirstTiles[3] = tiles[1];
-            CollectionAssert.AreEqual(FirstTiles, LogicHand.GetTiles());
+            tiles[0] = stack.Pop();
+            tiles[1] = stack.Pop();
+            logicHand.FillHand(tiles);
+            firstTiles[1] = tiles[0];
+            firstTiles[3] = tiles[1];
+            CollectionAssert.AreEqual(firstTiles, logicHand.GetTiles());
         }
 
     }

@@ -4,6 +4,7 @@ using Hexxle.TileSystem;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -65,6 +66,7 @@ namespace Hexxle.Unity
                 toDelete.Add(newTile);
                 newTile.transform.SetParent(Content.transform, false);
                 newTile.GetComponent<RawImage>().texture = texture;
+                newTile.GetComponentInChildren<TMP_Text>().text = tile.Nature.Nature.ToString();
             }
             stackCount = tileStack.Count();
         }

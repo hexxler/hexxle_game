@@ -10,29 +10,29 @@ namespace Hexxle.Tests.Logic
 {
     public class HandTests
     {
-        Hand hand;
-        TileStack stack;
+        Hand LogicHand;
+        TileStack Stack;
         int HandSize = 5;
-        List<ITile> FirstTiles;
+        ITile[] FirstTiles;
 
         [SetUp]
         public void Setup()
         {
-            stack = new TileStack();
+            Stack = new TileStack();
 
-            FirstTiles = new List<ITile>();
-            for(int i = 0; i < HandSize; i++)
+            FirstTiles = new ITile[HandSize];
+            for (int i = 0; i < HandSize; i++)
             {
-                FirstTiles.Add(stack.Pop());
+                FirstTiles[i] = Stack.Pop();
             }
 
-            hand = new Hand(HandSize, FirstTiles);
+            LogicHand = new Hand(HandSize, FirstTiles);
         }
 
         [Test]
         public void CheckFirstTiles()
         {
-            CollectionAssert.AreEqual(FirstTiles, hand.GetTiles());
+            CollectionAssert.AreEqual(FirstTiles, LogicHand.GetTiles());
         }
 
     }

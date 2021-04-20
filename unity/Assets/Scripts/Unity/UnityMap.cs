@@ -53,9 +53,9 @@ namespace Hexxle.Unity
 
         public void PlaceNextTile(Coordinate coordinate, GameObject currentCollisionTile)
         {
-            // Needs to get top Tile from Hand
             if(unityHand.IsTileSelected())
             {
+                // Needs to get Tile from Hand
                 ITile topTile = unityHand.TakeTile();
                 map.PlaceTile(topTile, coordinate);
                 PlaceVoidNeighbours(coordinate);

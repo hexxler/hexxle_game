@@ -98,6 +98,8 @@ namespace Hexxle.Unity
                 Button button = Instantiate(ButtonTemplate);
                 button.GetComponent<Button>().onClick.AddListener(delegate { SelectTile(tile); });
                 button.transform.SetParent(newTile.transform, false);
+
+                // Add highlighted effect to button
                 if (selectedTile == tile)
                 {
                     ColorBlock cb = button.colors;

@@ -22,7 +22,7 @@ namespace Hexxle.Unity.Input
         private void OnEnable()
         {
             inputManager.TilePlacement.MouseClick.Enable();
-            inputManager.TilePlacement.MouseClick.performed += context => MouseClickAction();
+            inputManager.TilePlacement.MouseClick.performed += _ => MouseClickAction();
             if (currentCollisionTile != null)
             {
                 currentCollisionTile.GetComponent<UnityTileHighlighter>().enabled = true;
@@ -58,6 +58,8 @@ namespace Hexxle.Unity.Input
                 }
                 else
                 {
+
+                    GameObjectFinder.UnityMap.ShowPossibleScoreForCoordinate(new Coordinate());
                     oldTile = currentCollisionTile;
                     currentCollisionTile = null;
                     if (oldTile != null)
@@ -76,6 +78,9 @@ namespace Hexxle.Unity.Input
             }
             if (currentCollisionTile != null)
             {
+                UnityMap unityMap = GameObjectFinder.UnityMap;
+                Coordinate coordinate = unityMap.PointToCoordinate(currentCollisionTile.transform.position);
+                unityMap.ShowPossibleScoreForCoordinate(coordinate);
                 currentCollisionTile.GetComponent<UnityTileHighlighter>().enabled = true;
             }
         }

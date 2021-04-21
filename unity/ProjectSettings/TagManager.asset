@@ -13,6 +13,7 @@ TagManager:
   - Tile
   - Void
   - Hand
+  - ScoreChange
   layers:
   - Default
   - TransparentFX

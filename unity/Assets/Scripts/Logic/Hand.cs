@@ -68,15 +68,7 @@ namespace Hexxle.Logic
 
         public int EmptySlots()
         {
-            int counter = 0;
-            for(int i = 0; i < handSize; i++)
-            {
-                if(slots[i] == null)
-                {
-                    counter++;
-                }
-            }
-            return counter;
+            return slots.Count(s => s == null);
         }
 
     }

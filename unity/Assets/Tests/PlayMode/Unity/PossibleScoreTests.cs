@@ -22,7 +22,7 @@ namespace Hexxle.Tests.Unity
 
         private void SetupObjects()
         {
-            unityPossiblePoints = GameObject.FindGameObjectWithTag("ScoreChange").GetComponent<UnityPossiblePoints>();
+            unityPossiblePoints = GameObject.FindGameObjectWithTag("Points").GetComponent<UnityPossiblePoints>();
             DisableMouseEventHandler();
         }
 

@@ -2,7 +2,6 @@
 using UnityEngine.InputSystem;
 using Hexxle.Unity.Util;
 using Hexxle.CoordinateSystem;
-using Hexxle.Unity.Audio;
 
 namespace Hexxle.Unity.Input
 {
@@ -87,11 +86,7 @@ namespace Hexxle.Unity.Input
             {
                 UnityMap unityMap = GameObjectFinder.UnityMap;
                 Coordinate coordinate = unityMap.PointToCoordinate(currentCollisionTile.transform.position);
-                unityMap.PlaceNextTile(coordinate);
-
-                GameObject.Destroy(currentCollisionTile);
-
-                FindObjectOfType<AudioManager>().Play(GameSoundTypes.POP);
+                unityMap.PlaceNextTile(coordinate, currentCollisionTile);
             }
         }
     }

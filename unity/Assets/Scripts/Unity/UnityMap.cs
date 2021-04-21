@@ -3,6 +3,7 @@ using Hexxle.Interfaces;
 using Hexxle.Logic;
 using Hexxle.TileSystem;
 using UnityEngine;
+using Hexxle.Unity.Audio;
 
 namespace Hexxle.Unity
 {
@@ -13,7 +14,7 @@ namespace Hexxle.Unity
         public GameObject TileTemplate;
         public Material[] materials;
         public float OuterTileRadius = 0.5f;
-        private UnityStack unityStack;
+        private UnityHand unityHand;
         private UnityPoints unityPoints;
 
         private void Awake()
@@ -26,7 +27,7 @@ namespace Hexxle.Unity
 
         private void Start()
         {
-            unityStack = GameObject.FindGameObjectWithTag("Stack").GetComponent<UnityStack>();
+            unityHand = GameObject.FindGameObjectWithTag("Hand").GetComponent<UnityHand>();
             unityPoints = GameObject.FindGameObjectWithTag("Points").GetComponent<UnityPoints>();
             Coordinate start = new Coordinate();
             PlaceRandomTile(start);
@@ -50,17 +51,23 @@ namespace Hexxle.Unity
             resolver.ApplyBehaviour(tileToPlace);
         }
 
-        public void PlaceNextTile(Coordinate coordinate)
+        public void PlaceNextTile(Coordinate coordinate, GameObject currentCollisionTile)
         {
-            // Needs to get top Tile from Stack
-            ITile topTile = unityStack.GetTopTile();
-            map.PlaceTile(topTile, coordinate);
-            PlaceVoidNeighbours(coordinate);
+            if(unityHand.IsTileSelected())
+            {
+                // Needs to get Tile from Hand
+                ITile topTile = unityHand.TakeTile();
+                map.PlaceTile(topTile, coordinate);
+                PlaceVoidNeighbours(coordinate);
 
-            // Resolve tile
-            int pointsEarned = resolver.CalculatePoints(topTile);
-            unityPoints.IncreasePoints(pointsEarned);
-            resolver.ApplyBehaviour(topTile);
+                // Resolve tile
+                int pointsEarned = resolver.CalculatePoints(topTile);
+                unityPoints.IncreasePoints(pointsEarned);
+                resolver.ApplyBehaviour(topTile);
+
+                GameObject.Destroy(currentCollisionTile);
+                FindObjectOfType<AudioManager>().Play(GameSoundTypes.POP);
+            }
         }
 
         private void PlaceVoidTile(Coordinate coordinate)

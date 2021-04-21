@@ -13,7 +13,7 @@ namespace Hexxle.Unity
             GameObjectFinder.PausePanel.SetActive(true);
             GameObjectFinder.MouseEventLogic.enabled = false;
 
-            //play soundeffect
+            // play soundeffect
             FindObjectOfType<AudioManager>().Play(GameSoundTypes.PAUSE);
 
             // disable Buttons in UI

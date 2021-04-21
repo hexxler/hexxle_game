@@ -73,6 +73,7 @@
     <Compile Include="Assets\Scripts\Interfaces\ITileResolver.cs" />
     <Compile Include="Assets\Scripts\Interfaces\ITileStack.cs" />
     <Compile Include="Assets\Scripts\Interfaces\ITileType.cs" />
+    <Compile Include="Assets\Scripts\Logic\Hand.cs" />
     <Compile Include="Assets\Scripts\Logic\Score.cs" />
     <Compile Include="Assets\Scripts\Logic\TileMap.cs" />
     <Compile Include="Assets\Scripts\Logic\TileResolver.cs" />
@@ -97,6 +98,7 @@
     <Compile Include="Assets\Scripts\Unity\Input\InputManager.cs" />
     <Compile Include="Assets\Scripts\Unity\Input\MouseEventsHandler.cs" />
     <Compile Include="Assets\Scripts\Unity\UnityCamera.cs" />
+    <Compile Include="Assets\Scripts\Unity\UnityHand.cs" />
     <Compile Include="Assets\Scripts\Unity\UnityMap.cs" />
     <Compile Include="Assets\Scripts\Unity\UnityPause.cs" />
     <Compile Include="Assets\Scripts\Unity\UnityPoints.cs" />

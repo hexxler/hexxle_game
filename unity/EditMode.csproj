@@ -65,6 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Tests\EditMode\Logic\CoordinateTests.cs" />
+    <Compile Include="Assets\Tests\EditMode\Logic\HandTests.cs" />
     <Compile Include="Assets\Tests\EditMode\Logic\ScoreTests.cs" />
     <Compile Include="Assets\Tests\EditMode\Logic\TileMapTests.cs" />
     <Compile Include="Assets\Tests\EditMode\TileSystem\Nature\NatureTests.cs" />

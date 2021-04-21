@@ -100,7 +100,7 @@ namespace Hexxle.Unity
                 button.transform.SetParent(newTile.transform, false);
 
                 // Add highlighted effect to button
-                if (selectedTile == tile)
+                if (selectedTile == tile && selectedTile != null)
                 {
                     ColorBlock cb = button.colors;
                     cb.normalColor = new Color(255f, 0f, 0f, 0.1f);

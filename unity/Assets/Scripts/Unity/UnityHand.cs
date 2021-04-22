@@ -125,6 +125,18 @@ namespace Hexxle.Unity
         {
             return logicHand.IsTileSelected();
         }
+
+        public ITile Peek()
+        {
+            if (logicHand != null)
+            {
+                return logicHand.GetSelectedTile();
+            }
+            else
+            {
+                return null;
+            }
+        }
     }
 
 }

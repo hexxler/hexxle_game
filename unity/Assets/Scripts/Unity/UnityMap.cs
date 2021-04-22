@@ -109,20 +109,23 @@ namespace Hexxle.Unity
         public void OnTilePlaced(object sender, TileMapEventArgs<ITile> e)
         {
             ITile tile = e.Tile;
-            GameObject template = TileTemplate;
             Material material;
             material = materials[(int)e.Tile.Type.Type - 1];
-            template.GetComponent<MeshRenderer>().material = material;
             var newTile = Instantiate(
-                    template,
+                    TileTemplate,
                     CoordinateToPoint(tile.Coordinate),
                     Quaternion.Euler(-90, 0, 0)
                 );
-            if(e.Tile.Type.Type > EType.Void)
+            if (tile.Type.Type.Equals(EType.Void))
             {
+                newTile.GetComponent<MeshCollider>().enabled = true;
+            } 
+            else
+            {
+                newTile.GetComponent<MeshCollider>().enabled = false;
                 newTile.tag = "Tile";
             }
-            unityPossiblePoints.possibleScore = 0;
+            newTile.GetComponent<MeshRenderer>().material = material;
             newTile.transform.parent = this.transform;
         }
 

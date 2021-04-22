@@ -81,7 +81,8 @@ namespace Hexxle.Logic
         private ITile GenerateRandomTile()
         {
             EType randomType = (EType)Random.Range(2, System.Enum.GetValues(typeof(EType)).Length); // None, Void < 2
-            ITile randomTile = Tile.CreateInstance(EState.OnField, randomType, ENature.Circle, EBehaviour.NoEffect);
+            ENature randomNature = (ENature)Random.Range(1, System.Enum.GetValues(typeof(ENature)).Length);
+            ITile randomTile = Tile.CreateInstance(EState.OnField, randomType, randomNature, EBehaviour.NoEffect);
             return randomTile;
         }
     }

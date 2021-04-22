@@ -33,7 +33,7 @@ namespace Assets.Scripts.Logic
         {
             _score += amount;
             _score = Math.Max(_lastThreshold, _score);
-            if (_score >= _nextThreshold)
+            while (_score >= _nextThreshold)
             {
                 // TODO: implement points interval logic
                 //       (next interval and allowing player to get more tiles)

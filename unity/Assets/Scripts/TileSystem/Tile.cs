@@ -35,8 +35,11 @@ namespace Hexxle.TileSystem
             switch (behaviour)
             {
                 case EBehaviour.NoEffect:
-                default:
                     tileBehaviour = new NoEffectBehaviour();
+                    break;
+                case EBehaviour.None:
+                default:
+                    tileBehaviour = null;
                     break;
             }
             return tileBehaviour;
@@ -50,9 +53,11 @@ namespace Hexxle.TileSystem
                 case ENature.Circle:
                     tileNature = new CircleNature();
                     break;
+                case ENature.Star:
+                    tileNature = new StarNature();
+                    break;
                 case ENature.None:
                 default:
-                    // TODO
                     tileNature = null;
                     break;
             }
@@ -84,7 +89,6 @@ namespace Hexxle.TileSystem
                     break;
                 case EType.None:
                 default:
-                    // TODO
                     tileType = null;
                     break;
             }

@@ -53,5 +53,41 @@ namespace Hexxle.Tests.TileSystem
             tile = Tile.CreateInstance(EState.None, EType.None, ENature.None, EBehaviour.None);
             Assert.IsInstanceOf(typeof(NoEffectBehaviour), tile.Behaviour);
         }
+
+        [Test]
+        public void AllEnumValuesImplemented_ENature()
+        {
+            var values = Enum.GetValues(typeof(ENature)).Cast<ENature>();
+            foreach (ENature nature in values)
+            {
+                if (nature == ENature.None) continue;
+                ITile tile = Tile.CreateInstance(EState.None, EType.None, nature, EBehaviour.None);
+                Assert.NotNull(tile.Nature);
+            }
+        }
+
+        [Test]
+        public void AllEnumValuesImplemented_EType()
+        {
+            var values = Enum.GetValues(typeof(EType)).Cast<EType>();
+            foreach (EType type in values)
+            {
+                if (type == EType.None) continue;
+                ITile tile = Tile.CreateInstance(EState.None, type, ENature.None, EBehaviour.None);
+                Assert.NotNull(tile.Type);
+            }
+        }
+
+        [Test]
+        public void AllEnumValuesImplemented_EBehaviour()
+        {
+            var values = Enum.GetValues(typeof(EBehaviour)).Cast<EBehaviour>();
+            foreach (EBehaviour behaviour in values)
+            {
+                if (behaviour == EBehaviour.None) continue;
+                ITile tile = Tile.CreateInstance(EState.None, EType.None, ENature.None, behaviour);
+                Assert.NotNull(tile.Behaviour);
+            }
+        }
     }
 }

@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 namespace Hexxle.Unity
 {
@@ -11,6 +12,10 @@ namespace Hexxle.Unity
     {
         IGameScore score;
         public TMP_Text pointsText;
+        public Slider pointProgress;
+
+        private float smoothPoints = 0;
+        private float smoothScoreThreshold = 10;
 
         private void Awake()
         {
@@ -21,6 +26,12 @@ namespace Hexxle.Unity
         void Update()
         {
             pointsText.text = GetPointsString();
+
+            pointProgress.value = smoothPoints;
+            pointProgress.maxValue = smoothScoreThreshold;
+
+            smoothPoints = Mathf.Lerp(smoothPoints, CurrentPoints(), 0.1f);
+            smoothScoreThreshold = Mathf.Lerp(smoothScoreThreshold, score.GetNextScoreThreshold(), 0.1f);
         }
 
         public void IncreasePoints(int amount)

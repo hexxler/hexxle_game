@@ -1,48 +1,46 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using Hexxle.Unity.Audio;
+using UnityEngine.UIElements;
 
 namespace Hexxle.Unity
 {
     public class UnityTitlescreen : MonoBehaviour
     {
-
-        void Start()
-        {
-            transform.GetChild(2).gameObject.SetActive(false); // InfoPanel
-            transform.GetChild(3).gameObject.SetActive(false); // Return Button
-        }
+        public GameObject infoPanel;
+        public GameObject optionsPanel;
 
         public void PlayGame()
         {
-            //play soundeffect
             FindObjectOfType<AudioManager>().Play(GameSoundTypes.POP);
-
-            SceneManager.LoadScene("Main", LoadSceneMode.Single);
+            FindObjectOfType<SceneFadeManager>().LoadTransitionScene("Main", LoadSceneMode.Single);
         }
 
         public void QuitGame()
         {
-            //play soundeffect
             FindObjectOfType<AudioManager>().Play(GameSoundTypes.POP);
-
             Application.Quit();
         }
 
         public void GetInfoPanel()
         {
-            transform.GetChild(2).gameObject.SetActive(true);   // Info Panel
-            transform.GetChild(3).gameObject.SetActive(true);   // Return Button 
-            transform.GetChild(1).gameObject.SetActive(false);  // TitleScreen
             FindObjectOfType<AudioManager>().Play(GameSoundTypes.POP);
+            infoPanel.SetActive(true);
+            optionsPanel.SetActive(false);
+        }
+
+        public void GetOptionsPanel()
+        {
+            FindObjectOfType<AudioManager>().Play(GameSoundTypes.POP);
+            infoPanel.SetActive(false);
+            optionsPanel.SetActive(true);
         }
 
         public void ReturnToTitle()
         {
-            transform.GetChild(2).gameObject.SetActive(false);   // Info Panel
-            transform.GetChild(3).gameObject.SetActive(false);   // Return Button 
-            transform.GetChild(1).gameObject.SetActive(true);  // TitleScreen
             FindObjectOfType<AudioManager>().Play(GameSoundTypes.POP);
+            infoPanel.SetActive(false);
+            optionsPanel.SetActive(false);
         }
     }
 }

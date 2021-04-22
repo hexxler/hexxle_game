@@ -40,7 +40,7 @@ public class UnityPause : MonoBehaviour
 
     public void ReturnToMainMenu()
     {
-        SceneManager.LoadScene("titlescreen", LoadSceneMode.Single);
+        FindObjectOfType<SceneFadeManager>().LoadTransitionScene("Titlescreen", LoadSceneMode.Single);
     }
 
     private void DisableModalChildPanels()

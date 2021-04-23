@@ -78,6 +78,8 @@
     <Compile Include="Assets\Scripts\Logic\TileMap.cs" />
     <Compile Include="Assets\Scripts\Logic\TileResolver.cs" />
     <Compile Include="Assets\Scripts\Logic\TileStack.cs" />
+    <Compile Include="Assets\Scripts\TileSystem\Behaviour\ConsumptionBehaviour.cs" />
+    <Compile Include="Assets\Scripts\TileSystem\Behaviour\ConversionBehaviour.cs" />
     <Compile Include="Assets\Scripts\TileSystem\Behaviour\NoEffectBehaviour.cs" />
     <Compile Include="Assets\Scripts\TileSystem\EBehaviour.cs" />
     <Compile Include="Assets\Scripts\TileSystem\ENature.cs" />

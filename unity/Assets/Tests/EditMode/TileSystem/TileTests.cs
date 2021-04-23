@@ -1,6 +1,9 @@
-﻿using Hexxle.Interfaces;
+﻿using Hexxle.CoordinateSystem;
+using Hexxle.Interfaces;
 using Hexxle.TileSystem;
 using Hexxle.TileSystem.Behaviour;
+using Hexxle.TileSystem.Nature;
+using Hexxle.TileSystem.Type;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -13,6 +16,12 @@ namespace Hexxle.Tests.TileSystem
     public class TileTests
     {
         ITile tile;
+
+        [SetUp]
+        public void SetUp()
+        {
+            tile = Tile.CreateInstance(EState.None, EType.None, ENature.None, EBehaviour.None);
+        }
 
         [Test]
         public void CreateInstance_Test()
@@ -88,6 +97,51 @@ namespace Hexxle.Tests.TileSystem
                 ITile tile = Tile.CreateInstance(EState.None, EType.None, ENature.None, behaviour);
                 Assert.NotNull(tile.Behaviour);
             }
+        }
+
+        [Test]
+        public void TileChangedEventFires_State()
+        {
+            bool eventFired = false;
+            tile.TileChangedEvent += () => eventFired = true;
+            tile.State = EState.OnField;
+            Assert.IsTrue(eventFired);
+        }
+
+        [Test]
+        public void TileChangedEventFires_Coordinate()
+        {
+            bool eventFired = false;
+            tile.TileChangedEvent += () => eventFired = true;
+            tile.Coordinate = new Coordinate(5, 5, 5);
+            Assert.IsTrue(eventFired);
+        }
+
+        [Test]
+        public void TileChangedEventFires_Type()
+        {
+            bool eventFired = false;
+            tile.TileChangedEvent += () => eventFired = true;
+            tile.Type = new RedType();
+            Assert.IsTrue(eventFired);
+        }
+
+        [Test]
+        public void TileChangedEventFires_Behaviour()
+        {
+            bool eventFired = false;
+            tile.TileChangedEvent += () => eventFired = true;
+            tile.Behaviour = new ConversionBehaviour();
+            Assert.IsTrue(eventFired);
+        }
+
+        [Test]
+        public void TileChangedEventFires_Nature()
+        {
+            bool eventFired = false;
+            tile.TileChangedEvent += () => eventFired = true;
+            tile.Nature = new StarNature();
+            Assert.IsTrue(eventFired);
         }
     }
 }

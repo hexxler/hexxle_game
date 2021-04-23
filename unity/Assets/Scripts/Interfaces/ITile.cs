@@ -1,10 +1,14 @@
 ﻿using Hexxle.CoordinateSystem;
 using Hexxle.TileSystem;
+using System;
 
 namespace Hexxle.Interfaces
 {
     public interface ITile
     {
+        #region Events
+        event Action TileChangedEvent;
+        #endregion
         #region Data
         Coordinate Coordinate { get; set; }
         EState State { get; set; }

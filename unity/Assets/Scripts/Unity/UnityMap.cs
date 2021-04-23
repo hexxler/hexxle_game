@@ -108,8 +108,8 @@ namespace Hexxle.Unity
                     CoordinateToPoint(tile.Coordinate),
                     Quaternion.Euler(-90, 0, 0)
                 );
-            tileObjects.Add(tile.Coordinate, newTileObject);
             newTileObject.transform.parent = this.transform;
+            //tileObjects.Add(tile.Coordinate, newTileObject);
         }
 
         public void OnTileRemoved(object sender, TileMapEventArgs<ITile> e)

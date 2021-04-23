@@ -606,12 +606,16 @@
     <Compile Include="Assets\Scripts\Logic\TileMap.cs" />
     <Compile Include="Assets\Scripts\Logic\TileResolver.cs" />
     <Compile Include="Assets\Scripts\Logic\TileStack.cs" />
+    <Compile Include="Assets\Scripts\TileSystem\Behaviour\ConsumptionBehaviour.cs" />
+    <Compile Include="Assets\Scripts\TileSystem\Behaviour\ConversionBehaviour.cs" />
     <Compile Include="Assets\Scripts\TileSystem\Behaviour\NoEffectBehaviour.cs" />
     <Compile Include="Assets\Scripts\TileSystem\EBehaviour.cs" />
     <Compile Include="Assets\Scripts\TileSystem\ENature.cs" />
     <Compile Include="Assets\Scripts\TileSystem\EState.cs" />
     <Compile Include="Assets\Scripts\TileSystem\EType.cs" />
+    <Compile Include="Assets\Scripts\TileSystem\Nature\BaseTileNature.cs" />
     <Compile Include="Assets\Scripts\TileSystem\Nature\CircleNature.cs" />
+    <Compile Include="Assets\Scripts\TileSystem\Nature\StarNature.cs" />
     <Compile Include="Assets\Scripts\TileSystem\Tile.cs" />
     <Compile Include="Assets\Scripts\TileSystem\Type\BaseTileType.cs" />
     <Compile Include="Assets\Scripts\TileSystem\Type\BlueType.cs" />
@@ -625,6 +629,7 @@
     <Compile Include="Assets\Scripts\Unity\Input\EscapeEventHandler.cs" />
     <Compile Include="Assets\Scripts\Unity\Input\InputManager.cs" />
     <Compile Include="Assets\Scripts\Unity\Input\MouseEventsHandler.cs" />
+    <Compile Include="Assets\Scripts\Unity\SceneFadeManager.cs" />
     <Compile Include="Assets\Scripts\Unity\UnityCamera.cs" />
     <Compile Include="Assets\Scripts\Unity\UnityHand.cs" />
     <Compile Include="Assets\Scripts\Unity\UnityMap.cs" />
@@ -632,6 +637,7 @@
     <Compile Include="Assets\Scripts\Unity\UnityPoints.cs" />
     <Compile Include="Assets\Scripts\Unity\UnityPossiblePoints.cs" />
     <Compile Include="Assets\Scripts\Unity\UnityStack.cs" />
+    <Compile Include="Assets\Scripts\Unity\UnityTile.cs" />
     <Compile Include="Assets\Scripts\Unity\UnityTileHighlighter.cs" />
     <Compile Include="Assets\Scripts\Unity\UnityTitlescreen.cs" />
     <Compile Include="Assets\Scripts\Unity\UnityUI.cs" />

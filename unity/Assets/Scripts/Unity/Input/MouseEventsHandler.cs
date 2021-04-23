@@ -72,13 +72,13 @@ namespace Hexxle.Unity.Input
             {
                 oldTile.GetComponent<UnityTileHighlighter>().enabled = false;
                 Coordinate coordinate = unityMap.PointToCoordinate(oldTile.transform.position);
-                unityMap.GetAffectedTiles(coordinate).ForEach(tile => tile.GetComponent<UnityTileHighlighter>.enabled = false);
+                unityMap.GetAffectedTiles(coordinate).ForEach(tile => tile.GetComponent<UnityTileHighlighter>().enabled = false);
             }
             if (currentCollisionTile != null)
             {
                 Coordinate coordinate = unityMap.PointToCoordinate(currentCollisionTile.transform.position);
                 unityMap.ShowPossibleScoreForCoordinate(coordinate);
-                unityMap.GetAffectedTiles(coordinate).ForEach(tile => tile.GetComponent<UnityTileHighlighter>.enabled = true);
+                unityMap.GetAffectedTiles(coordinate).ForEach(tile => tile.GetComponent<UnityTileHighlighter>().enabled = true);
                 currentCollisionTile.GetComponent<UnityTileHighlighter>().enabled = true;
             }
         }
@@ -89,7 +89,10 @@ namespace Hexxle.Unity.Input
             {
                 UnityMap unityMap = GameObjectFinder.UnityMap;
                 Coordinate coordinate = unityMap.PointToCoordinate(currentCollisionTile.transform.position);
+                oldTile = currentCollisionTile;
                 unityMap.PlaceNextTile(coordinate, currentCollisionTile);
+                currentCollisionTile = null;
+                updateTiles();
             }
         }
     }

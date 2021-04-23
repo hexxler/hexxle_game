@@ -110,7 +110,7 @@ namespace Hexxle.Unity
                     Quaternion.Euler(-90, 0, 0)
                 );
             newTileObject.transform.parent = this.transform;
-            //tileObjects.Add(tile.Coordinate, newTileObject);
+            tileObjects.Add(tile.Coordinate, newTileObject);
         }
 
         public void OnTileRemoved(object sender, TileMapEventArgs<ITile> e)
@@ -143,8 +143,12 @@ namespace Hexxle.Unity
 
         public List<GameObject> GetAffectedTiles(Coordinate coordinate)
         {
-            ITile topTile = unityHand.Peek();
-            return topTile.Nature.RelevantCoordinates(coordinate).ConvertAll(coord => map.GetTile(coord)).ToList();
+            if(unityHand.IsTileSelected())
+            {
+                ITile tile = unityHand.Peek();
+                return tile.Nature.RelevantCoordinates(coordinate).Where(coord => tileObjects.ContainsKey(coord)).Select(coord => tileObjects[coord]).ToList();
+            }
+            return new List<GameObject>();
         }
     }
 }

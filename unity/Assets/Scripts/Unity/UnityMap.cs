@@ -4,6 +4,7 @@ using Hexxle.Logic;
 using Hexxle.TileSystem;
 using UnityEngine;
 using Hexxle.Unity.Audio;
+using System.Linq;
 using System.Collections.Generic;
 
 namespace Hexxle.Unity
@@ -138,7 +139,12 @@ namespace Hexxle.Unity
                     unityPossiblePoints.possibleScore = 0;
                 }
             }
+        }
 
+        public List<GameObject> GetAffectedTiles(Coordinate coordinate)
+        {
+            ITile topTile = unityHand.Peek();
+            return topTile.Nature.RelevantCoordinates(coordinate).ConvertAll(coord => map.GetTile(coord)).ToList();
         }
     }
 }

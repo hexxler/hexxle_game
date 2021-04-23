@@ -67,15 +67,18 @@ namespace Hexxle.Unity.Input
 
         private void updateTiles()
         {
+            UnityMap unityMap = GameObjectFinder.UnityMap;
             if (oldTile != null)
             {
                 oldTile.GetComponent<UnityTileHighlighter>().enabled = false;
+                Coordinate coordinate = unityMap.PointToCoordinate(oldTile.transform.position);
+                unityMap.GetAffectedTiles(coordinate).ForEach(tile => tile.GetComponent<UnityTileHighlighter>.enabled = false);
             }
             if (currentCollisionTile != null)
             {
-                UnityMap unityMap = GameObjectFinder.UnityMap;
                 Coordinate coordinate = unityMap.PointToCoordinate(currentCollisionTile.transform.position);
                 unityMap.ShowPossibleScoreForCoordinate(coordinate);
+                unityMap.GetAffectedTiles(coordinate).ForEach(tile => tile.GetComponent<UnityTileHighlighter>.enabled = true);
                 currentCollisionTile.GetComponent<UnityTileHighlighter>().enabled = true;
             }
         }

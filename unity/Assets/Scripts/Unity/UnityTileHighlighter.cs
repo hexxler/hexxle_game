@@ -7,7 +7,7 @@ namespace Hexxle.Unity
         //smaller -> slower
         private readonly float INVERSE_PERIOD_DURATION = 0.4f;
         private readonly float MAX_EMISSION_POWER = 0.2f;
-        private readonly Color GLOW_COLOR = Color.white;
+        public Color GLOW_COLOR = Color.white;
         
         void FixedUpdate()
         {

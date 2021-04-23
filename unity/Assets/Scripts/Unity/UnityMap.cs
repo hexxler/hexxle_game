@@ -106,26 +106,20 @@ namespace Hexxle.Unity
             return p;
         }
 
+        public ITile TileOnPoint(Vector3 point)
+        {
+            Coordinate coordinate = PointToCoordinate(point);
+            return map.GetTile(coordinate);
+        }
+
         public void OnTilePlaced(object sender, TileMapEventArgs<ITile> e)
         {
             ITile tile = e.Tile;
-            Material material;
-            material = materials[(int)e.Tile.Type.Type - 1];
             var newTile = Instantiate(
                     TileTemplate,
                     CoordinateToPoint(tile.Coordinate),
                     Quaternion.Euler(-90, 0, 0)
                 );
-            if (tile.Type.Type.Equals(EType.Void))
-            {
-                newTile.GetComponent<MeshCollider>().enabled = true;
-            } 
-            else
-            {
-                newTile.GetComponent<MeshCollider>().enabled = false;
-                newTile.tag = "Tile";
-            }
-            newTile.GetComponent<MeshRenderer>().material = material;
             newTile.transform.parent = this.transform;
         }
 

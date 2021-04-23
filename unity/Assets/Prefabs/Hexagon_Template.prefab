@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1876366972912273574}
   - component: {fileID: 4462722653595565164}
   - component: {fileID: 577020052745392044}
+  - component: {fileID: -1880745732569702886}
   m_Layer: 0
   m_Name: Hexagon_Template
   m_TagString: Void
@@ -107,3 +108,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d55af2aef464f6c48882d3b27a87e473, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-1880745732569702886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2805244402447506873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07468b90e0fb2144da819491763f27e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  materials:
+  - {fileID: 2100000, guid: a40dfeecfd8aba804960a7199c538c47, type: 2}
+  - {fileID: 2100000, guid: 3e661a0623c2ca79b8553e0cf71d06bb, type: 2}
+  - {fileID: 2100000, guid: 856b9cd9c20e1df659276ce684600d9f, type: 2}
+  - {fileID: 2100000, guid: 95338a5fb01ca039799b71bdb63fc8e0, type: 2}
+  - {fileID: 2100000, guid: be292b7323a223f47be7b20f48f1d240, type: 2}
+  - {fileID: 2100000, guid: f0c8fc80d7143d140a4cf813acc25932, type: 2}
+  - {fileID: 2100000, guid: f0c8fc80d7143d140a4cf813acc25932, type: 2}

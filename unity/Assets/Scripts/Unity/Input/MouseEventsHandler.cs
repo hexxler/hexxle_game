@@ -62,6 +62,9 @@ namespace Hexxle.Unity.Input
                 else
                 {
                     isMouseOverTile = false;
+                    oldTile = currentCollisionTile;
+                    currentCollisionTile = null;
+                    updateTiles();
                 }
             }
         }
@@ -73,17 +76,18 @@ namespace Hexxle.Unity.Input
             if (oldTile != null)
             {
                 Coordinate coordinate = unityMap.PointToCoordinate(oldTile.transform.position);
+                oldTile.GetComponent<UnityTileHighlighter>().enabled = false;
                 List<GameObject> affectedTiles = unityMap.GetAffectedTiles(coordinate);
                 affectedTiles.ForEach(tile => tile.GetComponent<UnityTileHighlighter>().enabled = false);
-                oldTile.GetComponent<UnityTileHighlighter>().enabled = false;
+
             }
             if (currentCollisionTile != null)
             {
                 Coordinate coordinate = unityMap.PointToCoordinate(currentCollisionTile.transform.position);
+                currentCollisionTile.GetComponent<UnityTileHighlighter>().enabled = true;
                 unityMap.ShowPossibleScoreForCoordinate(coordinate);
                 List<GameObject> affectedTiles = unityMap.GetAffectedTiles(coordinate);
                 affectedTiles.ForEach(tile => tile.GetComponent<UnityTileHighlighter>().enabled = true);
-                currentCollisionTile.GetComponent<UnityTileHighlighter>().enabled = true;
             }
         }
 
@@ -93,12 +97,10 @@ namespace Hexxle.Unity.Input
             {
                 UnityMap unityMap = GameObjectFinder.UnityMap;
                 Coordinate coordinate = unityMap.PointToCoordinate(currentCollisionTile.transform.position);
-                var tileToReplace = currentCollisionTile;
-                oldTile = currentCollisionTile;
+                var tileToReplace = oldTile = currentCollisionTile;
                 currentCollisionTile = null;
                 updateTiles();
                 unityMap.PlaceNextTile(coordinate, tileToReplace);
-                currentCollisionTile = null;
             }
         }
     }

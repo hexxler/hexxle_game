@@ -6,7 +6,7 @@ namespace Hexxle.TileSystem.Behaviour
     {
         public EBehaviour Behaviour => EBehaviour.NoEffect;
 
-        public void ApplyBehaviour(ITile otherTile)
+        public void ApplyBehaviour(ITile originalTile, ITile otherTile)
         {
             // Do nothing
         }

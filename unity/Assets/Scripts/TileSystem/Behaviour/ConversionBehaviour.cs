@@ -11,9 +11,12 @@ namespace Hexxle.TileSystem.Behaviour
     {
         public EBehaviour Behaviour => throw new NotImplementedException();
 
-        public void ApplyBehaviour(ITile otherTile)
+        public void ApplyBehaviour(ITile originalTile, ITile otherTile)
         {
-            throw new NotImplementedException();
+            if (!(otherTile.Type.Type is EType.Void))
+            {
+                otherTile.Type = (ITileType)Activator.CreateInstance(originalTile.Type.GetType());
+            }
         }
     }
 }

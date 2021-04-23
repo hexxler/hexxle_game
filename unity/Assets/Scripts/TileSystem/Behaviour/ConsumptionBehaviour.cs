@@ -11,7 +11,7 @@ namespace Hexxle.TileSystem.Behaviour
     {
         public EBehaviour Behaviour => throw new NotImplementedException();
 
-        public void ApplyBehaviour(ITile otherTile)
+        public void ApplyBehaviour(ITile originalTile, ITile otherTile)
         {
             throw new NotImplementedException();
         }

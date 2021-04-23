@@ -40,6 +40,9 @@ namespace Hexxle.TileSystem
                 case EBehaviour.NoEffect:
                     tileBehaviour = new NoEffectBehaviour();
                     break;
+                case EBehaviour.Conversion:
+                    tileBehaviour = new ConversionBehaviour();
+                    break;
                 case EBehaviour.None:
                 default:
                     tileBehaviour = null;

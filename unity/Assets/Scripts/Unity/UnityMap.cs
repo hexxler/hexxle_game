@@ -4,11 +4,14 @@ using Hexxle.Logic;
 using Hexxle.TileSystem;
 using UnityEngine;
 using Hexxle.Unity.Audio;
+using System.Collections.Generic;
 
 namespace Hexxle.Unity
 {
     public class UnityMap : MonoBehaviour
     {
+        private Dictionary<Coordinate, GameObject> tileObjects;
+
         ITileMap<ITile> map;
         ITileResolver<ITile> resolver;
         public GameObject TileTemplate;
@@ -20,6 +23,7 @@ namespace Hexxle.Unity
 
         private void Awake()
         {
+            tileObjects = new Dictionary<Coordinate, GameObject>();
             map = new TileMap();
             resolver = new TileResolver(map);
             map.TilePlaced += OnTilePlaced;
@@ -57,17 +61,20 @@ namespace Hexxle.Unity
         {
             if(unityHand.IsTileSelected())
             {
-                // Needs to get Tile from Hand
+                // Remove old tile
+                tileObjects.Remove(coordinate);
+                GameObject.Destroy(currentCollisionTile);
+
+                // Needs to get new tile from Hand
                 ITile topTile = unityHand.TakeTile();
                 map.PlaceTile(topTile, coordinate);
                 PlaceVoidNeighbours(coordinate);
 
-                // Resolve tile
+                // Resolve new tile
                 int pointsEarned = resolver.CalculatePoints(topTile);
                 unityPoints.IncreasePoints(pointsEarned);
                 resolver.ApplyBehaviour(topTile);
 
-                GameObject.Destroy(currentCollisionTile);
                 FindObjectOfType<AudioManager>().Play(GameSoundTypes.POP);
             }
         }
@@ -112,15 +119,22 @@ namespace Hexxle.Unity
             return map.GetTile(coordinate);
         }
 
+        public GameObject TileObjectOnPoint(Vector3 point)
+        {
+            Coordinate coordinate = PointToCoordinate(point);
+            return tileObjects[coordinate];
+        }
+
         public void OnTilePlaced(object sender, TileMapEventArgs<ITile> e)
         {
             ITile tile = e.Tile;
-            var newTile = Instantiate(
+            var newTileObject = Instantiate(
                     TileTemplate,
                     CoordinateToPoint(tile.Coordinate),
                     Quaternion.Euler(-90, 0, 0)
                 );
-            newTile.transform.parent = this.transform;
+            tileObjects.Add(tile.Coordinate, newTileObject);
+            newTileObject.transform.parent = this.transform;
         }
 
         public void ShowPossibleScoreForCoordinate(Coordinate coordinate)

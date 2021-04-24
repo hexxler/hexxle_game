@@ -1,5 +1,6 @@
 ﻿using Hexxle.CoordinateSystem;
 using Hexxle.Interfaces;
+using Hexxle.Logic;
 using Hexxle.TileSystem;
 using Hexxle.TileSystem.Behaviour;
 using Hexxle.TileSystem.Nature;
@@ -141,6 +142,15 @@ namespace Hexxle.Tests.TileSystem
             bool eventFired = false;
             tile.TileChangedEvent += () => eventFired = true;
             tile.Nature = new StarNature();
+            Assert.IsTrue(eventFired);
+        }
+
+        [Test]
+        public void RemovalRequestedEventFires()
+        {
+            bool eventFired = false;
+            tile.RemovalRequestedEvent += (Coordinate c) => eventFired = true;
+            tile.RequestRemoval();
             Assert.IsTrue(eventFired);
         }
     }

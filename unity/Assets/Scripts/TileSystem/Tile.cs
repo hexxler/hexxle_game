@@ -16,6 +16,7 @@ namespace Hexxle.TileSystem
         private ITileNature _nature;
 
         public event Action TileChangedEvent;
+        public event Action<Coordinate> RemovalRequestedEvent;
 
         private Tile()
         {
@@ -149,5 +150,9 @@ namespace Hexxle.TileSystem
             }
         }
 
+        public void RequestRemoval()
+        {
+            RemovalRequestedEvent?.Invoke(this.Coordinate);
+        }
     }
 }

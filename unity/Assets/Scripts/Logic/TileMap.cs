@@ -27,6 +27,7 @@ namespace Hexxle.Logic
             tile.Coordinate = coordinate;
             _axisDictionary[coordinate] = tile;
             TilePlaced?.Invoke(this, new TileMapEventArgs<ITile>(this, tile));
+            tile.RemovalRequestedEvent += RemoveTile;
 
             // Place necessary void neighbours
             var neighbours = tile.Coordinate.AdjacentCoordinates();
@@ -34,10 +35,11 @@ namespace Hexxle.Logic
             {
                 if (IsEmpty(neighbouringCoordinate))
                 {
-                    ITile newVoidTile = Tile.CreateInstance(EState.OnField, EType.Void, ENature.None, EBehaviour.None);
-                    newVoidTile.Coordinate = neighbouringCoordinate;
-                    _axisDictionary[neighbouringCoordinate] = newVoidTile;
-                    TilePlaced?.Invoke(this, new TileMapEventArgs<ITile>(this, newVoidTile));
+                    ITile neighbouringVoidTile = Tile.CreateInstance(EState.OnField, EType.Void, ENature.None, EBehaviour.None);
+                    neighbouringVoidTile.Coordinate = neighbouringCoordinate;
+                    _axisDictionary[neighbouringCoordinate] = neighbouringVoidTile;
+                    TilePlaced?.Invoke(this, new TileMapEventArgs<ITile>(this, neighbouringVoidTile));
+                    neighbouringVoidTile.RemovalRequestedEvent += RemoveTile;
                 }
             }
         }
@@ -47,12 +49,15 @@ namespace Hexxle.Logic
             return (!_axisDictionary.ContainsKey(coordinate));
         }
 
-        public ITile RemoveTile(ITile tile)
+        public void RemoveTile(Coordinate coordinate)
         {
-            _axisDictionary.Remove(tile.Coordinate);
+            if (IsEmpty(coordinate)) return;
+
+            ITile tile = _axisDictionary[coordinate];
+            _axisDictionary.Remove(coordinate);
 
             // check adjacent tiles
-            var neighbours = tile.Coordinate.AdjacentCoordinates();
+            var neighbours = coordinate.AdjacentCoordinates();
             var neighbouringTiles = neighbours.Select(c => GetTile(c)).Where(t => t != null);
             foreach (ITile neighbouringTile in neighbouringTiles)
             {
@@ -60,10 +65,11 @@ namespace Hexxle.Logic
                 {
                     _axisDictionary.Remove(neighbouringTile.Coordinate);
                     TileRemoved?.Invoke(this, new TileMapEventArgs<ITile>(this, neighbouringTile));
+                    neighbouringTile.RemovalRequestedEvent -= RemoveTile;
                 }
             }
             TileRemoved?.Invoke(this, new TileMapEventArgs<ITile>(this, tile));
-            return tile;
+            tile.RemovalRequestedEvent -= RemoveTile;
         }
         #endregion
 

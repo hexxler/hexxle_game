@@ -8,6 +8,7 @@ namespace Hexxle.Interfaces
     {
         #region Events
         event Action TileChangedEvent;
+        event Action<Coordinate> RemovalRequestedEvent;
         #endregion
         #region Data
         Coordinate Coordinate { get; set; }
@@ -15,6 +16,9 @@ namespace Hexxle.Interfaces
         ITileType Type { get; set; }
         ITileBehaviour Behaviour { get; set; }
         ITileNature Nature { get; set; }
+        #endregion
+        #region Logic
+        void RequestRemoval();
         #endregion
     }
 }

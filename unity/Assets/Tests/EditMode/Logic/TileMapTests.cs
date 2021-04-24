@@ -60,7 +60,7 @@ namespace Hexxle.Tests.Logic
         {
             Coordinate coordinate = new Coordinate(4, 3, 2);
             tileMap.PlaceTile(tile, coordinate);
-            tileMap.RemoveTile(tile);
+            tileMap.RemoveTile(coordinate);
             Assert.IsNull(tileMap.GetTile(coordinate));
         }
 
@@ -69,12 +69,22 @@ namespace Hexxle.Tests.Logic
         {
             Coordinate coordinate = new Coordinate(4, 3, 2);
             tileMap.PlaceTile(tile, coordinate);
-            tileMap.RemoveTile(tile);
+            tileMap.RemoveTile(coordinate);
             var neighbouringCoordinates = tile.Coordinate.AdjacentCoordinates();
             var neighbouringTiles = neighbouringCoordinates.Select(coord => tileMap.GetTile(coord)).Where(tile => tile != null);
             Assert.IsTrue(neighbouringTiles.Count() == 0);
         }
 
+        [Test]
+        public void RemovalRequestedEventRemovesTile()
+        {
+            Coordinate coordinate = new Coordinate(4, 3, 2);
+            tileMap.PlaceTile(tile, coordinate);
+            tile.RequestRemoval();
+            Assert.IsNull(tileMap.GetTile(coordinate));
+        }
+
+        #region Issue specific tests
         [Test]
         public void PlaceTile_Hexxle91()
         {
@@ -85,5 +95,6 @@ namespace Hexxle.Tests.Logic
             explicitTileMap.PlaceTile(tile, c2);
             Assert.True(explicitTileMap.NonVoidTileCount() == 2);
         }
+        #endregion
     }
 }

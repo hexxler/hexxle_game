@@ -4,6 +4,7 @@
     {
         None,
         NoEffect,
-        Conversion
+        Conversion,
+        Consumption
     }
 }

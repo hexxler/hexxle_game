@@ -9,11 +9,14 @@ namespace Hexxle.TileSystem.Behaviour
 {
     public class ConsumptionBehaviour : ITileBehaviour
     {
-        public EBehaviour Behaviour => throw new NotImplementedException();
+        public EBehaviour Behaviour => EBehaviour.Consumption;
 
         public void ApplyBehaviour(ITile originalTile, ITile otherTile)
         {
-            throw new NotImplementedException();
+            if (!(otherTile.Type.Type is EType.Void))
+            {
+                otherTile.RequestRemoval();
+            }
         }
     }
 }

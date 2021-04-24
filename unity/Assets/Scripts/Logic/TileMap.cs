@@ -29,17 +29,17 @@ namespace Hexxle.Logic
             TilePlaced?.Invoke(this, new TileMapEventArgs<ITile>(this, tile));
             tile.RemovalRequestedEvent += RemoveTile;
 
-            // Place necessary void neighbours
-            var neighbours = tile.Coordinate.AdjacentCoordinates();
-            foreach(Coordinate neighbouringCoordinate in neighbours)
+            if (tile.Type.Type > EType.Void)
             {
-                if (IsEmpty(neighbouringCoordinate))
+                // Place necessary void neighbours
+                var neighbours = tile.Coordinate.AdjacentCoordinates();
+                foreach (Coordinate neighbouringCoordinate in neighbours)
                 {
-                    ITile neighbouringVoidTile = Tile.CreateInstance(EState.OnField, EType.Void, ENature.None, EBehaviour.None);
-                    neighbouringVoidTile.Coordinate = neighbouringCoordinate;
-                    _axisDictionary[neighbouringCoordinate] = neighbouringVoidTile;
-                    TilePlaced?.Invoke(this, new TileMapEventArgs<ITile>(this, neighbouringVoidTile));
-                    neighbouringVoidTile.RemovalRequestedEvent += RemoveTile;
+                    if (IsEmpty(neighbouringCoordinate))
+                    {
+                        ITile neighbouringVoidTile = Tile.CreateInstance(EState.OnField, EType.Void, ENature.None, EBehaviour.None);
+                        PlaceTile(neighbouringVoidTile, neighbouringCoordinate);
+                    }
                 }
             }
         }
@@ -56,10 +56,16 @@ namespace Hexxle.Logic
             ITile tile = _axisDictionary[coordinate];
             _axisDictionary.Remove(coordinate);
 
+            // turn removed tile to void
+
             // check adjacent tiles
-            var neighbours = coordinate.AdjacentCoordinates();
-            var neighbouringTiles = neighbours.Select(c => GetTile(c)).Where(t => t != null);
-            foreach (ITile neighbouringTile in neighbouringTiles)
+            IEnumerable<Coordinate> neighbours = coordinate.AdjacentCoordinates();
+            IEnumerable<ITile> neighbouringTiles = neighbours.Select(c => GetTile(c)).Where(t => t != null);
+            IEnumerable<ITile> neighbouringVoidTiles = neighbouringTiles.Where(t => t.Type.Type.Equals(EType.Void));
+            IEnumerable<ITile> neighbouringTypedTiles = neighbouringTiles.Except(neighbouringVoidTiles);
+
+            // remove orphaned adjacent void tiles
+            foreach (ITile neighbouringTile in neighbouringVoidTiles)
             {
                 if (IsOrphanedTile(neighbouringTile))
                 {
@@ -68,8 +74,17 @@ namespace Hexxle.Logic
                     neighbouringTile.RemovalRequestedEvent -= RemoveTile;
                 }
             }
+
+            // notify removal
             TileRemoved?.Invoke(this, new TileMapEventArgs<ITile>(this, tile));
             tile.RemovalRequestedEvent -= RemoveTile;
+
+            // replace old tile with void tile, if there are adjacent typed tiles
+            if (neighbouringTypedTiles.Count() > 0)
+            {
+                ITile newVoidTile = Tile.CreateInstance(EState.OnField, EType.Void, ENature.None, EBehaviour.None);
+                PlaceTile(newVoidTile, coordinate);
+            }
         }
         #endregion
 

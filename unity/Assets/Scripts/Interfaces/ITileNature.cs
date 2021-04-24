@@ -8,6 +8,5 @@ namespace Hexxle.Interfaces
     {
         ENature Nature { get; }
         IEnumerable<Coordinate> RelevantCoordinates(Coordinate coordinate);
-        IEnumerable<Coordinate> AdjacentCoordinates(Coordinate coordinate);
     }
 }

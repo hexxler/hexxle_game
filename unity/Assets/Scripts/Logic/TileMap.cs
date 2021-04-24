@@ -12,6 +12,7 @@ namespace Hexxle.Logic
     {
         private readonly Dictionary<Coordinate, ITile> _axisDictionary = new Dictionary<Coordinate, ITile>();
 
+        #region ITileMap interface implementation
         public event EventHandler<TileMapEventArgs<ITile>> TilePlaced;
         public event EventHandler<TileMapEventArgs<ITile>> TileRemoved;
 
@@ -28,7 +29,7 @@ namespace Hexxle.Logic
             TilePlaced?.Invoke(this, new TileMapEventArgs<ITile>(this, tile));
 
             // Place necessary void neighbours
-            var neighbours = tile.Nature.AdjacentCoordinates(tile.Coordinate);
+            var neighbours = tile.Coordinate.AdjacentCoordinates();
             foreach(Coordinate neighbouringCoordinate in neighbours)
             {
                 if (IsEmpty(neighbouringCoordinate))
@@ -51,7 +52,7 @@ namespace Hexxle.Logic
             _axisDictionary.Remove(tile.Coordinate);
 
             // check adjacent tiles
-            var neighbours = tile.Nature.AdjacentCoordinates(tile.Coordinate);
+            var neighbours = tile.Coordinate.AdjacentCoordinates();
             var neighbouringTiles = neighbours.Select(c => GetTile(c)).Where(t => t != null);
             foreach (ITile neighbouringTile in neighbouringTiles)
             {
@@ -64,6 +65,7 @@ namespace Hexxle.Logic
             TileRemoved?.Invoke(this, new TileMapEventArgs<ITile>(this, tile));
             return tile;
         }
+        #endregion
 
         public int NonVoidTileCount()
         {
@@ -75,7 +77,7 @@ namespace Hexxle.Logic
             bool isOrphaned = false;
             if (!(tile.Type.Type > EType.Void))
             {
-                var neighbours = tile.Nature.AdjacentCoordinates(tile.Coordinate);
+                var neighbours = tile.Coordinate.AdjacentCoordinates();
                 var neighbouringTiles = neighbours.Select(c => GetTile(c)).Where(t => t != null);
                 bool hasNonVoidNeighbours = neighbouringTiles.Any(t => t.Type.Type > EType.Void);
                 isOrphaned = !hasNonVoidNeighbours;

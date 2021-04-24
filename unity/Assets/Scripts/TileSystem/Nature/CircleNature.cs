@@ -10,7 +10,7 @@ namespace Hexxle.TileSystem.Nature
 
         public override IEnumerable<Coordinate> RelevantCoordinates(Coordinate coordinate)
         {
-            return AdjacentCoordinates(coordinate);
+            return coordinate.AdjacentCoordinates();
         }
     }
 }

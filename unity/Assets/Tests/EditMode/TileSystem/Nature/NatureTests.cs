@@ -64,7 +64,7 @@ namespace Hexxle.Tests.TileSystem.Nature
             tile = Tile.CreateInstance(EState.None, EType.None, ENature.Circle, EBehaviour.None);
             tile.Coordinate = origin;
 
-            expectedCoordinates.Concat(tile.Nature.AdjacentCoordinates(tile.Coordinate));
+            expectedCoordinates.Concat(tile.Coordinate.AdjacentCoordinates());
 
             actualCoordinates = tile.Nature.RelevantCoordinates(origin);
 
@@ -82,7 +82,7 @@ namespace Hexxle.Tests.TileSystem.Nature
             tile = Tile.CreateInstance(EState.None, EType.None, ENature.Star, EBehaviour.None);
             tile.Coordinate = origin;
 
-            expectedCoordinates.Concat(tile.Nature.AdjacentCoordinates(tile.Coordinate));
+            expectedCoordinates.Concat(tile.Coordinate.AdjacentCoordinates());
             expectedCoordinates.Concat(new List<Coordinate>
             {
                 new Coordinate(coordinate.X - 1, coordinate.Y - 1, coordinate.Z + 2),

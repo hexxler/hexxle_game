@@ -8,7 +8,7 @@ namespace Assets.Scripts.Interfaces
 {
     public interface IGameScore
     {
-        void IncreaseScore(int amount);
+        int IncreaseScore(int amount);
         int GetCurrentScore();
         int GetNextScoreThreshold();
         int PointsUntilNextThreshold();

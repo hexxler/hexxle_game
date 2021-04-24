@@ -17,6 +17,8 @@ namespace Hexxle.Unity
         private float smoothPoints = 0;
         private float smoothScoreThreshold = 10;
 
+        private UnityStack TileStack;
+
         private void Awake()
         {
             score = new Score();

@@ -56,17 +56,6 @@ namespace Hexxle.Unity.Input
                         updateTiles();
                     }
                 }
-                else
-                {
-
-                    GameObjectFinder.UnityMap.ShowPossibleScoreForCoordinate(new Coordinate());
-                    oldTile = currentCollisionTile;
-                    currentCollisionTile = null;
-                    if (oldTile != null)
-                    {
-                        updateTiles();
-                    }
-                }
             }
         }
 

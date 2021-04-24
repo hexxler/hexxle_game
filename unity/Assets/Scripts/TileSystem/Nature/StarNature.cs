@@ -15,7 +15,7 @@ namespace Hexxle.TileSystem.Nature
         public override IEnumerable<Coordinate> RelevantCoordinates(Coordinate coordinate)
         {
             var relevantCoordinates = coordinate.AdjacentCoordinates();
-            relevantCoordinates.Concat(new List<Coordinate>
+            relevantCoordinates = relevantCoordinates.Concat(new List<Coordinate>
             {
                 new Coordinate(coordinate.X - 1, coordinate.Y - 1, coordinate.Z + 2),
                 new Coordinate(coordinate.X + 1, coordinate.Y - 2, coordinate.Z + 1),

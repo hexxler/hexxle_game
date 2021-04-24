@@ -66,7 +66,7 @@ namespace Hexxle.Logic
             }
         }
 
-        public int EmptySlots()
+        public int GetEmptySlots()
         {
             return slots.Count(s => s == null);
         }

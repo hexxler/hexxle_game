@@ -20,5 +20,7 @@ namespace Hexxle.Interfaces
         ITile Peek();
 
         List<ITile> GetFirstTenTiles();
+
+        void AddNewRandomTiles(int amount);
     }
 }

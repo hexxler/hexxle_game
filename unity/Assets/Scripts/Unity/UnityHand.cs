@@ -11,7 +11,7 @@ namespace Hexxle.Unity
     public class UnityHand : MonoBehaviour
     {
         public static int handSize = 5;
-        public Hand logicHand;
+        public Hand hand;
         private UnityStack stack;
         public GameObject uiHand;
         public GameObject tileTemplate;
@@ -30,7 +30,7 @@ namespace Hexxle.Unity
             {
                 firstTiles[i] = stack.GetTopTile();
             }
-            logicHand = new Hand(handSize, firstTiles);
+            hand = new Hand(handSize, firstTiles);
         }
 
         // Update is called once per frame
@@ -47,22 +47,34 @@ namespace Hexxle.Unity
         void SelectTile(ITile tile)
         {
             changed = true;
-            logicHand.SelectTile(tile);
+            hand.SelectTile(tile);
         }
 
         public ITile TakeTile()
         {
-            if (logicHand.IsTileSelected() && stack.Count() > 0)
+            if (hand.IsTileSelected() && stack.Count() > 0)
             {
                 changed = true;
-                return logicHand.ReplaceTile(stack.GetTopTile());
+                return hand.ReplaceTile(stack.GetTopTile());
             }
-            else if(logicHand.IsTileSelected() && stack.Count() == 0)
+            else if(hand.IsTileSelected() && stack.Count() == 0)
             {
                 changed = true;
-                return logicHand.ReplaceTile(null);
+                return hand.ReplaceTile(null);
             }
             return null;
+        }
+
+        public void FillHand()
+        {
+            if(hand.GetEmptySlots() > 0)
+            {
+                ITile[] tiles = new ITile[hand.GetEmptySlots()];
+                for (int i = 0; i < hand.GetEmptySlots(); i++)
+                {
+                    tiles[i] = stack.GetTopTile();
+                }
+            }
         }
 
         private void DeleteOldHand()
@@ -75,8 +87,8 @@ namespace Hexxle.Unity
 
         private void RenderNewHand()
         {
-            ITile selectedTile = logicHand.GetSelectedTile();
-            List<ITile> tiles = logicHand.GetTiles();
+            ITile selectedTile = hand.GetSelectedTile();
+            List<ITile> tiles = hand.GetTiles();
             for (int i = 0; i < handSize; i++)
             {
                 ITile tile = tiles[i];
@@ -123,14 +135,14 @@ namespace Hexxle.Unity
 
         public bool IsTileSelected()
         {
-            return logicHand.IsTileSelected();
+            return hand.IsTileSelected();
         }
 
         public ITile Peek()
         {
-            if (logicHand != null)
+            if (hand != null)
             {
-                return logicHand.GetSelectedTile();
+                return hand.GetSelectedTile();
             }
             else
             {

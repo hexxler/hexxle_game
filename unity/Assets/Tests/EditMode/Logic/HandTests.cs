@@ -56,7 +56,7 @@ namespace Hexxle.Tests.Logic
             logicHand.SelectTile(firstTiles[rndInt]);
             ITile selectedTile = logicHand.ReplaceTile(null);
             Assert.AreEqual(selectedTile, firstTiles[rndInt]);
-            Assert.AreEqual(1, logicHand.EmptySlots());
+            Assert.AreEqual(1, logicHand.GetEmptySlots());
         }
 
         [Test]

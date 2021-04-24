@@ -52,9 +52,9 @@ namespace Hexxle.Unity
             return tileStack.Count();
         }
 
-        public void AddTiles(int amount)
+        public void AddNewRandomTiles(int amount)
         {
-
+            tileStack.AddNewRandomTiles(amount);
         }
 
         private void DisplayStack()

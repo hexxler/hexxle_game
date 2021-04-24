@@ -38,6 +38,7 @@ namespace Assets.Scripts.Logic
             {
                 // TODO: implement points interval logic
                 //       (next interval and allowing player to get more tiles)
+                _lastThreshold = _nextThreshold;
                 _nextThreshold += 10;
                 additionalTileCount++;
             }

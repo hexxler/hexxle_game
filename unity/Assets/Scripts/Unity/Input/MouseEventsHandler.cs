@@ -76,7 +76,7 @@ namespace Hexxle.Unity.Input
             SetHighlightedTilesState(false);
             UpdateHighlightedTiles();
             SetHighlightedTilesState(true);
-
+            SetPossibleScoreChange();
         }
 
         private void UpdateHighlightedTiles()
@@ -94,6 +94,16 @@ namespace Hexxle.Unity.Input
             if(highlightedTiles != null)
             {
                 highlightedTiles.ForEach(tile => tile.GetComponent<UnityTileHighlighter>().enabled = state);
+            }
+        }
+
+        private void SetPossibleScoreChange()
+        {
+            if(currentCollisionTile != null)
+            {
+                var unityMap = GameObjectFinder.UnityMap;
+                Coordinate coordinate = unityMap.PointToCoordinate(currentCollisionTile.transform.position);
+                GameObjectFinder.UnityMap.ShowPossibleScoreForCoordinate(coordinate);
             }
         }
 

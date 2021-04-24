@@ -27,6 +27,7 @@ namespace Hexxle.Unity
             map = new TileMap();
             resolver = new TileResolver(map);
             map.TilePlaced += OnTilePlaced;
+            map.TileRemoved += OnTileRemoved;
         }
 
 
@@ -36,11 +37,11 @@ namespace Hexxle.Unity
             unityPoints = GameObject.FindGameObjectWithTag("Points").GetComponent<UnityPoints>();
             unityPossiblePoints = GameObject.FindGameObjectWithTag("Points").GetComponent<UnityPossiblePoints>();
             Coordinate start = new Coordinate();
-            PlaceRandomTile(start);
+            PlaceStartingTile(start);
         }
 
 
-        private void PlaceRandomTile(Coordinate coordinate)
+        private void PlaceStartingTile(Coordinate coordinate)
         {
             EType randomType = (EType)Random.Range(2, System.Enum.GetValues(typeof(EType)).Length); // None, Void < 2
             ITile tileToPlace = Tile.CreateInstance(EState.OnField, randomType, ENature.Circle, EBehaviour.NoEffect);
@@ -49,12 +50,6 @@ namespace Hexxle.Unity
                 tileToPlace,
                 coordinate
                 );
-            PlaceVoidNeighbours(coordinate);
-
-            // Resolve tile
-            int pointsEarned = resolver.CalculatePoints(tileToPlace);
-            unityPoints.IncreasePoints(pointsEarned);
-            resolver.ApplyBehaviour(tileToPlace);
         }
 
         public void PlaceNextTile(Coordinate coordinate, GameObject currentCollisionTile)
@@ -68,7 +63,6 @@ namespace Hexxle.Unity
                 // Needs to get new tile from Hand
                 ITile topTile = unityHand.TakeTile();
                 map.PlaceTile(topTile, coordinate);
-                PlaceVoidNeighbours(coordinate);
 
                 // Resolve new tile
                 int pointsEarned = resolver.CalculatePoints(topTile);
@@ -77,25 +71,6 @@ namespace Hexxle.Unity
 
                 FindObjectOfType<AudioManager>().Play(GameSoundTypes.POP);
             }
-        }
-
-        private void PlaceVoidTile(Coordinate coordinate)
-        {
-            map.PlaceTile(
-                Tile.CreateInstance(EState.OnField, EType.Void, ENature.None, EBehaviour.None),
-                coordinate)
-                ;
-        }
-
-        private void PlaceVoidNeighbours(Coordinate middleCoordinate)
-        {
-            map.GetTile(middleCoordinate).Nature.AdjacentCoordinates(middleCoordinate).ForEach(neighboringCoordinate =>
-            {
-                if (map.IsEmpty(neighboringCoordinate))
-                {
-                    PlaceVoidTile(neighboringCoordinate);
-                }
-            });
         }
 
         public Coordinate PointToCoordinate(Vector3 point)
@@ -135,6 +110,16 @@ namespace Hexxle.Unity
                 );
             tileObjects.Add(tile.Coordinate, newTileObject);
             newTileObject.transform.parent = this.transform;
+        }
+
+        public void OnTileRemoved(object sender, TileMapEventArgs<ITile> e)
+        {
+            ITile tile = e.Tile;
+
+            // Remove old tile
+            var tileObject = tileObjects[tile.Coordinate];
+            tileObjects.Remove(tile.Coordinate);
+            GameObject.Destroy(tileObject);
         }
 
         public void ShowPossibleScoreForCoordinate(Coordinate coordinate)

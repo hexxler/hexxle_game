@@ -9,7 +9,7 @@ namespace Hexxle.TileSystem.Behaviour
 {
     public class ConversionBehaviour : ITileBehaviour
     {
-        public EBehaviour Behaviour => throw new NotImplementedException();
+        public EBehaviour Behaviour => EBehaviour.Conversion;
 
         public void ApplyBehaviour(ITile originalTile, ITile otherTile)
         {

@@ -12,7 +12,7 @@ namespace Hexxle.TileSystem.Nature
     {
         public abstract ENature Nature { get; }
 
-        public List<Coordinate> AdjacentCoordinates(Coordinate coordinate)
+        public IEnumerable<Coordinate> AdjacentCoordinates(Coordinate coordinate)
         {
             var relevantCoordinates = new List<Coordinate>
             {
@@ -26,6 +26,6 @@ namespace Hexxle.TileSystem.Nature
             return relevantCoordinates;
         }
 
-        public abstract List<Coordinate> RelevantCoordinates(Coordinate coordinate);
+        public abstract IEnumerable<Coordinate> RelevantCoordinates(Coordinate coordinate);
     }
 }

@@ -1,4 +1,6 @@
-﻿using Hexxle.Interfaces;
+﻿using Hexxle.CoordinateSystem;
+using Hexxle.Interfaces;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Hexxle.Logic
@@ -12,14 +14,15 @@ namespace Hexxle.Logic
         }
         public void ApplyBehaviour(ITile tile)
         {
-            tile.Nature.RelevantCoordinates(tile.Coordinate)
-                .ForEach(coordinate => {
-                    var otherTile = _map.GetTile(coordinate);
-                    if (otherTile is ITile)
-                    {
-                        tile.Behaviour.ApplyBehaviour(tile, _map.GetTile(coordinate));
-                    }
-                });
+            IEnumerable<Coordinate> relevantCoordinates = tile.Nature.RelevantCoordinates(tile.Coordinate);
+            foreach (Coordinate coordinate in relevantCoordinates)
+            {
+                var otherTile = _map.GetTile(coordinate);
+                if (otherTile is ITile)
+                {
+                    tile.Behaviour.ApplyBehaviour(tile, _map.GetTile(coordinate));
+                }
+            }
         }
 
         public int CalculatePoints(ITile tile)

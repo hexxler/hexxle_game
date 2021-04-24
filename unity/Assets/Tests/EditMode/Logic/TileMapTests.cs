@@ -47,7 +47,7 @@ namespace Hexxle.Tests.Logic
             Coordinate c2 = new Coordinate(-9, -8, 17);
             tileMap.PlaceTile(tile, c1);
             tileMap.PlaceTile(tile, c2);
-            Assert.True(tileMap.TileCount() == 2);
+            Assert.True(tileMap.NonVoidTileCount() == 2);
         }
     }
 }

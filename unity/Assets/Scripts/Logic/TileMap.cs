@@ -1,8 +1,10 @@
 ﻿using Hexxle.CoordinateSystem;
 using Hexxle.Interfaces;
 using Hexxle.TileSystem;
+using Hexxle.TileSystem.Type;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Hexxle.Logic
 {
@@ -24,6 +26,19 @@ namespace Hexxle.Logic
             tile.Coordinate = coordinate;
             _axisDictionary[coordinate] = tile;
             TilePlaced?.Invoke(this, new TileMapEventArgs<ITile>(this, tile));
+
+            // Place necessary void neighbours
+            var neighbours = tile.Nature.AdjacentCoordinates(tile.Coordinate);
+            foreach(Coordinate neighbouringCoordinate in neighbours)
+            {
+                if (IsEmpty(neighbouringCoordinate))
+                {
+                    ITile newVoidTile = Tile.CreateInstance(EState.OnField, EType.Void, ENature.None, EBehaviour.None);
+                    newVoidTile.Coordinate = neighbouringCoordinate;
+                    _axisDictionary[neighbouringCoordinate] = newVoidTile;
+                    TilePlaced?.Invoke(this, new TileMapEventArgs<ITile>(this, newVoidTile));
+                }
+            }
         }
 
         public bool IsEmpty(Coordinate coordinate)
@@ -33,12 +48,39 @@ namespace Hexxle.Logic
 
         public ITile RemoveTile(ITile tile)
         {
-            throw new NotImplementedException();
+            _axisDictionary.Remove(tile.Coordinate);
+
+            // check adjacent tiles
+            var neighbours = tile.Nature.AdjacentCoordinates(tile.Coordinate);
+            var neighbouringTiles = neighbours.Select(c => GetTile(c)).Where(t => t != null);
+            foreach (ITile neighbouringTile in neighbouringTiles)
+            {
+                if (IsOrphanedTile(neighbouringTile))
+                {
+                    _axisDictionary.Remove(neighbouringTile.Coordinate);
+                    TileRemoved?.Invoke(this, new TileMapEventArgs<ITile>(this, neighbouringTile));
+                }
+            }
+            TileRemoved?.Invoke(this, new TileMapEventArgs<ITile>(this, tile));
+            return tile;
         }
 
-        public int TileCount()
+        public int NonVoidTileCount()
         {
-            return _axisDictionary.Count;
+            return _axisDictionary.Where(kvp => kvp.Value.Type.Type > EType.Void).Count();
+        }
+
+        private bool IsOrphanedTile(ITile tile)
+        {
+            bool isOrphaned = false;
+            if (!(tile.Type.Type > EType.Void))
+            {
+                var neighbours = tile.Nature.AdjacentCoordinates(tile.Coordinate);
+                var neighbouringTiles = neighbours.Select(c => GetTile(c)).Where(t => t != null);
+                bool hasNonVoidNeighbours = neighbouringTiles.Any(t => t.Type.Type > EType.Void);
+                isOrphaned = !hasNonVoidNeighbours;
+            }
+            return isOrphaned;
         }
     }
 }

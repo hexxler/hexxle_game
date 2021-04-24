@@ -13,8 +13,8 @@ namespace Hexxle.Tests.TileSystem.Nature
     public class NatureTests
     {
         ITile tile;
-        List<Coordinate> expectedCoordinates;
-        List<Coordinate> actualCoordinates;
+        IEnumerable<Coordinate> expectedCoordinates;
+        IEnumerable<Coordinate> actualCoordinates;
         Coordinate coordinate;
 
         [SetUp]
@@ -38,7 +38,7 @@ namespace Hexxle.Tests.TileSystem.Nature
             tile = Tile.CreateInstance(EState.None, EType.None, ENature.Circle, EBehaviour.None);
             tile.Coordinate = origin;
 
-            expectedCoordinates.AddRange(new List<Coordinate>
+            expectedCoordinates.Concat(new List<Coordinate>
             {
                 new Coordinate(coordinate.X + 1, coordinate.Y - 1, coordinate.Z),
                 new Coordinate(coordinate.X + 1, coordinate.Y, coordinate.Z - 1),
@@ -50,10 +50,10 @@ namespace Hexxle.Tests.TileSystem.Nature
 
             actualCoordinates = tile.Nature.RelevantCoordinates(tile.Coordinate);
 
-            expectedCoordinates.ForEach(coord =>
+            foreach (Coordinate coord in expectedCoordinates)
             {
                 Assert.True(actualCoordinates.Contains(coord));
-            });
+            }
         }
 
         [Test]
@@ -64,14 +64,14 @@ namespace Hexxle.Tests.TileSystem.Nature
             tile = Tile.CreateInstance(EState.None, EType.None, ENature.Circle, EBehaviour.None);
             tile.Coordinate = origin;
 
-            expectedCoordinates.AddRange(tile.Nature.AdjacentCoordinates(tile.Coordinate));
+            expectedCoordinates.Concat(tile.Nature.AdjacentCoordinates(tile.Coordinate));
 
             actualCoordinates = tile.Nature.RelevantCoordinates(origin);
 
-            expectedCoordinates.ForEach(coord =>
+            foreach (Coordinate coord in expectedCoordinates)
             {
                 Assert.True(actualCoordinates.Contains(coord));
-            });
+            }
         }
 
         [Test]
@@ -82,8 +82,8 @@ namespace Hexxle.Tests.TileSystem.Nature
             tile = Tile.CreateInstance(EState.None, EType.None, ENature.Star, EBehaviour.None);
             tile.Coordinate = origin;
 
-            expectedCoordinates.AddRange(tile.Nature.AdjacentCoordinates(tile.Coordinate));
-            expectedCoordinates.AddRange(new List<Coordinate>
+            expectedCoordinates.Concat(tile.Nature.AdjacentCoordinates(tile.Coordinate));
+            expectedCoordinates.Concat(new List<Coordinate>
             {
                 new Coordinate(coordinate.X - 1, coordinate.Y - 1, coordinate.Z + 2),
                 new Coordinate(coordinate.X + 1, coordinate.Y - 2, coordinate.Z + 1),
@@ -95,10 +95,10 @@ namespace Hexxle.Tests.TileSystem.Nature
 
             actualCoordinates = tile.Nature.RelevantCoordinates(origin);
 
-            expectedCoordinates.ForEach(coord =>
+            foreach (Coordinate coord in expectedCoordinates)
             {
                 Assert.True(actualCoordinates.Contains(coord));
-            });
+            }
         }
     }
 }

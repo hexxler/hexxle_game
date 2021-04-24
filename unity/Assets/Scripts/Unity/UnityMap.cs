@@ -4,6 +4,7 @@ using Hexxle.Logic;
 using Hexxle.TileSystem;
 using UnityEngine;
 using Hexxle.Unity.Audio;
+using System.Linq;
 using System.Collections.Generic;
 
 namespace Hexxle.Unity
@@ -108,8 +109,8 @@ namespace Hexxle.Unity
                     CoordinateToPoint(tile.Coordinate),
                     Quaternion.Euler(-90, 0, 0)
                 );
-            tileObjects.Add(tile.Coordinate, newTileObject);
             newTileObject.transform.parent = this.transform;
+            tileObjects.Add(tile.Coordinate, newTileObject);
         }
 
         public void OnTileRemoved(object sender, TileMapEventArgs<ITile> e)
@@ -120,6 +121,11 @@ namespace Hexxle.Unity
             var tileObject = tileObjects[tile.Coordinate];
             tileObjects.Remove(tile.Coordinate);
             GameObject.Destroy(tileObject);
+        }
+
+        public void ResetGameScore()
+        {
+            unityPossiblePoints.possibleScore = 0;
         }
 
         public void ShowPossibleScoreForCoordinate(Coordinate coordinate)
@@ -138,7 +144,16 @@ namespace Hexxle.Unity
                     unityPossiblePoints.possibleScore = 0;
                 }
             }
+        }
 
+        public List<GameObject> GetAffectedTiles(Coordinate coordinate)
+        {
+            if(unityHand.IsTileSelected())
+            {
+                ITile tile = unityHand.Peek();
+                return tile.Nature.RelevantCoordinates(coordinate).Where(coord => tileObjects.ContainsKey(coord)).Select(coord => tileObjects[coord]).ToList();
+            }
+            return new List<GameObject>();
         }
     }
 }

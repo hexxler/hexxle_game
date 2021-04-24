@@ -2,6 +2,7 @@
 using UnityEngine.InputSystem;
 using Hexxle.Unity.Util;
 using Hexxle.CoordinateSystem;
+using System.Collections.Generic;
 
 namespace Hexxle.Unity.Input
 {
@@ -11,6 +12,7 @@ namespace Hexxle.Unity.Input
         GameObject currentCollisionTile;
         InputManager inputManager;
         private bool isMouseOverTile;
+        List<GameObject> highlightedTiles;
 
         private void Awake()
         {
@@ -54,29 +56,77 @@ namespace Hexxle.Unity.Input
                     {
                         oldTile = currentCollisionTile;
                         currentCollisionTile = hit.collider.gameObject;
-                        updateTiles();
+                        UpdateTiles();
                     }
                     isMouseOverTile = true;
                 }
                 else
                 {
+                    GameObjectFinder.UnityMap.ResetGameScore();
                     isMouseOverTile = false;
+                    oldTile = currentCollisionTile;
+                    currentCollisionTile = null;
+                    UpdateTiles();
                 }
             }
         }
 
-        private void updateTiles()
+        private void SetHighlightedTiles()
+        {
+            SetHighlightedTilesState(false);
+            UpdateHighlightedTiles();
+            SetHighlightedTilesState(true);
+            SetPossibleScoreChange();
+        }
+
+        private void UpdateHighlightedTiles()
+        {
+            if(currentCollisionTile != null)
+            {
+                var unityMap = GameObjectFinder.UnityMap;
+                Coordinate coordinate = unityMap.PointToCoordinate(currentCollisionTile.transform.position);
+                highlightedTiles = unityMap.GetAffectedTiles(coordinate);
+            }
+        }
+
+        private void SetHighlightedTilesState(bool state)
+        {
+            if(highlightedTiles != null)
+            {
+                highlightedTiles.ForEach(tile => tile.GetComponent<UnityTileHighlighter>().enabled = state);
+            }
+        }
+
+        private void SetPossibleScoreChange()
+        {
+            if(currentCollisionTile != null)
+            {
+                var unityMap = GameObjectFinder.UnityMap;
+                Coordinate coordinate = unityMap.PointToCoordinate(currentCollisionTile.transform.position);
+                GameObjectFinder.UnityMap.ShowPossibleScoreForCoordinate(coordinate);
+            }
+        }
+
+        private void UpdateTiles()
+        {
+            UpdateOldTile();
+            SetHighlightedTiles();
+            UpdateCurrentTile();
+        }
+
+        private void UpdateOldTile()
         {
             if (oldTile != null)
             {
                 oldTile.GetComponent<UnityTileHighlighter>().enabled = false;
             }
+        }
+
+        private void UpdateCurrentTile()
+        {
             if (currentCollisionTile != null)
             {
-                UnityMap unityMap = GameObjectFinder.UnityMap;
-                Coordinate coordinate = unityMap.PointToCoordinate(currentCollisionTile.transform.position);
-                unityMap.ShowPossibleScoreForCoordinate(coordinate);
-                currentCollisionTile.GetComponent<UnityTileHighlighter>().enabled = true;
+               currentCollisionTile.GetComponent<UnityTileHighlighter>().enabled = true;
             }
         }
 
@@ -86,7 +136,10 @@ namespace Hexxle.Unity.Input
             {
                 UnityMap unityMap = GameObjectFinder.UnityMap;
                 Coordinate coordinate = unityMap.PointToCoordinate(currentCollisionTile.transform.position);
-                unityMap.PlaceNextTile(coordinate, currentCollisionTile);
+                var tileToReplace = oldTile = currentCollisionTile;
+                currentCollisionTile = null;
+                SetHighlightedTilesState(false);
+                unityMap.PlaceNextTile(coordinate, tileToReplace);
             }
         }
     }

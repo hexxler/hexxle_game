@@ -123,6 +123,11 @@ namespace Hexxle.Unity
             GameObject.Destroy(tileObject);
         }
 
+        public void ResetGameScore()
+        {
+            unityPossiblePoints.possibleScore = 0;
+        }
+
         public void ShowPossibleScoreForCoordinate(Coordinate coordinate)
         {
             if(unityHand.Peek() != null)

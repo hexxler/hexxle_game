@@ -61,6 +61,7 @@ namespace Hexxle.Unity.Input
                 }
                 else
                 {
+                    GameObjectFinder.UnityMap.ResetGameScore();
                     isMouseOverTile = false;
                     oldTile = currentCollisionTile;
                     currentCollisionTile = null;

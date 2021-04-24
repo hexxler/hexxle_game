@@ -3,6 +3,8 @@
     public enum EBehaviour
     {
         None,
-        NoEffect
+        NoEffect,
+        Conversion,
+        Consumption
     }
 }

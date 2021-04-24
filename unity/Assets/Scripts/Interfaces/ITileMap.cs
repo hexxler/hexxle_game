@@ -6,7 +6,7 @@ namespace Hexxle.Interfaces
     public interface ITileMap<T> where T : class, ITile
     {
         void PlaceTile(T tile, Coordinate coordinate);
-        T RemoveTile(T tile);
+        void RemoveTile(Coordinate coordinate);
         T GetTile(Coordinate coordinate);
         bool IsEmpty(Coordinate coordinate);
         event EventHandler<TileMapEventArgs<T>> TilePlaced;

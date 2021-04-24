@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Hexxle.CoordinateSystem
@@ -121,5 +122,19 @@ namespace Hexxle.CoordinateSystem
             Hex roundedHex = HexRound(new Hex(q, r));
             return new Coordinate(roundedHex);
         }
+
+        public IEnumerable<Coordinate> AdjacentCoordinates()
+        {
+            var relevantCoordinates = new List<Coordinate>
+            {
+                new Coordinate(X + 1, Y - 1, Z),
+                new Coordinate(X + 1, Y, Z - 1),
+                new Coordinate(X, Y + 1, Z - 1),
+                new Coordinate(X - 1, Y + 1, Z),
+                new Coordinate(X - 1, Y, Z + 1),
+                new Coordinate(X, Y - 1, Z + 1),
+            };
+            return relevantCoordinates;
+        } 
     }
 }

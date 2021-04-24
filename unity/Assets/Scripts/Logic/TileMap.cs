@@ -1,8 +1,10 @@
 ﻿using Hexxle.CoordinateSystem;
 using Hexxle.Interfaces;
 using Hexxle.TileSystem;
+using Hexxle.TileSystem.Type;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Hexxle.Logic
 {
@@ -10,6 +12,7 @@ namespace Hexxle.Logic
     {
         private readonly Dictionary<Coordinate, ITile> _axisDictionary = new Dictionary<Coordinate, ITile>();
 
+        #region ITileMap interface implementation
         public event EventHandler<TileMapEventArgs<ITile>> TilePlaced;
         public event EventHandler<TileMapEventArgs<ITile>> TileRemoved;
 
@@ -24,6 +27,21 @@ namespace Hexxle.Logic
             tile.Coordinate = coordinate;
             _axisDictionary[coordinate] = tile;
             TilePlaced?.Invoke(this, new TileMapEventArgs<ITile>(this, tile));
+            tile.RemovalRequestedEvent += RemoveTile;
+
+            if (tile.Type.Type > EType.Void)
+            {
+                // Place necessary void neighbours
+                var neighbours = tile.Coordinate.AdjacentCoordinates();
+                foreach (Coordinate neighbouringCoordinate in neighbours)
+                {
+                    if (IsEmpty(neighbouringCoordinate))
+                    {
+                        ITile neighbouringVoidTile = Tile.CreateInstance(EState.OnField, EType.Void, ENature.None, EBehaviour.None);
+                        PlaceTile(neighbouringVoidTile, neighbouringCoordinate);
+                    }
+                }
+            }
         }
 
         public bool IsEmpty(Coordinate coordinate)
@@ -31,14 +49,61 @@ namespace Hexxle.Logic
             return (!_axisDictionary.ContainsKey(coordinate));
         }
 
-        public ITile RemoveTile(ITile tile)
+        public void RemoveTile(Coordinate coordinate)
         {
-            throw new NotImplementedException();
+            if (IsEmpty(coordinate)) return;
+
+            ITile tile = _axisDictionary[coordinate];
+            _axisDictionary.Remove(coordinate);
+
+            // turn removed tile to void
+
+            // check adjacent tiles
+            IEnumerable<Coordinate> neighbours = coordinate.AdjacentCoordinates();
+            IEnumerable<ITile> neighbouringTiles = neighbours.Select(c => GetTile(c)).Where(t => t != null);
+            IEnumerable<ITile> neighbouringVoidTiles = neighbouringTiles.Where(t => t.Type.Type.Equals(EType.Void));
+            IEnumerable<ITile> neighbouringTypedTiles = neighbouringTiles.Except(neighbouringVoidTiles);
+
+            // remove orphaned adjacent void tiles
+            foreach (ITile neighbouringTile in neighbouringVoidTiles)
+            {
+                if (IsOrphanedTile(neighbouringTile))
+                {
+                    _axisDictionary.Remove(neighbouringTile.Coordinate);
+                    TileRemoved?.Invoke(this, new TileMapEventArgs<ITile>(this, neighbouringTile));
+                    neighbouringTile.RemovalRequestedEvent -= RemoveTile;
+                }
+            }
+
+            // notify removal
+            TileRemoved?.Invoke(this, new TileMapEventArgs<ITile>(this, tile));
+            tile.RemovalRequestedEvent -= RemoveTile;
+
+            // replace old tile with void tile, if there are adjacent typed tiles
+            if (neighbouringTypedTiles.Count() > 0)
+            {
+                ITile newVoidTile = Tile.CreateInstance(EState.OnField, EType.Void, ENature.None, EBehaviour.None);
+                PlaceTile(newVoidTile, coordinate);
+            }
+        }
+        #endregion
+
+        public int NonVoidTileCount()
+        {
+            return _axisDictionary.Where(kvp => kvp.Value.Type.Type > EType.Void).Count();
         }
 
-        public int TileCount()
+        private bool IsOrphanedTile(ITile tile)
         {
-            return _axisDictionary.Count;
+            bool isOrphaned = false;
+            if (!(tile.Type.Type > EType.Void))
+            {
+                var neighbours = tile.Coordinate.AdjacentCoordinates();
+                var neighbouringTiles = neighbours.Select(c => GetTile(c)).Where(t => t != null);
+                bool hasNonVoidNeighbours = neighbouringTiles.Any(t => t.Type.Type > EType.Void);
+                isOrphaned = !hasNonVoidNeighbours;
+            }
+            return isOrphaned;
         }
     }
 }

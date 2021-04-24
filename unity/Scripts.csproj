@@ -78,6 +78,8 @@
     <Compile Include="Assets\Scripts\Logic\TileMap.cs" />
     <Compile Include="Assets\Scripts\Logic\TileResolver.cs" />
     <Compile Include="Assets\Scripts\Logic\TileStack.cs" />
+    <Compile Include="Assets\Scripts\TileSystem\Behaviour\ConsumptionBehaviour.cs" />
+    <Compile Include="Assets\Scripts\TileSystem\Behaviour\ConversionBehaviour.cs" />
     <Compile Include="Assets\Scripts\TileSystem\Behaviour\NoEffectBehaviour.cs" />
     <Compile Include="Assets\Scripts\TileSystem\EBehaviour.cs" />
     <Compile Include="Assets\Scripts\TileSystem\ENature.cs" />
@@ -107,6 +109,7 @@
     <Compile Include="Assets\Scripts\Unity\UnityPoints.cs" />
     <Compile Include="Assets\Scripts\Unity\UnityPossiblePoints.cs" />
     <Compile Include="Assets\Scripts\Unity\UnityStack.cs" />
+    <Compile Include="Assets\Scripts\Unity\UnityTile.cs" />
     <Compile Include="Assets\Scripts\Unity\UnityTileHighlighter.cs" />
     <Compile Include="Assets\Scripts\Unity\UnityTitlescreen.cs" />
     <Compile Include="Assets\Scripts\Unity\UnityUI.cs" />

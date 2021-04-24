@@ -8,9 +8,9 @@ namespace Hexxle.TileSystem.Nature
     {
         public override ENature Nature => ENature.Circle;
 
-        public override List<Coordinate> RelevantCoordinates(Coordinate coordinate)
+        public override IEnumerable<Coordinate> RelevantCoordinates(Coordinate coordinate)
         {
-            return AdjacentCoordinates(coordinate);
+            return coordinate.AdjacentCoordinates();
         }
     }
 }

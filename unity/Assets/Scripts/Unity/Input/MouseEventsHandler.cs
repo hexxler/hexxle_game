@@ -10,6 +10,7 @@ namespace Hexxle.Unity.Input
         GameObject oldTile;
         GameObject currentCollisionTile;
         InputManager inputManager;
+        private bool isMouseOverTile;
 
         private void Awake()
         {
@@ -55,17 +56,11 @@ namespace Hexxle.Unity.Input
                         currentCollisionTile = hit.collider.gameObject;
                         updateTiles();
                     }
+                    isMouseOverTile = true;
                 }
                 else
                 {
-
-                    GameObjectFinder.UnityMap.ShowPossibleScoreForCoordinate(new Coordinate());
-                    oldTile = currentCollisionTile;
-                    currentCollisionTile = null;
-                    if (oldTile != null)
-                    {
-                        updateTiles();
-                    }
+                    isMouseOverTile = false;
                 }
             }
         }
@@ -87,7 +82,7 @@ namespace Hexxle.Unity.Input
 
         private void MouseClickAction()
         {
-            if(currentCollisionTile != null && currentCollisionTile.CompareTag("Void"))
+            if(isMouseOverTile && currentCollisionTile != null && currentCollisionTile.CompareTag("Void"))
             {
                 UnityMap unityMap = GameObjectFinder.UnityMap;
                 Coordinate coordinate = unityMap.PointToCoordinate(currentCollisionTile.transform.position);

@@ -12,10 +12,10 @@ namespace Hexxle.TileSystem.Nature
     {
         public override ENature Nature => ENature.Star;
 
-        public override List<Coordinate> RelevantCoordinates(Coordinate coordinate)
+        public override IEnumerable<Coordinate> RelevantCoordinates(Coordinate coordinate)
         {
-            var relevantCoordinates = AdjacentCoordinates(coordinate);
-            relevantCoordinates.AddRange(new List<Coordinate>
+            var relevantCoordinates = coordinate.AdjacentCoordinates();
+            relevantCoordinates = relevantCoordinates.Concat(new List<Coordinate>
             {
                 new Coordinate(coordinate.X - 1, coordinate.Y - 1, coordinate.Z + 2),
                 new Coordinate(coordinate.X + 1, coordinate.Y - 2, coordinate.Z + 1),

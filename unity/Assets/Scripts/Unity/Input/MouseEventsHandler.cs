@@ -12,6 +12,7 @@ namespace Hexxle.Unity.Input
         GameObject currentCollisionTile;
         InputManager inputManager;
         private bool isMouseOverTile;
+        List<GameObject> highlightedTiles;
 
         private void Awake()
         {
@@ -55,7 +56,7 @@ namespace Hexxle.Unity.Input
                     {
                         oldTile = currentCollisionTile;
                         currentCollisionTile = hit.collider.gameObject;
-                        updateTiles();
+                        UpdateTiles();
                     }
                     isMouseOverTile = true;
                 }
@@ -65,30 +66,57 @@ namespace Hexxle.Unity.Input
                     isMouseOverTile = false;
                     oldTile = currentCollisionTile;
                     currentCollisionTile = null;
-                    updateTiles();
+                    UpdateTiles();
                 }
             }
         }
 
-        private void updateTiles()
+        private void SetHighlightedTiles()
         {
-            UnityMap unityMap = GameObjectFinder.UnityMap;
+            SetHighlightedTilesState(false);
+            UpdateHighlightedTiles();
+            SetHighlightedTilesState(true);
 
+        }
+
+        private void UpdateHighlightedTiles()
+        {
+            if(currentCollisionTile != null)
+            {
+                var unityMap = GameObjectFinder.UnityMap;
+                Coordinate coordinate = unityMap.PointToCoordinate(currentCollisionTile.transform.position);
+                highlightedTiles = unityMap.GetAffectedTiles(coordinate);
+            }
+        }
+
+        private void SetHighlightedTilesState(bool state)
+        {
+            if(highlightedTiles != null)
+            {
+                highlightedTiles.ForEach(tile => tile.GetComponent<UnityTileHighlighter>().enabled = state);
+            }
+        }
+
+        private void UpdateTiles()
+        {
+            UpdateOldTile();
+            SetHighlightedTiles();
+            UpdateCurrentTile();
+        }
+
+        private void UpdateOldTile()
+        {
             if (oldTile != null)
             {
-                Coordinate coordinate = unityMap.PointToCoordinate(oldTile.transform.position);
                 oldTile.GetComponent<UnityTileHighlighter>().enabled = false;
-                List<GameObject> affectedTiles = unityMap.GetAffectedTiles(coordinate);
-                affectedTiles.ForEach(tile => tile.GetComponent<UnityTileHighlighter>().enabled = false);
-
             }
+        }
+
+        private void UpdateCurrentTile()
+        {
             if (currentCollisionTile != null)
             {
-                Coordinate coordinate = unityMap.PointToCoordinate(currentCollisionTile.transform.position);
-                currentCollisionTile.GetComponent<UnityTileHighlighter>().enabled = true;
-                unityMap.ShowPossibleScoreForCoordinate(coordinate);
-                List<GameObject> affectedTiles = unityMap.GetAffectedTiles(coordinate);
-                affectedTiles.ForEach(tile => tile.GetComponent<UnityTileHighlighter>().enabled = true);
+               currentCollisionTile.GetComponent<UnityTileHighlighter>().enabled = true;
             }
         }
 
@@ -100,7 +128,7 @@ namespace Hexxle.Unity.Input
                 Coordinate coordinate = unityMap.PointToCoordinate(currentCollisionTile.transform.position);
                 var tileToReplace = oldTile = currentCollisionTile;
                 currentCollisionTile = null;
-                updateTiles();
+                SetHighlightedTilesState(false);
                 unityMap.PlaceNextTile(coordinate, tileToReplace);
             }
         }

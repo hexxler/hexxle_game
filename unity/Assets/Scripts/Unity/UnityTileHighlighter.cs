@@ -19,10 +19,9 @@ namespace Hexxle.Unity
 
         private void OnDisable()
         {
-            var material = GetComponent<Renderer>().material;
-            material.SetColor("_EmissionColor", Color.black);
+            GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.black);
         }
 
-        
+
     }
 }

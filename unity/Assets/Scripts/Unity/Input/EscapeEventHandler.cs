@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Hexxle.Unity.Audio;
 
 namespace Hexxle.Unity.Input
 {
@@ -35,12 +36,18 @@ namespace Hexxle.Unity.Input
             // deactivate buttons if game is paused, activate if unpaused
             var pausePanel = GameObjectFinder.PausePanel;
             bool isPaused = pausePanel.activeSelf;
+
             if (SceneManager.GetActiveScene().name.Equals("Main"))
             {
                 // activate/deactivate PausePanel
                 GameObjectFinder.PausePanel.SetActive(!isPaused);
                 GameObjectFinder.MouseEventLogic.enabled = isPaused;
-                
+
+                // play soundeffect if PausePanel is activated
+                if (!isPaused)
+                {
+                    FindObjectOfType<AudioManager>().Play(GameSoundTypes.PAUSE);
+                }
 
                 // enable/disable Buttons in UI
                 foreach (Button button in GameObjectFinder.UIPanel.GetComponentsInChildren<Button>())

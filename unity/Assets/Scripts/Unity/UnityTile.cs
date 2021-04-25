@@ -16,6 +16,8 @@ namespace Hexxle.Unity
 
         #region Unity
         public Material[] materials;
+        public GameObject[] natures;
+        public GameObject[] behaviour;     
         #endregion
 
         // Start is called before the first frame update
@@ -25,6 +27,8 @@ namespace Hexxle.Unity
             tile = map.TileOnPoint(transform.position);
             
             SetComponents();
+            SetNature();
+            SetBehaviour();
 
             tile.TileChangedEvent += TileChanged;
         }
@@ -32,6 +36,37 @@ namespace Hexxle.Unity
         public void TileChanged()
         {
             SetComponents();
+
+        }
+
+        private void SetBehaviour()
+        {
+            // Add Consumption Sprite
+            if (tile.Behaviour != null && tile.Behaviour.Behaviour == EBehaviour.Consumption)
+            {
+                var consumptionBehaviourSprite = Instantiate(behaviour[(int)EBehaviour.Consumption]);
+                consumptionBehaviourSprite.transform.SetParent(this.transform, false);
+                consumptionBehaviourSprite.transform.localPosition = new Vector3(0f, 0f, 0.00057f);
+            }
+
+            // Add Conversion Sprite
+            if (tile.Behaviour != null && tile.Behaviour.Behaviour == EBehaviour.Conversion)
+            {
+                var conversionBehaviourSprite = Instantiate(behaviour[(int)EBehaviour.Conversion]);
+                conversionBehaviourSprite.transform.SetParent(this.transform, false);
+                conversionBehaviourSprite.transform.localPosition = new Vector3(0f, 0f, 0.00057f);
+            }
+        }
+
+        private void SetNature()
+        {
+            // Add Star Sprite
+            if (tile.Nature != null && tile.Nature.Nature == ENature.Star)
+            {
+                var starNatureSprite = Instantiate(natures[(int)ENature.Star]);
+                starNatureSprite.transform.SetParent(this.transform, false);
+                starNatureSprite.transform.localPosition = new Vector3(0f, 0f, 0.00056f);
+            }
         }
 
         public void SetComponents()

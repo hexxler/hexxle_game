@@ -1,7 +1,6 @@
 ﻿using Hexxle.CoordinateSystem;
 using Hexxle.Interfaces;
 using Hexxle.TileSystem;
-using Hexxle.TileSystem.Type;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,7 +36,7 @@ namespace Hexxle.Logic
                 {
                     if (IsEmpty(neighbouringCoordinate))
                     {
-                        ITile neighbouringVoidTile = Tile.CreateInstance(EState.OnField, EType.Void, ENature.None, EBehaviour.None);
+                        ITile neighbouringVoidTile = Tile.CreateInstance(EState.OnField, Tile.CreateType(EType.Void), Tile.CreateNature(ENature.None), Tile.CreateBehaviour(EBehaviour.None));
                         PlaceTile(neighbouringVoidTile, neighbouringCoordinate);
                     }
                 }
@@ -82,7 +81,7 @@ namespace Hexxle.Logic
             // replace old tile with void tile, if there are adjacent typed tiles
             if (neighbouringTypedTiles.Count() > 0)
             {
-                ITile newVoidTile = Tile.CreateInstance(EState.OnField, EType.Void, ENature.None, EBehaviour.None);
+                ITile newVoidTile = Tile.CreateInstance(EState.OnField, Tile.CreateType(EType.Void), Tile.CreateNature(ENature.None), Tile.CreateBehaviour(EBehaviour.None));
                 PlaceTile(newVoidTile, coordinate);
             }
         }

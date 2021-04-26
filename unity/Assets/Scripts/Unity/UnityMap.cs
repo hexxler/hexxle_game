@@ -6,6 +6,8 @@ using UnityEngine;
 using Hexxle.Unity.Audio;
 using System.Linq;
 using System.Collections.Generic;
+using Hexxle.TileSystem.Nature;
+using Hexxle.TileSystem.Behaviour;
 
 namespace Hexxle.Unity
 {
@@ -45,7 +47,7 @@ namespace Hexxle.Unity
         private void PlaceStartingTile(Coordinate coordinate)
         {
             EType randomType = (EType)Random.Range(2, System.Enum.GetValues(typeof(EType)).Length); // None, Void < 2
-            ITile tileToPlace = Tile.CreateInstance(EState.OnField, randomType, ENature.Circle, EBehaviour.NoEffect);
+            ITile tileToPlace = Tile.CreateInstance(EState.OnField, Tile.CreateType(randomType), Tile.CreateNature(ENature.None), Tile.CreateBehaviour(EBehaviour.None));
             // Place tile
             map.PlaceTile(
                 tileToPlace,

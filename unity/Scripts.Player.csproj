@@ -593,6 +593,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\CoordinateSystem\Coordinate.cs" />
+    <Compile Include="Assets\Scripts\Interfaces\IFunctionalValues.cs" />
     <Compile Include="Assets\Scripts\Interfaces\IGameScore.cs" />
     <Compile Include="Assets\Scripts\Interfaces\ITile.cs" />
     <Compile Include="Assets\Scripts\Interfaces\ITileBehaviour.cs" />
@@ -616,6 +617,7 @@
     <Compile Include="Assets\Scripts\TileSystem\Nature\BaseTileNature.cs" />
     <Compile Include="Assets\Scripts\TileSystem\Nature\CircleNature.cs" />
     <Compile Include="Assets\Scripts\TileSystem\Nature\StarNature.cs" />
+    <Compile Include="Assets\Scripts\TileSystem\RandomTileGenerator.cs" />
     <Compile Include="Assets\Scripts\TileSystem\Tile.cs" />
     <Compile Include="Assets\Scripts\TileSystem\Type\BaseTileType.cs" />
     <Compile Include="Assets\Scripts\TileSystem\Type\BlueType.cs" />

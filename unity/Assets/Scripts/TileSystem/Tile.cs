@@ -33,7 +33,18 @@ namespace Hexxle.TileSystem
             return tile;
         }
 
-        private static ITileBehaviour CreateBehaviour(EBehaviour behaviour)
+        public static Tile CreateInstance(EState state, ITileType type, ITileNature nature, ITileBehaviour behaviour)
+        {
+            Tile tile = new Tile();
+            tile.State = state;
+            tile.Type = type;
+            tile.Nature = nature;
+            tile.Behaviour = behaviour;
+            return tile;
+        }
+
+
+        public static ITileBehaviour CreateBehaviour(EBehaviour behaviour)
         {
             ITileBehaviour tileBehaviour;
             switch (behaviour)
@@ -55,7 +66,7 @@ namespace Hexxle.TileSystem
             return tileBehaviour;
         }
 
-        private static ITileNature CreateNature(ENature nature)
+        public static ITileNature CreateNature(ENature nature)
         {
             ITileNature tileNature;
             switch (nature)
@@ -74,7 +85,7 @@ namespace Hexxle.TileSystem
             return tileNature;
         }
 
-        private static ITileType CreateType(EType type)
+        public static ITileType CreateType(EType type)
         {
             ITileType tileType;
             switch (type)

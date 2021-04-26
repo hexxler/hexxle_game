@@ -2,24 +2,31 @@
 using Hexxle.TileSystem;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEngine;
 
 namespace Hexxle.Logic
 {
     public class TileStack : ITileStack
     {
-        private List<ITile> Stack;
+        private List<ITile> stack;
+        private RandomTileGenerator tileGenerator;
 
         public TileStack()
         {
-            Stack = new List<ITile>();
+            stack = new List<ITile>();
+            tileGenerator = new RandomTileGenerator();
+        }
+
+        public TileStack(int seed)
+        {
+            stack = new List<ITile>();
+            tileGenerator = new RandomTileGenerator(seed);
         }
 
         public void InitializeStack()
         {
             for (int i = 0; i < 30; i++)
             {
-                Stack.Add(GenerateRandomTile());
+                stack.Add(tileGenerator.GenerateRandomTile());
             }
         }
 
@@ -28,7 +35,7 @@ namespace Hexxle.Logic
         {
             while (tiles.Count > 0)
             {
-                Stack.Add(tiles.First());
+                stack.Add(tiles.First());
                 tiles.RemoveAt(0);
             }
         }
@@ -36,16 +43,16 @@ namespace Hexxle.Logic
         // Pushes a new Tile
         public void Push(ITile newTile)
         {
-            Stack.Add(newTile);
+            stack.Add(newTile);
         }
 
         // Pops the top ITile
         public ITile Pop()
         {
-            if (Stack.Count > 0)
+            if (stack.Count > 0)
             {
-                ITile topTile = Stack.Last();
-                Stack.RemoveAt(Stack.Count - 1);
+                ITile topTile = stack.Last();
+                stack.RemoveAt(stack.Count - 1);
                 return topTile;
             }
             else
@@ -56,12 +63,12 @@ namespace Hexxle.Logic
 
         public int Count()
         {
-            return Stack.Count;
+            return stack.Count;
         }
 
         public ITile Peek()
         {
-            return Stack.Last();
+            return stack.Last();
         }
 
         public List<ITile> GetFirstTenTiles()
@@ -69,9 +76,9 @@ namespace Hexxle.Logic
             List<ITile> firstTen = new List<ITile>();
             for (int i = 10; i > 0; i--)
             {
-                if (Stack.Count - i >= 0)
+                if (stack.Count - i >= 0)
                 {
-                    firstTen.Add(Stack.ElementAt(Stack.Count - i));
+                    firstTen.Add(stack.ElementAt(stack.Count - i));
                 }
             }
             return firstTen;
@@ -81,18 +88,9 @@ namespace Hexxle.Logic
         {
             for(int i = 0; i < amount; i++)
             {
-                Stack.Add(GenerateRandomTile());
+                stack.Add(tileGenerator.GenerateRandomTile());
             }
         }
 
-        // Generates a new Random Tile
-        private ITile GenerateRandomTile()
-        {
-            EType randomType = (EType)Random.Range(2, System.Enum.GetValues(typeof(EType)).Length); // None, Void < 2
-            ENature randomNature = (ENature)Random.Range(1, System.Enum.GetValues(typeof(ENature)).Length);
-            EBehaviour randomBehaviour = (EBehaviour)Random.Range(1, System.Enum.GetValues(typeof(EBehaviour)).Length);
-            ITile randomTile = Tile.CreateInstance(EState.OnField, randomType, randomNature, randomBehaviour);
-            return randomTile;
-        }
     }
 }

@@ -77,6 +77,14 @@ namespace Hexxle.Logic
             return firstTen;
         }
 
+        public void AddNewRandomTiles(int amount)
+        {
+            for(int i = 0; i < amount; i++)
+            {
+                Stack.Add(GenerateRandomTile());
+            }
+        }
+
         // Generates a new Random Tile
         private ITile GenerateRandomTile()
         {

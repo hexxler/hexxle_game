@@ -17,9 +17,14 @@ namespace Hexxle.Unity
         private float smoothPoints = 0;
         private float smoothScoreThreshold = 10;
 
+        private UnityStack stack;
+        private UnityHand hand;
+
         private void Awake()
         {
             score = new Score();
+            stack = GameObject.FindGameObjectWithTag("Stack").GetComponent<UnityStack>();
+            hand = GameObject.FindGameObjectWithTag("Hand").GetComponent<UnityHand>();
         }
 
         // Update is called once per frame
@@ -36,7 +41,8 @@ namespace Hexxle.Unity
 
         public void IncreasePoints(int amount)
         {
-            score.IncreaseScore(amount);
+            stack.AddNewRandomTiles(score.IncreaseScore(amount));
+            hand.FillHand();
         }
 
         public int CurrentPoints()

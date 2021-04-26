@@ -18,5 +18,10 @@ namespace Hexxle.TileSystem.Behaviour
                 otherTile.RequestRemoval();
             }
         }
+
+        public int CalculateWeight()
+        {
+            return 9;
+        }
     }
 }

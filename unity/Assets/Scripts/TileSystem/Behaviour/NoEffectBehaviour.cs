@@ -10,5 +10,10 @@ namespace Hexxle.TileSystem.Behaviour
         {
             // Do nothing
         }
+
+        public int CalculateWeight()
+        {
+            return 1;
+        }
     }
 }

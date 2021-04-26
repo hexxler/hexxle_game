@@ -12,6 +12,11 @@ namespace Hexxle.TileSystem.Nature
     {
         public override ENature Nature => ENature.Star;
 
+        public override int CalculateWeight()
+        {
+            return RelevantCoordinates(new Coordinate()).Count();
+        }
+
         public override IEnumerable<Coordinate> RelevantCoordinates(Coordinate coordinate)
         {
             var relevantCoordinates = coordinate.AdjacentCoordinates();

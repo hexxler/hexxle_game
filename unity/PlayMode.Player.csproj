@@ -65,6 +65,9 @@
     <Reference Include="Unity.InputSystem.TestFramework">
       <HintPath>Library/ScriptAssemblies/Unity.InputSystem.TestFramework.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.TextMeshPro">
+      <HintPath>Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>
@@ -607,6 +610,9 @@
     <Compile Include="Assets\Tests\PlayMode\Unity\AudioManagerTests.cs" />
     <Compile Include="Assets\Tests\PlayMode\Unity\CameraMovementTests.cs" />
     <Compile Include="Assets\Tests\PlayMode\Unity\EscPauseMenuTests.cs" />
+    <Compile Include="Assets\Tests\PlayMode\Unity\PossibleScoreTests.cs" />
+    <Compile Include="Assets\Tests\PlayMode\Unity\TilePlacementTest.cs" />
+    <Compile Include="Assets\Tests\PlayMode\Unity\UnityTileHighlighterTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Tests\PlayMode\PlayMode.asmdef" />

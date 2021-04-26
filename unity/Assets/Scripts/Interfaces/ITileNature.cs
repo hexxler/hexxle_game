@@ -7,7 +7,6 @@ namespace Hexxle.Interfaces
     public interface ITileNature
     {
         ENature Nature { get; }
-        List<Coordinate> RelevantCoordinates(Coordinate coordinate);
-        List<Coordinate> AdjacentCoordinates(Coordinate coordinate);
+        IEnumerable<Coordinate> RelevantCoordinates(Coordinate coordinate);
     }
 }

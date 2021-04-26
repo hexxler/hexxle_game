@@ -3,6 +3,7 @@ using Hexxle.Interfaces;
 using Hexxle.TileSystem.Behaviour;
 using Hexxle.TileSystem.Nature;
 using Hexxle.TileSystem.Type;
+using System;
 
 namespace Hexxle.TileSystem
 {
@@ -13,6 +14,9 @@ namespace Hexxle.TileSystem
         private ITileType _type;
         private ITileBehaviour _behaviour;
         private ITileNature _nature;
+
+        public event Action TileChangedEvent;
+        public event Action<Coordinate> RemovalRequestedEvent;
 
         private Tile()
         {
@@ -35,8 +39,17 @@ namespace Hexxle.TileSystem
             switch (behaviour)
             {
                 case EBehaviour.NoEffect:
-                default:
                     tileBehaviour = new NoEffectBehaviour();
+                    break;
+                case EBehaviour.Conversion:
+                    tileBehaviour = new ConversionBehaviour();
+                    break;
+                case EBehaviour.Consumption:
+                    tileBehaviour = new ConsumptionBehaviour();
+                    break;
+                case EBehaviour.None:
+                default:
+                    tileBehaviour = null;
                     break;
             }
             return tileBehaviour;
@@ -50,9 +63,11 @@ namespace Hexxle.TileSystem
                 case ENature.Circle:
                     tileNature = new CircleNature();
                     break;
+                case ENature.Star:
+                    tileNature = new StarNature();
+                    break;
                 case ENature.None:
                 default:
-                    // TODO
                     tileNature = null;
                     break;
             }
@@ -73,12 +88,17 @@ namespace Hexxle.TileSystem
                 case EType.Green:
                     tileType = new GreenType();
                     break;
+                case EType.Violet:
+                    tileType = new VioletType();
+                    break;
+                case EType.Yellow:
+                    tileType = new YellowType();
+                    break;
                 case EType.Void:
                     tileType = new VoidType();
                     break;
                 case EType.None:
                 default:
-                    // TODO
                     tileType = null;
                     break;
             }
@@ -88,27 +108,54 @@ namespace Hexxle.TileSystem
         public EState State
         {
             get => _state;
-            set => _state = value;
+            set
+            {
+                _state = value;
+                TileChangedEvent?.Invoke();
+            }
         }
+
         public ITileType Type
         {
             get => _type;
-            set => _type = value;
+            set
+            {
+                _type = value;
+                TileChangedEvent?.Invoke();
+            }
         }
         public ITileBehaviour Behaviour
         {
             get => _behaviour;
-            set => _behaviour = value;
+            set
+            {
+                _behaviour = value;
+                TileChangedEvent?.Invoke();
+            }
         }
         public ITileNature Nature
         {
             get => _nature;
-            set => _nature = value;
+            set
+            {
+                _nature = value;
+                TileChangedEvent?.Invoke();
+            }
         }
+
         public Coordinate Coordinate
         {
             get => _coordinate;
-            set => _coordinate = value;
+            set
+            {
+                _coordinate = value;
+                TileChangedEvent?.Invoke();
+            }
+        }
+
+        public void RequestRemoval()
+        {
+            RemovalRequestedEvent?.Invoke(this.Coordinate);
         }
     }
 }

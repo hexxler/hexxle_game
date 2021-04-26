@@ -2,73 +2,47 @@
 using Hexxle.Interfaces;
 using Hexxle.Logic;
 using Hexxle.TileSystem;
-using UnityEngine.InputSystem;
 using UnityEngine;
-using UnityEngine.EventSystems;
+using Hexxle.Unity.Audio;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace Hexxle.Unity
 {
     public class UnityMap : MonoBehaviour
     {
+        private Dictionary<Coordinate, GameObject> tileObjects;
+
         ITileMap<ITile> map;
         ITileResolver<ITile> resolver;
-
-        public GameObject RedTemplate;
-        public GameObject GreenTemplate;
-        public GameObject BlueTemplate;
-        public GameObject VoidTemplate;
-        public float OuterTileRadius;
-        private UnityStack unityStack;
+        public GameObject TileTemplate;
+        public Material[] materials;
+        public float OuterTileRadius = 0.5f;
+        private UnityHand unityHand;
         private UnityPoints unityPoints;
+        private UnityPossiblePoints unityPossiblePoints;
 
         private void Awake()
         {
+            tileObjects = new Dictionary<Coordinate, GameObject>();
             map = new TileMap();
             resolver = new TileResolver(map);
             map.TilePlaced += OnTilePlaced;
-            var inputManager = new InputManager();
-            inputManager.TilePlacement.MouseClick.Enable();
-            inputManager.TilePlacement.MouseClick.performed += context => PlaceTileOnMouseClick(context);
+            map.TileRemoved += OnTileRemoved;
         }
 
 
         private void Start()
         {
-            unityStack = GameObject.FindGameObjectWithTag("Stack").GetComponent<UnityStack>();
+            unityHand = GameObject.FindGameObjectWithTag("Hand").GetComponent<UnityHand>();
             unityPoints = GameObject.FindGameObjectWithTag("Points").GetComponent<UnityPoints>();
+            unityPossiblePoints = GameObject.FindGameObjectWithTag("Points").GetComponent<UnityPossiblePoints>();
             Coordinate start = new Coordinate();
-            PlaceRandomTile(start);
-        }
-
-        private void PlaceTileOnMouseClick(InputAction.CallbackContext context)
-        {
-            // Check if Mouse is not over UI object
-            if (!EventSystem.current.IsPointerOverGameObject())
-            {
-                // Only try to place a tile if the stack has one or more tiles left
-                if (unityStack.Count() != 0)
-                {
-                    var vec = Mouse.current.position.ReadValue();
-                    Ray ray = Camera.main.ScreenPointToRay(new Vector3(vec.x, vec.y, 0));
-                    if (Physics.Raycast(ray, out RaycastHit hit))
-                    {
-                        GameObject clickedTile = hit.collider.gameObject;
-
-                        Coordinate coordinate = PointToCoordinate(clickedTile.transform.position);
-                        Debug.Log(coordinate.x + " " + coordinate.y + " " + coordinate.z);
-                        PlaceNextTile(coordinate);
-
-                        GameObject.Destroy(clickedTile);
-                        
-                        //play soundeffect
-                        FindObjectOfType<AudioManager>().Play(GameSoundTypes.POP);
-                    }
-                }
-            }
+            PlaceStartingTile(start);
         }
 
 
-        private void PlaceRandomTile(Coordinate coordinate)
+        private void PlaceStartingTile(Coordinate coordinate)
         {
             EType randomType = (EType)Random.Range(2, System.Enum.GetValues(typeof(EType)).Length); // None, Void < 2
             ITile tileToPlace = Tile.CreateInstance(EState.OnField, randomType, ENature.Circle, EBehaviour.NoEffect);
@@ -77,90 +51,109 @@ namespace Hexxle.Unity
                 tileToPlace,
                 coordinate
                 );
-            PlaceVoidNeighbours(coordinate);
-
-            // Resolve tile
-            int pointsEarned = resolver.CalculatePoints(tileToPlace);
-            unityPoints.IncreasePoints(pointsEarned);
-            resolver.ApplyBehaviour(tileToPlace);
         }
 
-        private void PlaceNextTile(Coordinate coordinate)
+        public void PlaceNextTile(Coordinate coordinate, GameObject currentCollisionTile)
         {
-            // Needs to get top Tile from Stack
-            ITile topTile = unityStack.GetTopTile();
-            map.PlaceTile(topTile, coordinate);
-            PlaceVoidNeighbours(coordinate);
-
-            // Resolve tile
-            int pointsEarned = resolver.CalculatePoints(topTile);
-            unityPoints.IncreasePoints(pointsEarned);
-            resolver.ApplyBehaviour(topTile);
-        }
-
-        private void PlaceVoidTile(Coordinate coordinate)
-        {
-            map.PlaceTile(
-                Tile.CreateInstance(EState.OnField, EType.Void, ENature.None, EBehaviour.None),
-                coordinate)
-                ;
-        }
-
-        private void PlaceVoidNeighbours(Coordinate middleCoordinate)
-        {
-            map.GetTile(middleCoordinate).Nature.AdjacentCoordinates(middleCoordinate).ForEach(neighboringCoordinate =>
+            if(unityHand.IsTileSelected())
             {
-                if (map.IsEmpty(neighboringCoordinate))
-                {
-                    PlaceVoidTile(neighboringCoordinate);
-                }
-            });
+                // Remove old tile
+                tileObjects.Remove(coordinate);
+                GameObject.Destroy(currentCollisionTile);
+
+                // Needs to get new tile from Hand
+                ITile topTile = unityHand.TakeTile();
+                map.PlaceTile(topTile, coordinate);
+
+                // Resolve new tile
+                int pointsEarned = resolver.CalculatePoints(topTile);
+                unityPoints.IncreasePoints(pointsEarned);
+                resolver.ApplyBehaviour(topTile);
+
+                FindObjectOfType<AudioManager>().Play(GameSoundTypes.POP);
+            }
         }
 
-        private Coordinate PointToCoordinate(Vector3 point)
+        public Coordinate PointToCoordinate(Vector3 point)
         {
-            int x = (int)Mathf.Round((Mathf.Sqrt(3f) / 3f * point.x - (point.z / 3f)) / OuterTileRadius);
-            int y = (int)Mathf.Round(-(Mathf.Sqrt(3f) / 3f * point.x + (point.z / 3f)) / OuterTileRadius);
-            int z = (int)(2f / 3f * point.z / OuterTileRadius);
-            return new Coordinate(x, y, z);
+            // Modify point by OuterTileRadius
+            var p = point / OuterTileRadius;
+            return Coordinate.PointToCoordinate(p);
         }
 
-        private Vector3 CoordinateToPoint(Coordinate coordinate)
+        public Vector3 CoordinateToPoint(Coordinate coordinate)
         {
-            // see https://stackoverflow.com/questions/2459402/hexagonal-grid-coordinates-to-pixel-coordinates
-            float x = Mathf.Sqrt(3f) * OuterTileRadius * (coordinate.z / 2f + coordinate.x);
-            float z = 3f / 2f * coordinate.z * OuterTileRadius;
-            return new Vector3(x, 0, z);
+            var p = Coordinate.CoordinateToPoint(coordinate);
+            // Modify point by OuterTileRadius
+            p *= OuterTileRadius;
+            return p;
         }
 
-        private void OnTilePlaced(object sender, TileMapEventArgs<ITile> e)
+        public ITile TileOnPoint(Vector3 point)
+        {
+            Coordinate coordinate = PointToCoordinate(point);
+            return map.GetTile(coordinate);
+        }
+
+        public GameObject TileObjectOnPoint(Vector3 point)
+        {
+            Coordinate coordinate = PointToCoordinate(point);
+            return tileObjects[coordinate];
+        }
+
+        public void OnTilePlaced(object sender, TileMapEventArgs<ITile> e)
         {
             ITile tile = e.Tile;
-            GameObject template;
-            switch (tile.Type.Type)
-            {
-                case EType.Red:
-                    template = RedTemplate;
-                    break;
-                case EType.Blue:
-                    template = BlueTemplate;
-                    break;
-                case EType.Green:
-                    template = GreenTemplate;
-                    break;
-                case EType.Void:
-                case EType.None:
-                default:
-                    template = VoidTemplate;
-                    break;
-            }
-
-            var newTile = Instantiate(
-                    template,
+            var newTileObject = Instantiate(
+                    TileTemplate,
                     CoordinateToPoint(tile.Coordinate),
                     Quaternion.Euler(-90, 0, 0)
                 );
-            newTile.transform.parent = this.transform;
+            newTileObject.transform.parent = this.transform;
+            tileObjects.Add(tile.Coordinate, newTileObject);
+        }
+
+        public void OnTileRemoved(object sender, TileMapEventArgs<ITile> e)
+        {
+            ITile tile = e.Tile;
+
+            // Remove old tile
+            var tileObject = tileObjects[tile.Coordinate];
+            tileObjects.Remove(tile.Coordinate);
+            GameObject.Destroy(tileObject);
+        }
+
+        public void ResetGameScore()
+        {
+            unityPossiblePoints.possibleScore = 0;
+        }
+
+        public void ShowPossibleScoreForCoordinate(Coordinate coordinate)
+        {
+            if(unityHand.Peek() != null)
+            {
+                if (map.GetTile(coordinate).Type.Type.Equals(EType.Void))
+                {
+                    ITile tile = unityHand.Peek();
+                    tile.Coordinate = coordinate;
+                    int pointsEarned = resolver.CalculatePoints(tile);
+                    unityPossiblePoints.possibleScore = pointsEarned;
+                }
+                else
+                {
+                    unityPossiblePoints.possibleScore = 0;
+                }
+            }
+        }
+
+        public List<GameObject> GetAffectedTiles(Coordinate coordinate)
+        {
+            if(unityHand.IsTileSelected())
+            {
+                ITile tile = unityHand.Peek();
+                return tile.Nature.RelevantCoordinates(coordinate).Where(coord => tileObjects.ContainsKey(coord)).Select(coord => tileObjects[coord]).ToList();
+            }
+            return new List<GameObject>();
         }
     }
 }

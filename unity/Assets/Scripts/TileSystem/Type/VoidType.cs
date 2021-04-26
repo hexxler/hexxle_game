@@ -2,13 +2,8 @@
 
 namespace Hexxle.TileSystem.Type
 {
-    public class VoidType : ITileType
+    public class VoidType : BaseTileType
     {
-        public EType Type => EType.Void;
-
-        public int ValueOfRelationshipTo(EType otherType)
-        {
-            return 0;
-        }
+        public override EType Type => EType.Void;
     }
 }

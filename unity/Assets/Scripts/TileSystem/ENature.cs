@@ -3,6 +3,7 @@
     public enum ENature
     {
         None = 0,
-        Circle
+        Circle,
+        Star
     }
 }

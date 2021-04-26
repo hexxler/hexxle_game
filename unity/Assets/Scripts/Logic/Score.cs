@@ -29,16 +29,20 @@ namespace Assets.Scripts.Logic
             return _nextThreshold;
         }
 
-        public void IncreaseScore(int amount)
+        public int IncreaseScore(int amount)
         {
+            int additionalTileCount = 0;
             _score += amount;
             _score = Math.Max(_lastThreshold, _score);
-            if (_score >= _nextThreshold)
+            while (_score >= _nextThreshold)
             {
                 // TODO: implement points interval logic
                 //       (next interval and allowing player to get more tiles)
+                _lastThreshold = _nextThreshold;
                 _nextThreshold += 10;
+                additionalTileCount++;
             }
+            return additionalTileCount;
         }
 
         public int PointsUntilNextThreshold()

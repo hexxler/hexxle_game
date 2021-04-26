@@ -77,11 +77,21 @@ namespace Hexxle.Logic
             return firstTen;
         }
 
+        public void AddNewRandomTiles(int amount)
+        {
+            for(int i = 0; i < amount; i++)
+            {
+                Stack.Add(GenerateRandomTile());
+            }
+        }
+
         // Generates a new Random Tile
         private ITile GenerateRandomTile()
         {
             EType randomType = (EType)Random.Range(2, System.Enum.GetValues(typeof(EType)).Length); // None, Void < 2
-            ITile randomTile = Tile.CreateInstance(EState.OnField, randomType, ENature.Circle, EBehaviour.NoEffect);
+            ENature randomNature = (ENature)Random.Range(1, System.Enum.GetValues(typeof(ENature)).Length);
+            EBehaviour randomBehaviour = (EBehaviour)Random.Range(1, System.Enum.GetValues(typeof(EBehaviour)).Length);
+            ITile randomTile = Tile.CreateInstance(EState.OnField, randomType, randomNature, randomBehaviour);
             return randomTile;
         }
     }

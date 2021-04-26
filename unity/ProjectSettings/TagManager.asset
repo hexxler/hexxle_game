@@ -10,6 +10,10 @@ TagManager:
   - Audio
   - UI
   - Pause
+  - Tile
+  - Void
+  - Hand
+  - ScoreChange
   layers:
   - Default
   - TransparentFX

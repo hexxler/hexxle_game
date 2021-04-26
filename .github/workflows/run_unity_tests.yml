@@ -23,7 +23,7 @@ jobs:
         projectPath:
           - unity
         unityVersion:
-          - 2019.4.21f1
+          - 2019.4.22f1
     steps:
       - uses: actions/checkout@v2
         with:

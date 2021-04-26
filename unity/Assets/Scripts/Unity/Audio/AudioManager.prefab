@@ -74,7 +74,7 @@ MonoBehaviour:
     volume: 0.1
     pitch: 1
     source: {fileID: 0}
-    loop: 0
+    loop: 1
   pauseSound:
     clip: {fileID: 8300000, guid: eed2ea265c18ccd41a4b17dab3356010, type: 3}
     volume: 1

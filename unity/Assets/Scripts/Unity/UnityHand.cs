@@ -1,6 +1,7 @@
 ﻿using Hexxle.Interfaces;
 using Hexxle.Logic;
 using Hexxle.TileSystem;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -69,8 +70,9 @@ namespace Hexxle.Unity
         {
             if(hand.GetEmptySlots() > 0)
             {
+                int actualAmount = Math.Min(stack.Count(), hand.GetEmptySlots());
                 ITile[] tiles = new ITile[hand.GetEmptySlots()];
-                for (int i = 0; i < hand.GetEmptySlots(); i++)
+                for (int i = 0; i < actualAmount; i++)
                 {
                     tiles[i] = stack.GetTopTile();
                 }

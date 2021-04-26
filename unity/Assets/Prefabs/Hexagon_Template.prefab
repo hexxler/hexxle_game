@@ -108,7 +108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d55af2aef464f6c48882d3b27a87e473, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GLOW_COLOR: {r: 1, g: 1, b: 1, a: 1}
+  glowColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &-1880745732569702886
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -129,3 +129,12 @@ MonoBehaviour:
   - {fileID: 2100000, guid: be292b7323a223f47be7b20f48f1d240, type: 2}
   - {fileID: 2100000, guid: f0c8fc80d7143d140a4cf813acc25932, type: 2}
   - {fileID: 2100000, guid: f0c8fc80d7143d140a4cf813acc25932, type: 2}
+  natures:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 4921703279409226056, guid: 716f34faecb1f8e4fbd71f86bbb313d4, type: 3}
+  behaviour:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 6926839435687934312, guid: 84a7e69d12e597e4394887c37c609c09, type: 3}
+  - {fileID: 1085724944403549430, guid: ed6cdf66fb0267649856458298578cbb, type: 3}

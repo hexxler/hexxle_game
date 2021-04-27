@@ -76,8 +76,8 @@ namespace Hexxle.TileSystem.Type
         }
 
         public int CalculateWeight()
-        {
-            return 1;
+        { 
+            return TileRelationship(this.Type).Sum(x => Math.Abs(x));
         }
     }
 }

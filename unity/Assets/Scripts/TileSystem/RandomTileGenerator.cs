@@ -1,6 +1,7 @@
 ﻿using Hexxle.Interfaces;
 using System.Collections.Generic;
 using System;
+using System.Linq;
 
 namespace Hexxle.TileSystem
 {
@@ -89,11 +90,16 @@ namespace Hexxle.TileSystem
 
         private void FillWeightedTypes()
         {
+
+            int maxWeight = Enum.GetValues(typeof(EType)).OfType<EType>().ToList()
+                .ConvertAll(x => Tile.CreateType(x) is ITileType t ? t.CalculateWeight() : 0)
+                .Max() + 1;
+            Console.WriteLine(maxWeight);
             foreach (EType type in Enum.GetValues(typeof(EType)))
             {
                 if (Tile.CreateType(type) is ITileType typeToAdd && !type.Equals(EType.None) && !type.Equals(EType.Void))
                 {
-                    for (int x = 10; x > typeToAdd.CalculateWeight(); x--)
+                    for (int x = maxWeight; x > typeToAdd.CalculateWeight(); x--)
                     {
                         weightedTypes.Add(typeToAdd);
                     }

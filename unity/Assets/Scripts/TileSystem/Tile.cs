@@ -168,5 +168,24 @@ namespace Hexxle.TileSystem
         {
             RemovalRequestedEvent?.Invoke(this.Coordinate);
         }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is Tile tile)
+            {
+                return (this.Behaviour.Behaviour.Equals(tile.Behaviour.Behaviour))
+                    && (this.Nature.Nature.Equals(tile.Nature.Nature))
+                    && (this.Type.Type.Equals(tile.Type.Type));
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public override string ToString()
+        {
+            return "B: " + Behaviour + " N: " + Nature + " T: " + Type;
+        }
     }
 }

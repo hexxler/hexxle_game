@@ -21,7 +21,7 @@ namespace Hexxle.TileSystem.Behaviour
 
         public int CalculateWeight()
         {
-            return 9;
+            return 8;
         }
     }
 }

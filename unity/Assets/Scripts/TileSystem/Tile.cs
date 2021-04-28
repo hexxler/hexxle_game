@@ -171,11 +171,11 @@ namespace Hexxle.TileSystem
 
         public override bool Equals(object obj)
         {
-            if (obj is Tile tile)
+            if (obj is Tile tile && tile.Behaviour != null && tile.Nature != null && tile.Type != null)
             {
-                return (this.Behaviour.Behaviour.Equals(tile.Behaviour.Behaviour))
-                    && (this.Nature.Nature.Equals(tile.Nature.Nature))
-                    && (this.Type.Type.Equals(tile.Type.Type));
+                return this.Behaviour.Behaviour.Equals(tile.Behaviour.Behaviour)
+                    && this.Nature.Nature.Equals(tile.Nature.Nature)
+                    && this.Type.Type.Equals(tile.Type.Type);
             }
             else
             {

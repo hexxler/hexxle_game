@@ -2,7 +2,7 @@
 
 namespace Hexxle.Interfaces
 {
-    public interface ITileType
+    public interface ITileType : IFunctionalValues
     {
         EType Type { get; }
         int ValueOfRelationshipTo(EType otherType);

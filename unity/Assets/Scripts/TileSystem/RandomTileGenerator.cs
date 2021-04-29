@@ -91,10 +91,9 @@ namespace Hexxle.TileSystem
         private void FillWeightedTypes()
         {
 
-            int maxWeight = Enum.GetValues(typeof(EType)).OfType<EType>().ToList()
+            int maxWeight = Enum.GetValues(typeof(EType)).Cast<EType>().ToList()
                 .ConvertAll(x => Tile.CreateType(x) is ITileType t ? t.CalculateWeight() : 0)
                 .Max() + 1;
-            Console.WriteLine(maxWeight);
             foreach (EType type in Enum.GetValues(typeof(EType)))
             {
                 if (Tile.CreateType(type) is ITileType typeToAdd && !type.Equals(EType.None) && !type.Equals(EType.Void))

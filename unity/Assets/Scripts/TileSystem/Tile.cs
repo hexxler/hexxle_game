@@ -183,6 +183,18 @@ namespace Hexxle.TileSystem
             }
         }
 
+        public override int GetHashCode()
+        {
+            int hash = 17;
+            int prime = 23;
+            hash = hash * prime + Behaviour.GetHashCode();
+            hash = hash * prime + Nature.GetHashCode();
+            hash = hash * prime + Type.GetHashCode();
+            hash = hash * prime + Coordinate.GetHashCode();
+            return hash;
+
+        }
+
         public override string ToString()
         {
             return "B: " + Behaviour + " N: " + Nature + " T: " + Type;

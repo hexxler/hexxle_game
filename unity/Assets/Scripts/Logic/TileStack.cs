@@ -43,7 +43,7 @@ namespace Hexxle.Logic
         // Pushes a new Tile
         public void Push(ITile newTile)
         {
-            stack.Add(newTile);
+            stack.Insert(0,newTile);
         }
 
         // Pops the top ITile

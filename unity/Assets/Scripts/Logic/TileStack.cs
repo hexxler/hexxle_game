@@ -88,7 +88,7 @@ namespace Hexxle.Logic
         {
             for(int i = 0; i < amount; i++)
             {
-                stack.Add(tileGenerator.GenerateRandomTile());
+                Push(tileGenerator.GenerateRandomTile());
             }
         }
 

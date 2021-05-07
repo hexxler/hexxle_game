@@ -1613,7 +1613,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f8c2ca7b474a3f499dc3167d20467b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TileTemplate: {fileID: 2805244402447506873, guid: a227d169e77e7a046bef9feb63c6df9a,
+  TileTemplate: {fileID: 779682454389121838, guid: d6f94a26f7b9b32419f004e85163b1af,
     type: 3}
   materials:
   - {fileID: 2100000, guid: a40dfeecfd8aba804960a7199c538c47, type: 2}

@@ -109,7 +109,7 @@ namespace Hexxle.Unity
             var newTileObject = Instantiate(
                     TileTemplate,
                     CoordinateToPoint(tile.Coordinate),
-                    Quaternion.Euler(-90, 0, 0)
+                    Quaternion.Euler(0, 0, 0)
                 );
             newTileObject.transform.parent = this.transform;
             tileObjects.Add(tile.Coordinate, newTileObject);

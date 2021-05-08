@@ -48,7 +48,7 @@ public class UnityCamera : MonoBehaviour
 
         float newAngle = Camera.main.transform.rotation.eulerAngles.x + degreeStep * zoomDirection;
 
-        if (minDegree <= newAngle && newAngle <= maxDegree)
+        if (minDegree <= newAngle && newAngle <= maxDegree + degreeStep)
         {
             Camera.main.transform.Rotate(degreeStep * zoomDirection, 0, 0);
             float newOrthographicSize = CalculateOrthographicSize(Camera.main.transform.rotation.eulerAngles.x);

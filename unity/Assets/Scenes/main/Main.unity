@@ -2783,10 +2783,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2d87e2eba9054e47a418378ccb70a8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zoomStep: 0.5
-  maxZoom: 10
   moveSpeed: 5
   tileplaneHeight: 0.25
+  minDegree: 30
+  maxDegree: 75
+  zoomSteps: 9
 --- !u!1 &1498164355
 GameObject:
   m_ObjectHideFlags: 0

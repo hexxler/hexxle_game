@@ -12,6 +12,7 @@ namespace Hexxle.Unity
     {
         IGameScore score;
         public TMP_Text pointsText;
+        public TMP_Text pointsGameOver;
         public Slider pointProgress;
 
         private float smoothPoints = 0;
@@ -31,6 +32,7 @@ namespace Hexxle.Unity
         void Update()
         {
             pointsText.text = GetPointsString();
+            pointsGameOver.text = CurrentPoints().ToString();
 
             pointProgress.value = smoothPoints;
             pointProgress.maxValue = smoothScoreThreshold;

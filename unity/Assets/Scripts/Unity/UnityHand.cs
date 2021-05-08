@@ -1,8 +1,8 @@
 ﻿using Hexxle.Interfaces;
 using Hexxle.Logic;
 using Hexxle.TileSystem;
+using Hexxle.Unity.Util;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -34,14 +34,21 @@ namespace Hexxle.Unity
             hand = new Hand(handSize, firstTiles);
         }
 
-        // Update is called once per frame
         void Update()
         {
-            if (changed)
+            if (hand.GetEmptySlots() < handSize)
             {
-                changed = false;
-                DeleteOldHand();
-                RenderNewHand();
+                if (changed)
+                {
+                    changed = false;
+                    DeleteOldHand();
+                    RenderNewHand();
+                }
+            }
+            else
+            {
+                // The hand is empty -> the stack is empty -> game over
+                GameObjectFinder.GameOverPanel.GetComponent<UnityGameOver>().InitGameOver();
             }
         }
 
@@ -68,7 +75,7 @@ namespace Hexxle.Unity
 
         public void FillHand()
         {
-            if(hand.GetEmptySlots() > 0)
+            if (hand.GetEmptySlots() > 0)
             {
                 int actualAmount = Math.Min(stack.Count(), hand.GetEmptySlots());
                 ITile[] tiles = new ITile[hand.GetEmptySlots()];

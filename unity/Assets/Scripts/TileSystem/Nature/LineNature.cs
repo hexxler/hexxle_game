@@ -18,13 +18,17 @@ namespace Hexxle.TileSystem.Nature
 
         public override IEnumerable<Coordinate> RelevantCoordinates(Coordinate coordinate, int rotation)
         {
-            var relevantCoordinates = new List<Coordinate>
+            IEnumerable<Coordinate> relevantCoordinates = new List<Coordinate>
             {
                 new Coordinate(coordinate.X - 1, coordinate.Y + 1, coordinate.Z),
                 new Coordinate(coordinate.X - 2, coordinate.Y + 2, coordinate.Z),
                 new Coordinate(coordinate.X + 1, coordinate.Y - 1, coordinate.Z),
                 new Coordinate(coordinate.X + 2, coordinate.Y - 2, coordinate.Z),
             };
+            if (rotation != 0)
+            {
+                relevantCoordinates = relevantCoordinates.Select(c => Coordinate.RotateRight(coordinate, c, rotation));
+            }
             return relevantCoordinates;
         }
     }

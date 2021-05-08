@@ -107,7 +107,7 @@ namespace Hexxle.Unity.Input
             }
         }
 
-        private void UpdateTiles()
+        public void UpdateTiles()
         {
             UpdateOldTile();
             SetHighlightedTiles();

@@ -104,6 +104,7 @@
     <Compile Include="Assets\Scripts\Unity\Input\EscapeEventHandler.cs" />
     <Compile Include="Assets\Scripts\Unity\Input\InputManager.cs" />
     <Compile Include="Assets\Scripts\Unity\Input\MouseEventsHandler.cs" />
+    <Compile Include="Assets\Scripts\Unity\Input\TileTurnEventHandler.cs" />
     <Compile Include="Assets\Scripts\Unity\SceneFadeManager.cs" />
     <Compile Include="Assets\Scripts\Unity\UnityCamera.cs" />
     <Compile Include="Assets\Scripts\Unity\UnityHand.cs" />

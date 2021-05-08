@@ -171,17 +171,19 @@ namespace Hexxle.TileSystem
         public int Rotation
         {
             get => _rotation;
-            set
-            {
-                _rotation += value;
-                _rotation %= 6;
-                TileChangedEvent?.Invoke();
-            }
         }
 
         public void RequestRemoval()
         {
             RemovalRequestedEvent?.Invoke(this.Coordinate);
+        }
+
+        public void Rotate(int rotation)
+        {
+            // modulo in C# is remainder and not classical modulo
+            int r = (_rotation + rotation) % 6;
+            _rotation = r < 0 ? r + 6 : r;
+            TileChangedEvent?.Invoke();
         }
 
         public override bool Equals(object obj)

@@ -52,6 +52,14 @@ public class @InputManager : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": ""Press""
+                },
+                {
+                    ""name"": ""TileRotation"",
+                    ""type"": ""Button"",
+                    ""id"": ""739c1198-77a4-44b4-994d-218c07dbf71e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -65,6 +73,39 @@ public class @InputManager : IInputActionCollection, IDisposable
                     ""action"": ""MouseClick"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""fd6991ff-bfcf-4939-b025-8661d325ef26"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TileRotation"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""02929407-8c47-489b-bfd8-c7351b1d8ce4"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and Mouse"",
+                    ""action"": ""TileRotation"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""37077ecf-ed43-43e0-b42c-4604e270a8cd"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and Mouse"",
+                    ""action"": ""TileRotation"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         },
@@ -249,6 +290,7 @@ public class @InputManager : IInputActionCollection, IDisposable
         // TilePlacement
         m_TilePlacement = asset.FindActionMap("TilePlacement", throwIfNotFound: true);
         m_TilePlacement_MouseClick = m_TilePlacement.FindAction("MouseClick", throwIfNotFound: true);
+        m_TilePlacement_TileRotation = m_TilePlacement.FindAction("TileRotation", throwIfNotFound: true);
         // CameraMovement
         m_CameraMovement = asset.FindActionMap("CameraMovement", throwIfNotFound: true);
         m_CameraMovement_Move = m_CameraMovement.FindAction("Move", throwIfNotFound: true);
@@ -336,11 +378,13 @@ public class @InputManager : IInputActionCollection, IDisposable
     private readonly InputActionMap m_TilePlacement;
     private ITilePlacementActions m_TilePlacementActionsCallbackInterface;
     private readonly InputAction m_TilePlacement_MouseClick;
+    private readonly InputAction m_TilePlacement_TileRotation;
     public struct TilePlacementActions
     {
         private @InputManager m_Wrapper;
         public TilePlacementActions(@InputManager wrapper) { m_Wrapper = wrapper; }
         public InputAction @MouseClick => m_Wrapper.m_TilePlacement_MouseClick;
+        public InputAction @TileRotation => m_Wrapper.m_TilePlacement_TileRotation;
         public InputActionMap Get() { return m_Wrapper.m_TilePlacement; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -353,6 +397,9 @@ public class @InputManager : IInputActionCollection, IDisposable
                 @MouseClick.started -= m_Wrapper.m_TilePlacementActionsCallbackInterface.OnMouseClick;
                 @MouseClick.performed -= m_Wrapper.m_TilePlacementActionsCallbackInterface.OnMouseClick;
                 @MouseClick.canceled -= m_Wrapper.m_TilePlacementActionsCallbackInterface.OnMouseClick;
+                @TileRotation.started -= m_Wrapper.m_TilePlacementActionsCallbackInterface.OnTileRotation;
+                @TileRotation.performed -= m_Wrapper.m_TilePlacementActionsCallbackInterface.OnTileRotation;
+                @TileRotation.canceled -= m_Wrapper.m_TilePlacementActionsCallbackInterface.OnTileRotation;
             }
             m_Wrapper.m_TilePlacementActionsCallbackInterface = instance;
             if (instance != null)
@@ -360,6 +407,9 @@ public class @InputManager : IInputActionCollection, IDisposable
                 @MouseClick.started += instance.OnMouseClick;
                 @MouseClick.performed += instance.OnMouseClick;
                 @MouseClick.canceled += instance.OnMouseClick;
+                @TileRotation.started += instance.OnTileRotation;
+                @TileRotation.performed += instance.OnTileRotation;
+                @TileRotation.canceled += instance.OnTileRotation;
             }
         }
     }
@@ -439,6 +489,7 @@ public class @InputManager : IInputActionCollection, IDisposable
     public interface ITilePlacementActions
     {
         void OnMouseClick(InputAction.CallbackContext context);
+        void OnTileRotation(InputAction.CallbackContext context);
     }
     public interface ICameraMovementActions
     {

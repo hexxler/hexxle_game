@@ -12,7 +12,7 @@ namespace Hexxle.Interfaces
         #endregion
         #region Data
         Coordinate Coordinate { get; set; }
-        int Rotation { get; set; }
+        int Rotation { get; }
         EState State { get; set; }
         ITileType Type { get; set; }
         ITileBehaviour Behaviour { get; set; }
@@ -20,6 +20,7 @@ namespace Hexxle.Interfaces
         #endregion
         #region Logic
         void RequestRemoval();
+        void Rotate(int rotation);
         #endregion
     }
 }

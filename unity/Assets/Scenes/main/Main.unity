@@ -3392,6 +3392,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6809322508351824425, guid: d9b4ce9b08976954e998d55880053095,
+        type: 3}
+      propertyPath: RotationSound.clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 0e4ff16fec53fb248bb809e9c2e7403d, type: 3}
+    - target: {fileID: 6809322508351824425, guid: d9b4ce9b08976954e998d55880053095,
+        type: 3}
+      propertyPath: RotationSound.pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6809322508351824425, guid: d9b4ce9b08976954e998d55880053095,
+        type: 3}
+      propertyPath: RotationSound.volume
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d9b4ce9b08976954e998d55880053095, type: 3}
 --- !u!1 &1876579102

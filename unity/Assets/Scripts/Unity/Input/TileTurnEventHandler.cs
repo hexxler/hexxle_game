@@ -44,7 +44,7 @@ namespace Hexxle.Unity.Input
                 _rotation = 0;
                 _buttonPressed = false;
                 GameObjectFinder.MouseEventLogic.UpdateTiles();
-                GameObjectFinder.AudioManager.Play(Audio.GameSoundTypes.POP);
+                GameObjectFinder.AudioManager.Play(Audio.GameSoundTypes.ROTATE);
             }
         }
 

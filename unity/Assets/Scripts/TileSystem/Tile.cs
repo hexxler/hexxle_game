@@ -202,9 +202,9 @@ namespace Hexxle.TileSystem
         {
             int hash = 17;
             int prime = 23;
-            hash = hash * prime + Behaviour.GetHashCode();
-            hash = hash * prime + Nature.GetHashCode();
-            hash = hash * prime + Type.GetHashCode();
+            hash = hash * prime + (Behaviour is ITileBehaviour ? Behaviour.GetHashCode() : 0);
+            hash = hash * prime + (Nature is ITileNature ? Nature.GetHashCode() : 0);
+            hash = hash * prime + (Type is ITileType ? Type.GetHashCode() : 0);
             hash = hash * prime + Coordinate.GetHashCode();
             return hash;
 

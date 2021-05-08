@@ -88,6 +88,7 @@
     <Compile Include="Assets\Scripts\TileSystem\EType.cs" />
     <Compile Include="Assets\Scripts\TileSystem\Nature\BaseTileNature.cs" />
     <Compile Include="Assets\Scripts\TileSystem\Nature\CircleNature.cs" />
+    <Compile Include="Assets\Scripts\TileSystem\Nature\LineNature.cs" />
     <Compile Include="Assets\Scripts\TileSystem\Nature\StarNature.cs" />
     <Compile Include="Assets\Scripts\TileSystem\RandomTileGenerator.cs" />
     <Compile Include="Assets\Scripts\TileSystem\Tile.cs" />

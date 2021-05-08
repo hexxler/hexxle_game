@@ -78,6 +78,9 @@ namespace Hexxle.TileSystem
                 case ENature.Star:
                     tileNature = new StarNature();
                     break;
+                case ENature.Line:
+                    tileNature = new LineNature();
+                    break;
                 case ENature.None:
                 default:
                     tileNature = null;

@@ -148,7 +148,7 @@ namespace Hexxle.Unity
             if(unityHand.IsTileSelected())
             {
                 ITile tile = unityHand.Peek();
-                return tile.Nature.RelevantCoordinates(coordinate).Where(coord => tileObjects.ContainsKey(coord)).Select(coord => tileObjects[coord]).ToList();
+                return tile.Nature.RelevantCoordinates(coordinate, tile.Rotation).Where(coord => tileObjects.ContainsKey(coord)).Select(coord => tileObjects[coord]).ToList();
             }
             return new List<GameObject>();
         }

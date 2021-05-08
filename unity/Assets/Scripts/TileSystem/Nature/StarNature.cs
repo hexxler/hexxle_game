@@ -14,10 +14,10 @@ namespace Hexxle.TileSystem.Nature
 
         public override int CalculateWeight()
         {
-            return RelevantCoordinates(new Coordinate()).Count();
+            return RelevantCoordinates(new Coordinate(), 0).Count();
         }
 
-        public override IEnumerable<Coordinate> RelevantCoordinates(Coordinate coordinate)
+        public override IEnumerable<Coordinate> RelevantCoordinates(Coordinate coordinate, int rotation)
         {
             var relevantCoordinates = coordinate.AdjacentCoordinates();
             relevantCoordinates = relevantCoordinates.Concat(new List<Coordinate>
@@ -29,6 +29,10 @@ namespace Hexxle.TileSystem.Nature
                 new Coordinate(coordinate.X - 1, coordinate.Y + 2, coordinate.Z - 1),
                 new Coordinate(coordinate.X - 2, coordinate.Y + 1, coordinate.Z + 1),
             });
+            if (rotation != 0)
+            {
+                relevantCoordinates = relevantCoordinates.Select(c => Coordinate.RotateRight(coordinate, c, rotation));
+            }
             return relevantCoordinates;
         }
     }

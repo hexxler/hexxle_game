@@ -10,6 +10,7 @@ namespace Hexxle.TileSystem
     public class Tile : ITile
     {
         private Coordinate _coordinate;
+        private int _rotation;
         private EState _state;
         private ITileType _type;
         private ITileBehaviour _behaviour;
@@ -160,6 +161,17 @@ namespace Hexxle.TileSystem
             set
             {
                 _coordinate = value;
+                TileChangedEvent?.Invoke();
+            }
+        }
+
+        public int Rotation
+        {
+            get => _rotation;
+            set
+            {
+                _rotation += value;
+                _rotation %= 6;
                 TileChangedEvent?.Invoke();
             }
         }

@@ -12,6 +12,7 @@ namespace Hexxle.Interfaces
         #endregion
         #region Data
         Coordinate Coordinate { get; set; }
+        int Rotation { get; set; }
         EState State { get; set; }
         ITileType Type { get; set; }
         ITileBehaviour Behaviour { get; set; }

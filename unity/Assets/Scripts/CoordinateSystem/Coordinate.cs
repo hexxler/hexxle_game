@@ -123,6 +123,82 @@ namespace Hexxle.CoordinateSystem
             return new Coordinate(roundedHex);
         }
 
+        public static Coordinate Mirror(Coordinate mirrorPoint, Coordinate coordinate)
+        {
+            Vector3 vectorMirrorFromCoordinate = new Vector3()
+            {
+                x = coordinate.X - mirrorPoint.X,
+                y = coordinate.Y - mirrorPoint.Y,
+                z = coordinate.Z - mirrorPoint.Z
+            };
+            Vector3 mirroredVector = -1 * vectorMirrorFromCoordinate;
+            return new Coordinate(mirrorPoint.X + mirroredVector.x, mirrorPoint.Y + mirroredVector.y, mirrorPoint.Z + mirroredVector.z);
+        }
+
+        public static Coordinate RotateRight(Coordinate center, Coordinate coordinate, int rotation)
+        {
+            Coordinate rotatedCoordinate;
+            if (rotation % 6 == 0)
+            {
+                rotatedCoordinate = coordinate;
+            }
+            else if (rotation < 0)
+            {
+                rotatedCoordinate = RotateLeft(center, coordinate, -1 * rotation);
+            } 
+            else
+            {
+                int actualRotation = rotation % 6;
+                // if rotation is bigger than or equal to 3, mirror first, then rotate the rest
+                if (actualRotation >= 3)
+                {
+                    Coordinate mirroredCoordinate = Mirror(center, coordinate);
+                    rotatedCoordinate = RotateRight(center, mirroredCoordinate, actualRotation - 3);
+                } 
+                else
+                {
+                    Vector3 vectorCenterToCoord = new Vector3()
+                    {
+                        x =  coordinate.X - center.X,
+                        y = coordinate.Y - center.Y,
+                        z = coordinate.Z - center.Z
+                    };
+                    Vector3 rotatedVector;
+                    // rotation is 1 or 2, rotate vector from center to coord by shifting X/Y/Z to the right
+                    if (actualRotation < 2)
+                    {
+                        rotatedVector = new Vector3(-vectorCenterToCoord.z, -vectorCenterToCoord.x, -vectorCenterToCoord.y);
+                    }
+                    else
+                    {
+                        rotatedVector = new Vector3(vectorCenterToCoord.y, vectorCenterToCoord.z, vectorCenterToCoord.x);
+                    }
+                    // add rotated vector to center
+                    rotatedCoordinate = new Coordinate(center.X + rotatedVector.x, center.Y + rotatedVector.y, center.Z + rotatedVector.z);
+                }
+            }
+            return rotatedCoordinate;
+        }
+
+        public static Coordinate RotateLeft(Coordinate center, Coordinate coordinate, int rotation)
+        {
+            Coordinate rotatedCoordinate;
+            if (rotation % 6 == 0)
+            {
+                rotatedCoordinate = coordinate;
+            }
+            else if (rotation < 0)
+            {
+                rotatedCoordinate = RotateRight(center, coordinate, -1 * rotation);
+            }
+            else
+            {
+                int rotationRight = 6 - (rotation % 6);
+                rotatedCoordinate = RotateRight(center, coordinate, rotationRight);
+            }
+            return rotatedCoordinate;
+        }
+
         public IEnumerable<Coordinate> AdjacentCoordinates()
         {
             var relevantCoordinates = new List<Coordinate>

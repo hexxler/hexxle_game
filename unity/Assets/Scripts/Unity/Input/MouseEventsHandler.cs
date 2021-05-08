@@ -93,7 +93,7 @@ namespace Hexxle.Unity.Input
         {
             if(highlightedTiles != null)
             {
-                highlightedTiles.ForEach(tile => tile.GetComponent<UnityTileHighlighter>().enabled = state);
+                highlightedTiles.ForEach(tile => tile.transform.GetChild(0).gameObject.GetComponent<UnityTileHighlighter>().enabled = state);
             }
         }
 

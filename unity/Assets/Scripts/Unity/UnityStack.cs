@@ -17,7 +17,7 @@ namespace Hexxle.Unity
         public GameObject Content;
         private List<GameObject> toDelete = new List<GameObject>();
         private ITileStack tileStack;
-        private int stackCount = 0;
+        private bool stackChanged = true;
 
         // Start is called before the first frame update
         void Start()
@@ -30,7 +30,7 @@ namespace Hexxle.Unity
         // Update is called once per frame
         void Update()
         {
-            if (stackCount != tileStack.Count())
+            if (stackChanged)
             {
                 RemoveOldStack();
                 DisplayStack();
@@ -39,6 +39,7 @@ namespace Hexxle.Unity
 
         public ITile GetTopTile()
         {
+            stackChanged = true;
             return tileStack.Pop();
         }
 
@@ -54,6 +55,7 @@ namespace Hexxle.Unity
 
         public void AddNewRandomTiles(int amount)
         {
+            stackChanged = true;
             tileStack.AddNewRandomTiles(amount);
         }
 
@@ -73,7 +75,7 @@ namespace Hexxle.Unity
                 newTile.GetComponent<RawImage>().texture = texture;
                 newTile.GetComponentInChildren<TMP_Text>().text = tile.Nature.Nature.ToString().Substring(0,2) +  "|" + tile.Behaviour.Behaviour.ToString().Substring(0,4);
             }
-            stackCount = tileStack.Count();
+            stackChanged = false;
         }
 
         private void RemoveOldStack()

@@ -5,6 +5,7 @@ using Hexxle.TileSystem;
 using UnityEngine;
 using Hexxle.Unity.Audio;
 using System.Linq;
+using System.Collections;
 using System.Collections.Generic;
 using Hexxle.TileSystem.Nature;
 using Hexxle.TileSystem.Behaviour;
@@ -106,6 +107,15 @@ namespace Hexxle.Unity
         public void OnTilePlaced(object sender, TileMapEventArgs<ITile> e)
         {
             ITile tile = e.Tile;
+            GameObject template = TileTemplate;
+            Material material;
+            material = materials[(int)e.Tile.Type.Type - 1];
+            StartCoroutine(PlaceTileDelayed(tile, template, material, CoordinateToPoint(tile.Coordinate), Quaternion.Euler(0, 0, 0), e.Tile.Type.Type));
+        }
+
+ /*       public void OnTilePlaced(object sender, TileMapEventArgs<ITile> e)
+        {
+            ITile tile = e.Tile;
             var newTileObject = Instantiate(
                     TileTemplate,
                     CoordinateToPoint(tile.Coordinate),
@@ -113,7 +123,7 @@ namespace Hexxle.Unity
                 );
             newTileObject.transform.parent = this.transform;
             tileObjects.Add(tile.Coordinate, newTileObject);
-        }
+        }*/
 
         public void OnTileRemoved(object sender, TileMapEventArgs<ITile> e)
         {
@@ -156,6 +166,24 @@ namespace Hexxle.Unity
                 return tile.Nature.RelevantCoordinates(coordinate).Where(coord => tileObjects.ContainsKey(coord)).Select(coord => tileObjects[coord]).ToList();
             }
             return new List<GameObject>();
+        }
+
+        IEnumerator PlaceTileDelayed(ITile tile, GameObject gameObject, Material material, Vector3 coordinate, Quaternion quaternion, EType type)
+        {
+            float wait_time = Random.Range(0f, 0.7f);
+            yield return new WaitForSeconds(wait_time);
+            gameObject.transform.Find("Hexagon_Template").GetComponent<MeshRenderer>().material = material;
+            var newTileObject = Instantiate(
+                    TileTemplate,
+                    CoordinateToPoint(tile.Coordinate),
+                    Quaternion.Euler(0, 0, 0)
+                );
+            if (type > EType.Void)
+            {
+                newTileObject.transform.Find("Hexagon_Template").tag = "Tile";
+            }
+            newTileObject.transform.parent = this.transform;
+            tileObjects.Add(tile.Coordinate, newTileObject);
         }
     }
 }

@@ -9,6 +9,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Hexxle.TileSystem.Nature;
 using Hexxle.TileSystem.Behaviour;
+using Hexxle.Unity.Util;
 
 namespace Hexxle.Unity
 {
@@ -37,9 +38,9 @@ namespace Hexxle.Unity
 
         private void Start()
         {
-            unityHand = GameObject.FindGameObjectWithTag("Hand").GetComponent<UnityHand>();
-            unityPoints = GameObject.FindGameObjectWithTag("Points").GetComponent<UnityPoints>();
-            unityPossiblePoints = GameObject.FindGameObjectWithTag("Points").GetComponent<UnityPossiblePoints>();
+            unityHand = GameObjectFinder.UnityHand;
+            unityPoints = GameObjectFinder.UnityPoints;
+            unityPossiblePoints = GameObjectFinder.UnityPossiblePoints;
             Coordinate start = new Coordinate();
             PlaceStartingTile(start);
         }
@@ -148,7 +149,7 @@ namespace Hexxle.Unity
             if(unityHand.IsTileSelected())
             {
                 ITile tile = unityHand.Peek();
-                return tile.Nature.RelevantCoordinates(coordinate).Where(coord => tileObjects.ContainsKey(coord)).Select(coord => tileObjects[coord]).ToList();
+                return tile.Nature.RelevantCoordinates(coordinate, tile.Rotation).Where(coord => tileObjects.ContainsKey(coord)).Select(coord => tileObjects[coord]).ToList();
             }
             return new List<GameObject>();
         }

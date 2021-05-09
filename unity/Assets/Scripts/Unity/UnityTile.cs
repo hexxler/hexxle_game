@@ -2,6 +2,7 @@
 using Hexxle.Interfaces;
 using Hexxle.TileSystem;
 using Hexxle.Unity.Util;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,8 +18,10 @@ namespace Hexxle.Unity
         #region Unity
         public Material[] materials;
         public GameObject[] natures;
-        public GameObject[] behaviour;     
+        public GameObject[] behaviour;
         #endregion
+
+        public event Action TileChangedEvent;
 
         // Start is called before the first frame update
         void Start()
@@ -37,6 +40,7 @@ namespace Hexxle.Unity
         {
             SetComponents();
 
+            TileChangedEvent?.Invoke();
         }
 
         private void SetBehaviour()

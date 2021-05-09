@@ -48,7 +48,7 @@ namespace Hexxle.Tests.TileSystem.Nature
                 new Coordinate(coordinate.X, coordinate.Y + 1, coordinate.Z - 1)
             });
 
-            actualCoordinates = tile.Nature.RelevantCoordinates(tile.Coordinate);
+            actualCoordinates = tile.Nature.RelevantCoordinates(tile.Coordinate, 0);
 
             foreach (Coordinate coord in actualCoordinates)
             {
@@ -66,7 +66,7 @@ namespace Hexxle.Tests.TileSystem.Nature
 
             expectedCoordinates = expectedCoordinates.Union(tile.Coordinate.AdjacentCoordinates());
 
-            actualCoordinates = tile.Nature.RelevantCoordinates(origin);
+            actualCoordinates = tile.Nature.RelevantCoordinates(origin, 0);
 
             foreach (Coordinate coord in actualCoordinates)
             {
@@ -93,7 +93,7 @@ namespace Hexxle.Tests.TileSystem.Nature
                 new Coordinate(coordinate.X - 2, coordinate.Y + 1, coordinate.Z + 1),
             });
 
-            actualCoordinates = tile.Nature.RelevantCoordinates(origin);
+            actualCoordinates = tile.Nature.RelevantCoordinates(origin, 0);
 
             foreach (Coordinate coord in actualCoordinates)
             {

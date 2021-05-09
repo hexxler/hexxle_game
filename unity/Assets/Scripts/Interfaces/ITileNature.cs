@@ -7,6 +7,6 @@ namespace Hexxle.Interfaces
     public interface ITileNature : IFunctionalValues
     {
         ENature Nature { get; }
-        IEnumerable<Coordinate> RelevantCoordinates(Coordinate coordinate);
+        IEnumerable<Coordinate> RelevantCoordinates(Coordinate coordinate, int rotation);
     }
 }

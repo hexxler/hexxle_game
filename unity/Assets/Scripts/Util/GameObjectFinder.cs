@@ -1,4 +1,5 @@
-﻿using Hexxle.Unity.Input;
+﻿using Hexxle.Unity.Audio;
+using Hexxle.Unity.Input;
 using UnityEngine;
 
 namespace Hexxle.Unity.Util
@@ -19,7 +20,11 @@ namespace Hexxle.Unity.Util
         public static GameObject Points => GameObject.FindGameObjectWithTag("Points");
 
         public static UnityMap UnityMap => GameObject.FindGameObjectWithTag("Map").GetComponent<UnityMap>();
-
+        public static UnityHand UnityHand => GameObject.FindGameObjectWithTag("Hand").GetComponent<UnityHand>();
+        public static UnityPoints UnityPoints => GameObject.FindGameObjectWithTag("Points").GetComponent<UnityPoints>();
+        public static UnityPossiblePoints UnityPossiblePoints => GameObject.FindGameObjectWithTag("Points").GetComponent<UnityPossiblePoints>();
         public static MouseEventsHandler MouseEventLogic => GameObject.Find("Game").GetComponent<MouseEventsHandler>();
+        public static TileTurnEventHandler TileTurnEventLogic => GameObject.Find("Game").GetComponent<TileTurnEventHandler>();
+        public static AudioManager AudioManager => Object.FindObjectOfType<AudioManager>();
     }
 }

@@ -14,7 +14,7 @@ namespace Hexxle.Logic
         }
         public void ApplyBehaviour(ITile tile)
         {
-            IEnumerable<Coordinate> relevantCoordinates = tile.Nature.RelevantCoordinates(tile.Coordinate);
+            IEnumerable<Coordinate> relevantCoordinates = tile.Nature.RelevantCoordinates(tile.Coordinate, tile.Rotation);
             foreach (Coordinate coordinate in relevantCoordinates)
             {
                 var otherTile = _map.GetTile(coordinate);
@@ -27,7 +27,7 @@ namespace Hexxle.Logic
 
         public int CalculatePoints(ITile tile)
         {
-            return tile.Nature.RelevantCoordinates(tile.Coordinate)
+            return tile.Nature.RelevantCoordinates(tile.Coordinate, tile.Rotation)
                 .Sum(coordinate => {
                     int points = 0;
                     var otherTile = _map.GetTile(coordinate);

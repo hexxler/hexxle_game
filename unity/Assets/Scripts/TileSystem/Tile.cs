@@ -10,6 +10,7 @@ namespace Hexxle.TileSystem
     public class Tile : ITile
     {
         private Coordinate _coordinate;
+        private int _rotation;
         private EState _state;
         private ITileType _type;
         private ITileBehaviour _behaviour;
@@ -76,6 +77,9 @@ namespace Hexxle.TileSystem
                     break;
                 case ENature.Star:
                     tileNature = new StarNature();
+                    break;
+                case ENature.Line:
+                    tileNature = new LineNature();
                     break;
                 case ENature.None:
                 default:
@@ -164,9 +168,22 @@ namespace Hexxle.TileSystem
             }
         }
 
+        public int Rotation
+        {
+            get => _rotation;
+        }
+
         public void RequestRemoval()
         {
             RemovalRequestedEvent?.Invoke(this.Coordinate);
+        }
+
+        public void Rotate(int rotation)
+        {
+            // modulo in C# is remainder and not classical modulo
+            int r = (_rotation + rotation) % 6;
+            _rotation = r < 0 ? r + 6 : r;
+            TileChangedEvent?.Invoke();
         }
 
         public override bool Equals(object obj)
@@ -187,9 +204,9 @@ namespace Hexxle.TileSystem
         {
             int hash = 17;
             int prime = 23;
-            hash = hash * prime + Behaviour.GetHashCode();
-            hash = hash * prime + Nature.GetHashCode();
-            hash = hash * prime + Type.GetHashCode();
+            hash = hash * prime + (Behaviour is ITileBehaviour ? Behaviour.GetHashCode() : 0);
+            hash = hash * prime + (Nature is ITileNature ? Nature.GetHashCode() : 0);
+            hash = hash * prime + (Type is ITileType ? Type.GetHashCode() : 0);
             hash = hash * prime + Coordinate.GetHashCode();
             return hash;
 

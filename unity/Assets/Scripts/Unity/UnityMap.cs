@@ -5,9 +5,11 @@ using Hexxle.TileSystem;
 using UnityEngine;
 using Hexxle.Unity.Audio;
 using System.Linq;
+using System.Collections;
 using System.Collections.Generic;
 using Hexxle.TileSystem.Nature;
 using Hexxle.TileSystem.Behaviour;
+using Hexxle.Unity.Util;
 
 namespace Hexxle.Unity
 {
@@ -36,9 +38,9 @@ namespace Hexxle.Unity
 
         private void Start()
         {
-            unityHand = GameObject.FindGameObjectWithTag("Hand").GetComponent<UnityHand>();
-            unityPoints = GameObject.FindGameObjectWithTag("Points").GetComponent<UnityPoints>();
-            unityPossiblePoints = GameObject.FindGameObjectWithTag("Points").GetComponent<UnityPossiblePoints>();
+            unityHand = GameObjectFinder.UnityHand;
+            unityPoints = GameObjectFinder.UnityPoints;
+            unityPossiblePoints = GameObjectFinder.UnityPossiblePoints;
             Coordinate start = new Coordinate();
             PlaceStartingTile(start);
         }
@@ -106,13 +108,7 @@ namespace Hexxle.Unity
         public void OnTilePlaced(object sender, TileMapEventArgs<ITile> e)
         {
             ITile tile = e.Tile;
-            var newTileObject = Instantiate(
-                    TileTemplate,
-                    CoordinateToPoint(tile.Coordinate),
-                    Quaternion.Euler(-90, 0, 0)
-                );
-            newTileObject.transform.parent = this.transform;
-            tileObjects.Add(tile.Coordinate, newTileObject);
+            StartCoroutine(PlaceTileDelayed(tile, e.Tile.Type.Type));
         }
 
         public void OnTileRemoved(object sender, TileMapEventArgs<ITile> e)
@@ -153,9 +149,26 @@ namespace Hexxle.Unity
             if(unityHand.IsTileSelected())
             {
                 ITile tile = unityHand.Peek();
-                return tile.Nature.RelevantCoordinates(coordinate).Where(coord => tileObjects.ContainsKey(coord)).Select(coord => tileObjects[coord]).ToList();
+                return tile.Nature.RelevantCoordinates(coordinate, tile.Rotation).Where(coord => tileObjects.ContainsKey(coord)).Select(coord => tileObjects[coord]).ToList();
             }
             return new List<GameObject>();
+        }
+
+        IEnumerator PlaceTileDelayed(ITile tile, EType type)
+        {
+            float wait_time = Random.Range(0f, 0.7f);
+            yield return new WaitForSeconds(wait_time);
+            var newTileObject = Instantiate(
+                    TileTemplate,
+                    CoordinateToPoint(tile.Coordinate),
+                    Quaternion.Euler(0, 0, 0)
+                );
+            if (type > EType.Void)
+            {
+                newTileObject.transform.Find("Hexagon_Template").tag = "Tile";
+            }
+            newTileObject.transform.parent = this.transform;
+            tileObjects.Add(tile.Coordinate, newTileObject);
         }
     }
 }

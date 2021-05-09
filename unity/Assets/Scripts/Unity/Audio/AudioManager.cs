@@ -11,6 +11,7 @@ namespace Hexxle.Unity.Audio
         public List<Sound> popSounds = new List<Sound>();
         public List<Sound> backgroundMusics = new List<Sound>();
         public Sound pauseSound;
+        public Sound RotationSound;
 
         void Awake()
         {
@@ -29,7 +30,7 @@ namespace Hexxle.Unity.Audio
 
             AddAudioSource(popSounds);
             AddAudioSource(backgroundMusics);
-            AddAudioSource(new List<Sound> { pauseSound });
+            AddAudioSource(new List<Sound> { pauseSound, RotationSound });
 
         }
 
@@ -58,6 +59,11 @@ namespace Hexxle.Unity.Audio
                         pauseSound.source.Play();
                         break;
                     }
+                case GameSoundTypes.ROTATE:
+                    {
+                        RotationSound.source.Play();
+                        break;
+                    }
             }
         }
 
@@ -78,6 +84,7 @@ namespace Hexxle.Unity.Audio
     {
         BACKGROUND,
         POP,
-        PAUSE
+        PAUSE,
+        ROTATE
     }
 }

@@ -1613,7 +1613,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f8c2ca7b474a3f499dc3167d20467b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TileTemplate: {fileID: 2805244402447506873, guid: a227d169e77e7a046bef9feb63c6df9a,
+  TileTemplate: {fileID: 779682454389121838, guid: d6f94a26f7b9b32419f004e85163b1af,
     type: 3}
   materials:
   - {fileID: 2100000, guid: a40dfeecfd8aba804960a7199c538c47, type: 2}
@@ -2929,6 +2929,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1405703742}
   - component: {fileID: 1405703741}
+  - component: {fileID: 1405703743}
   m_Layer: 0
   m_Name: Game
   m_TagString: Untagged
@@ -2966,6 +2967,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1405703743
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1405703740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2feb73d497b1a6f40a138ce76de65349, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1466212392
 GameObject:
   m_ObjectHideFlags: 0
@@ -3748,6 +3761,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6809322508351824425, guid: d9b4ce9b08976954e998d55880053095,
+        type: 3}
+      propertyPath: RotationSound.clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 0e4ff16fec53fb248bb809e9c2e7403d, type: 3}
+    - target: {fileID: 6809322508351824425, guid: d9b4ce9b08976954e998d55880053095,
+        type: 3}
+      propertyPath: RotationSound.pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6809322508351824425, guid: d9b4ce9b08976954e998d55880053095,
+        type: 3}
+      propertyPath: RotationSound.volume
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d9b4ce9b08976954e998d55880053095, type: 3}

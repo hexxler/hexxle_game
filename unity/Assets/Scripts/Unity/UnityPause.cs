@@ -7,9 +7,9 @@ public class UnityPause : MonoBehaviour
 {
     public void ResumeRound()
     {
-        // deactivate PausePanel
         GameObjectFinder.PausePanel.SetActive(false);
         GameObjectFinder.MouseEventLogic.enabled = true;
+        GameObjectFinder.TileTurnEventLogic.enabled = true;
     }
 
     public void ShowInfo()

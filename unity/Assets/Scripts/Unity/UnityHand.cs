@@ -21,6 +21,8 @@ namespace Hexxle.Unity
         private bool changed = true;
         private List<GameObject> renderedTiles = new List<GameObject>();
         public Texture[] textures;
+        public GameObject[] natures;
+        public GameObject[] behaviour;
 
         // Start is called before the first frame update
         void Start()
@@ -117,6 +119,45 @@ namespace Hexxle.Unity
                 renderedTiles.Add(newTile);
                 newTile.transform.SetParent(uiHand.transform, false);
                 newTile.GetComponent<RawImage>().texture = texture;
+
+                //Add Behaviour to Tile
+                if (tile != null)
+                {
+                    switch (tile.Behaviour.Behaviour)
+                    {
+                        case EBehaviour.Consumption:
+                            var consumptionBehaviourSprite = Instantiate(behaviour[(int)EBehaviour.Consumption]);
+                            consumptionBehaviourSprite.transform.SetParent(newTile.transform, false);
+                            consumptionBehaviourSprite.transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
+                            consumptionBehaviourSprite.transform.localPosition = new Vector3(0f, 0f, 0f);
+                            break;
+                        case EBehaviour.Conversion:
+                            var conversionBehaviourSprite = Instantiate(behaviour[(int)EBehaviour.Conversion]);
+                            conversionBehaviourSprite.transform.SetParent(newTile.transform, false);
+                            conversionBehaviourSprite.transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
+                            conversionBehaviourSprite.transform.localPosition = new Vector3(0f, 0f, 0f);
+                            break;
+                        default:
+                            break;
+                    }
+                }
+
+
+                //Add Nature to Tile
+                if (tile != null)
+                {
+                    switch (tile.Nature.Nature)
+                    {
+                        case ENature.Star:
+                            var starNatureSprite = Instantiate(natures[(int)ENature.Star]);
+                            starNatureSprite.transform.SetParent(this.transform, false);
+                            starNatureSprite.transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
+                            starNatureSprite.transform.localPosition = new Vector3(0f, 0f, 0f);
+                            break;
+                        default:
+                            break;
+                    }
+                }
 
                 // Add Button to Tile
                 Button button = Instantiate(buttonTemplate);

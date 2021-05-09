@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -610,7 +610,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 8
   m_TargetDisplay: 0
 --- !u!224 &93485867
 RectTransform:
@@ -4397,6 +4397,65 @@ PrefabInstance:
       propertyPath: uiHand
       value: 
       objectReference: {fileID: 1679872353}
+    - target: {fileID: 761444240723332417, guid: a01817a6c10233148bb1f6a4f4c3ac80,
+        type: 3}
+      propertyPath: tileTemplate
+      value: 
+      objectReference: {fileID: 6193378532239075593, guid: ed61596345b7ec948bbbea133a96caab,
+        type: 3}
+    - target: {fileID: 761444240723332417, guid: a01817a6c10233148bb1f6a4f4c3ac80,
+        type: 3}
+      propertyPath: natures.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 761444240723332417, guid: a01817a6c10233148bb1f6a4f4c3ac80,
+        type: 3}
+      propertyPath: behaviour.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 761444240723332417, guid: a01817a6c10233148bb1f6a4f4c3ac80,
+        type: 3}
+      propertyPath: natures.Array.data[2]
+      value: 
+      objectReference: {fileID: 9193321872785694779, guid: 008f0211c9265bf44b40b2f1ebb0b8e5,
+        type: 3}
+    - target: {fileID: 761444240723332417, guid: a01817a6c10233148bb1f6a4f4c3ac80,
+        type: 3}
+      propertyPath: textures.Array.data[2]
+      value: 
+      objectReference: {fileID: 2800000, guid: 343405974b97d8540aeea9e31a8534ff, type: 3}
+    - target: {fileID: 761444240723332417, guid: a01817a6c10233148bb1f6a4f4c3ac80,
+        type: 3}
+      propertyPath: textures.Array.data[3]
+      value: 
+      objectReference: {fileID: 2800000, guid: 4592eb6c1bf29c14c852f2aa21ac8883, type: 3}
+    - target: {fileID: 761444240723332417, guid: a01817a6c10233148bb1f6a4f4c3ac80,
+        type: 3}
+      propertyPath: textures.Array.data[4]
+      value: 
+      objectReference: {fileID: 2800000, guid: b4464ff497e001842a0931046b1baece, type: 3}
+    - target: {fileID: 761444240723332417, guid: a01817a6c10233148bb1f6a4f4c3ac80,
+        type: 3}
+      propertyPath: textures.Array.data[5]
+      value: 
+      objectReference: {fileID: 2800000, guid: d01647d426b867b48bf633c97c4e961e, type: 3}
+    - target: {fileID: 761444240723332417, guid: a01817a6c10233148bb1f6a4f4c3ac80,
+        type: 3}
+      propertyPath: textures.Array.data[6]
+      value: 
+      objectReference: {fileID: 2800000, guid: 7fd106dc884661a4da8299b3ab384f41, type: 3}
+    - target: {fileID: 761444240723332417, guid: a01817a6c10233148bb1f6a4f4c3ac80,
+        type: 3}
+      propertyPath: behaviour.Array.data[2]
+      value: 
+      objectReference: {fileID: 6808950456209749451, guid: 96d4f78ea4c974a4a9b82afb3fac37ab,
+        type: 3}
+    - target: {fileID: 761444240723332417, guid: a01817a6c10233148bb1f6a4f4c3ac80,
+        type: 3}
+      propertyPath: behaviour.Array.data[3]
+      value: 
+      objectReference: {fileID: 1821086210366392668, guid: c4ad6e3b404fc2e4c884428b4877694c,
+        type: 3}
     - target: {fileID: 761444240723332423, guid: a01817a6c10233148bb1f6a4f4c3ac80,
         type: 3}
       propertyPath: m_Name

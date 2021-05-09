@@ -75,14 +75,17 @@ namespace Hexxle.Unity
 
         public void FillHand()
         {
-            if (hand.GetEmptySlots() > 0)
+            int amountOfEmptySlots = hand.GetEmptySlots();
+            if (amountOfEmptySlots > 0 && stack.Count() > 0)
             {
-                int actualAmount = Math.Min(stack.Count(), hand.GetEmptySlots());
-                ITile[] tiles = new ITile[hand.GetEmptySlots()];
+                int actualAmount = Math.Min(stack.Count(), amountOfEmptySlots);
+                ITile[] tiles = new ITile[actualAmount];
                 for (int i = 0; i < actualAmount; i++)
                 {
                     tiles[i] = stack.GetTopTile();
                 }
+                hand.FillHand(tiles);
+                changed = true;
             }
         }
 

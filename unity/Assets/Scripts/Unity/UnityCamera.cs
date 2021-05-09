@@ -43,15 +43,18 @@ public class UnityCamera : MonoBehaviour
 
     private void ZoomCameraRotation(InputAction.CallbackContext context)
     {
-        int zoomDirection = context.ReadValue<Vector2>().y > 0 ? -1 : 1;
-
-        float newAngle = Camera.main.transform.rotation.eulerAngles.x + degreeStep * zoomDirection;
-
-        if (minDegree <= newAngle && newAngle <= maxDegree + degreeStep)
+        if (MayOperate())
         {
-            Camera.main.transform.Rotate(degreeStep * zoomDirection, 0, 0);
-            float newOrthographicSize = CalculateOrthographicSize(Camera.main.transform.rotation.eulerAngles.x);
-            Camera.main.orthographicSize = newOrthographicSize;
+            int zoomDirection = context.ReadValue<Vector2>().y > 0 ? -1 : 1;
+
+            float newAngle = Camera.main.transform.rotation.eulerAngles.x + degreeStep * zoomDirection;
+
+            if (minDegree <= newAngle && newAngle <= maxDegree + degreeStep)
+            {
+                Camera.main.transform.Rotate(degreeStep * zoomDirection, 0, 0);
+                float newOrthographicSize = CalculateOrthographicSize(Camera.main.transform.rotation.eulerAngles.x);
+                Camera.main.orthographicSize = newOrthographicSize;
+            }
         }
     }
 
@@ -73,11 +76,14 @@ public class UnityCamera : MonoBehaviour
 
     private void MoveCamera(InputAction.CallbackContext context)
     {
-        var moveVector = context.ReadValue<Vector2>();
-        direction.x = moveVector.x;
-        direction.z = moveVector.y;
-        if (context.performed) held = true;
-        if (context.canceled) held = false;
+        if (MayOperate())
+        {
+            var moveVector = context.ReadValue<Vector2>();
+            direction.x = moveVector.x;
+            direction.z = moveVector.y;
+            if (context.performed) held = true;
+            if (context.canceled) held = false;
+        }
     }
 
     private float CalculateOrthographicSize(float angleOnX)

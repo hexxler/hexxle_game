@@ -107,23 +107,8 @@ namespace Hexxle.Unity
         public void OnTilePlaced(object sender, TileMapEventArgs<ITile> e)
         {
             ITile tile = e.Tile;
-            GameObject template = TileTemplate;
-            Material material;
-            material = materials[(int)e.Tile.Type.Type - 1];
-            StartCoroutine(PlaceTileDelayed(tile, template, material, CoordinateToPoint(tile.Coordinate), Quaternion.Euler(0, 0, 0), e.Tile.Type.Type));
+            StartCoroutine(PlaceTileDelayed(tile, e.Tile.Type.Type));
         }
-
- /*       public void OnTilePlaced(object sender, TileMapEventArgs<ITile> e)
-        {
-            ITile tile = e.Tile;
-            var newTileObject = Instantiate(
-                    TileTemplate,
-                    CoordinateToPoint(tile.Coordinate),
-                    Quaternion.Euler(0, 0, 0)
-                );
-            newTileObject.transform.parent = this.transform;
-            tileObjects.Add(tile.Coordinate, newTileObject);
-        }*/
 
         public void OnTileRemoved(object sender, TileMapEventArgs<ITile> e)
         {
@@ -168,11 +153,10 @@ namespace Hexxle.Unity
             return new List<GameObject>();
         }
 
-        IEnumerator PlaceTileDelayed(ITile tile, GameObject gameObject, Material material, Vector3 coordinate, Quaternion quaternion, EType type)
+        IEnumerator PlaceTileDelayed(ITile tile, EType type)
         {
             float wait_time = Random.Range(0f, 0.7f);
             yield return new WaitForSeconds(wait_time);
-            gameObject.transform.Find("Hexagon_Template").GetComponent<MeshRenderer>().material = material;
             var newTileObject = Instantiate(
                     TileTemplate,
                     CoordinateToPoint(tile.Coordinate),

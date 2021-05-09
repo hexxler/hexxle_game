@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using Hexxle.Unity.Util;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -35,7 +34,7 @@ public class UnityCamera : MonoBehaviour
 
     private void Update()
     {
-        if (held) 
+        if (held && MayOperate())
         {
             Vector3 relative = Camera.main.transform.InverseTransformDirection(direction * moveSpeed * Time.deltaTime);
             Camera.main.transform.Translate(relative);
@@ -44,43 +43,56 @@ public class UnityCamera : MonoBehaviour
 
     private void ZoomCameraRotation(InputAction.CallbackContext context)
     {
-        int zoomDirection = context.ReadValue<Vector2>().y > 0 ? -1 : 1;
-
-        float newAngle = Camera.main.transform.rotation.eulerAngles.x + degreeStep * zoomDirection;
-
-        if (minDegree <= newAngle && newAngle <= maxDegree + degreeStep)
+        if (MayOperate())
         {
-            Camera.main.transform.Rotate(degreeStep * zoomDirection, 0, 0);
-            float newOrthographicSize = CalculateOrthographicSize(Camera.main.transform.rotation.eulerAngles.x);
-            Camera.main.orthographicSize = newOrthographicSize;
+            int zoomDirection = context.ReadValue<Vector2>().y > 0 ? -1 : 1;
+
+            float newAngle = Camera.main.transform.rotation.eulerAngles.x + degreeStep * zoomDirection;
+
+            if (minDegree <= newAngle && newAngle <= maxDegree + degreeStep)
+            {
+                Camera.main.transform.Rotate(degreeStep * zoomDirection, 0, 0);
+                float newOrthographicSize = CalculateOrthographicSize(Camera.main.transform.rotation.eulerAngles.x);
+                Camera.main.orthographicSize = newOrthographicSize;
+            }
         }
     }
 
     private void ZoomCameraDistance(InputAction.CallbackContext context)
     {
-        int zoomDirection = context.ReadValue<Vector2>().y > 0 ? -1 : 1;
-
-        float newAngle = Camera.main.transform.rotation.eulerAngles.x + degreeStep * zoomDirection;
-
-        if (minDegree <= newAngle && newAngle <= maxDegree)
+        if (MayOperate())
         {
-            Camera.main.transform.Rotate(degreeStep * zoomDirection, 0, 0);
-            float newOrthographicSize = CalculateOrthographicSize(Camera.main.transform.rotation.eulerAngles.x);
-            Camera.main.orthographicSize = newOrthographicSize;
+            int zoomDirection = context.ReadValue<Vector2>().y > 0 ? -1 : 1;
+            float newAngle = Camera.main.transform.rotation.eulerAngles.x + degreeStep * zoomDirection;
+
+            if (minDegree <= newAngle && newAngle <= maxDegree)
+            {
+                Camera.main.transform.Rotate(degreeStep * zoomDirection, 0, 0);
+                float newOrthographicSize = CalculateOrthographicSize(Camera.main.transform.rotation.eulerAngles.x);
+                Camera.main.orthographicSize = newOrthographicSize;
+            }
         }
     }
 
     private void MoveCamera(InputAction.CallbackContext context)
     {
-        var moveVector = context.ReadValue<Vector2>();
-        direction.x = moveVector.x;
-        direction.z = moveVector.y;
-        if (context.performed) held = true;
-        if (context.canceled) held = false;
+        if (MayOperate())
+        {
+            var moveVector = context.ReadValue<Vector2>();
+            direction.x = moveVector.x;
+            direction.z = moveVector.y;
+            if (context.performed) held = true;
+            if (context.canceled) held = false;
+        }
     }
 
     private float CalculateOrthographicSize(float angleOnX)
     {
         return (Camera.main.transform.position.y - tileplaneHeight) / Mathf.Cos(angleOnX * Mathf.Deg2Rad);
+    }
+
+    private bool MayOperate()
+    {
+        return !GameObjectFinder.PausePanel.activeSelf && !GameObjectFinder.GameOverPanel.activeSelf;
     }
 }

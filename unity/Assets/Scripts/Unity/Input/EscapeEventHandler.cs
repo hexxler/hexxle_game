@@ -37,7 +37,7 @@ namespace Hexxle.Unity.Input
             var pausePanel = GameObjectFinder.PausePanel;
             bool isPaused = pausePanel.activeSelf;
 
-            if (SceneManager.GetActiveScene().name.Equals("Main"))
+            if (SceneManager.GetActiveScene().name.Equals("Main") && !GameObjectFinder.GameOverPanel.activeSelf)
             {
                 // activate/deactivate PausePanel
                 GameObjectFinder.PausePanel.SetActive(!isPaused);
@@ -47,12 +47,6 @@ namespace Hexxle.Unity.Input
                 if (!isPaused)
                 {
                     FindObjectOfType<AudioManager>().Play(GameSoundTypes.PAUSE);
-                }
-
-                // enable/disable Buttons in UI
-                foreach (Button button in GameObjectFinder.UIPanel.GetComponentsInChildren<Button>())
-                {
-                    button.enabled = isPaused;
                 }
             }
         }

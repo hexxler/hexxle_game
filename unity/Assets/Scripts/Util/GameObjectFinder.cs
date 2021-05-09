@@ -14,6 +14,7 @@ namespace Hexxle.Unity.Util
         public static GameObject UIPanel => UICanvas.transform.GetChild(0).gameObject;
         public static GameObject PausePanel => PauseCanvas.transform.GetChild(0).gameObject;
         public static GameObject InfoPanel => PausePanel.transform.GetChild(3).gameObject;
+        public static GameObject GameOverPanel => PauseCanvas.transform.GetChild(1).gameObject;
 
         // Others
         public static GameObject Stack => GameObject.FindGameObjectWithTag("Stack");

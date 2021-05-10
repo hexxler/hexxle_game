@@ -1,8 +1,10 @@
 ﻿using Hexxle.Interfaces;
 using Hexxle.Logic;
+using Hexxle.TileSystem;
 using NUnit.Framework;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Hexxle.Tests.Logic
@@ -16,40 +18,31 @@ namespace Hexxle.Tests.Logic
         public void Setup()
         {
             stack = new TileStack();
+            stack.InitializeStack();
             randomTileGenerator = new RandomTileGenerator();
         }
 
         [Test]
         public void InitializeStackTest()
         {
-            stack.InitializeStack();
-            Assert.IsTrue(stack.Count() == 30);
+            ITileStack newStack = new TileStack();
+            newStack.InitializeStack();
+            Assert.IsTrue(newStack.Count() == 30);
         }
 
         [Test]
         public void PushTilesTest()
         {
-            newTilesList = new List<ITile>();
+            var newTilesList = new List<ITile>();
             var stackSize = stack.Count();
             for(int i = 0; i < 3; i++)
             {
-                newTilesList.Add(generateTile);
+                newTilesList.Add(generateTile());
             }
             var lastTile = newTilesList.Last();
             stack.PushTiles(newTilesList);
             Assert.AreEqual(lastTile, stack.Peek());
-            Assert.IsTrue(stack.Count() == (stackSize + 3))
-        }
-
-        [Test]
-        public void PushTest()
-        {
-            var stackSize = stack.Count();
-            var newTile = generateTile();
-            stack.Push(newTile);
-            Assert.AreEqual(newTile, stack.Peek());
-            Assert.IsTrue(stack.Count() == (stackSize + 1 ))
-
+            Assert.IsTrue(stack.Count() == (stackSize + 3));
         }
 
         [Test]
@@ -67,7 +60,7 @@ namespace Hexxle.Tests.Logic
         {
             var stackSize = stack.Count();
             var topTile = stack.Peek();
-            Assert.IsTrue(stackSize == stack.Count())
+            Assert.IsTrue(stackSize == stack.Count());
 
         }
 
@@ -77,7 +70,7 @@ namespace Hexxle.Tests.Logic
             var topTile = stack.Peek();
             var topTenTiles = stack.GetFirstTenTiles();
             Assert.IsTrue(topTenTiles.Count == 10);
-            Assert.AreEqual(topTile, topTenTiles.First());
+            Assert.AreEqual(topTile, topTenTiles.Last());
         }
 
         [Test]

@@ -75,18 +75,21 @@ namespace Hexxle.Unity
 
         public void SetComponents()
         {
-            bool isVoid = tile.Type.Type.Equals(EType.Void);
-            // Enable/disable collision
-            MeshCollider collider = GetComponent<MeshCollider>();
-            collider.enabled = isVoid ? true : false;
+            if (tile != null)
+            {
+                bool isVoid = tile.Type.Type.Equals(EType.Void);
+                // Enable/disable collision
+                MeshCollider collider = GetComponent<MeshCollider>();
+                collider.enabled = isVoid ? true : false;
 
-            // Assign tag
-            if (!isVoid) tag = "Tile";
+                // Assign tag
+                if (!isVoid) tag = "Tile";
 
-            // Assign material
-            MeshRenderer renderer = GetComponent<MeshRenderer>();
-            Material material = materials[(int)tile.Type.Type - 1];
-            renderer.material = material;
+                // Assign material
+                MeshRenderer renderer = GetComponent<MeshRenderer>();
+                Material material = materials[(int)tile.Type.Type - 1];
+                renderer.material = material;
+            }
         }
     }
 }

@@ -44,31 +44,48 @@ namespace Hexxle.Tests.Logic
         [Test]
         public void PushTest()
         {
+            var stackSize = stack.Count();
+            var newTile = generateTile();
+            stack.Push(newTile);
+            Assert.AreEqual(newTile, stack.Peek());
+            Assert.IsTrue(stack.Count() == (stackSize + 1 ))
 
         }
 
         [Test]
         public void PopTest()
         {
-
+            var stackSize = stack.Count();
+            var topTilePeek = stack.Peek();
+            var topTilePop = stack.Pop();
+            Assert.AreEqual(topTilePeek, topTilePop);
+            Assert.IsTrue((stackSize - 1) == stack.Count());
         }
 
         [Test]
         public void PeekTest()
         {
+            var stackSize = stack.Count();
+            var topTile = stack.Peek();
+            Assert.IsTrue(stackSize == stack.Count())
 
         }
 
         [Test]
         public void GetFirstTenTilesTest()
         {
-
+            var topTile = stack.Peek();
+            var topTenTiles = stack.GetFirstTenTiles();
+            Assert.IsTrue(topTenTiles.Count == 10);
+            Assert.AreEqual(topTile, topTenTiles.First());
         }
 
         [Test]
         public void AddNewRandomTilesTest()
         {
-
+            var stackSize = stack.Count();
+            stack.AddNewRandomTiles(6);
+            Assert.IsTrue((stackSize + 6) == stack.Count());
         }
 
         private ITile generateTile()

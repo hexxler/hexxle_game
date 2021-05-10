@@ -130,7 +130,7 @@ namespace Hexxle.Unity
         {
             if(unityHand.Peek() != null)
             {
-                if (map.GetTile(coordinate).Type.Type.Equals(EType.Void))
+                if (map.GetTile(coordinate) != null && map.GetTile(coordinate).Type.Type.Equals(EType.Void))
                 {
                     ITile tile = unityHand.Peek();
                     tile.Coordinate = coordinate;

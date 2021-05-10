@@ -46,7 +46,7 @@ namespace Hexxle.Unity
         private void SetBehaviour()
         {
             // Add Consumption Sprite
-            if (tile.Behaviour != null && tile.Behaviour.Behaviour == EBehaviour.Consumption)
+            if (tile != null && tile.Behaviour != null && tile.Behaviour.Behaviour == EBehaviour.Consumption)
             {
                 var consumptionBehaviourSprite = Instantiate(behaviour[(int)EBehaviour.Consumption]);
                 consumptionBehaviourSprite.transform.SetParent(this.transform, false);
@@ -54,7 +54,7 @@ namespace Hexxle.Unity
             }
 
             // Add Conversion Sprite
-            if (tile.Behaviour != null && tile.Behaviour.Behaviour == EBehaviour.Conversion)
+            if (tile != null && tile.Behaviour != null && tile.Behaviour.Behaviour == EBehaviour.Conversion)
             {
                 var conversionBehaviourSprite = Instantiate(behaviour[(int)EBehaviour.Conversion]);
                 conversionBehaviourSprite.transform.SetParent(this.transform, false);
@@ -65,7 +65,7 @@ namespace Hexxle.Unity
         private void SetNature()
         {
             // Add Star Sprite
-            if (tile.Nature != null && tile.Nature.Nature == ENature.Star)
+            if (tile != null && tile.Nature != null && tile.Nature.Nature == ENature.Star)
             {
                 var starNatureSprite = Instantiate(natures[(int)ENature.Star]);
                 starNatureSprite.transform.SetParent(this.transform, false);
@@ -75,18 +75,21 @@ namespace Hexxle.Unity
 
         public void SetComponents()
         {
-            bool isVoid = tile.Type.Type.Equals(EType.Void);
-            // Enable/disable collision
-            MeshCollider collider = GetComponent<MeshCollider>();
-            collider.enabled = isVoid ? true : false;
+            if (tile != null)
+            {
+                bool isVoid = tile.Type.Type.Equals(EType.Void);
+                // Enable/disable collision
+                MeshCollider collider = GetComponent<MeshCollider>();
+                collider.enabled = isVoid ? true : false;
 
-            // Assign tag
-            if (!isVoid) tag = "Tile";
+                // Assign tag
+                if (!isVoid) tag = "Tile";
 
-            // Assign material
-            MeshRenderer renderer = GetComponent<MeshRenderer>();
-            Material material = materials[(int)tile.Type.Type - 1];
-            renderer.material = material;
+                // Assign material
+                MeshRenderer renderer = GetComponent<MeshRenderer>();
+                Material material = materials[(int)tile.Type.Type - 1];
+                renderer.material = material;
+            }
         }
     }
 }

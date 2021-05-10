@@ -3,22 +3,30 @@ using UnityEngine.InputSystem;
 using Hexxle.Unity.Util;
 using Hexxle.CoordinateSystem;
 using System.Collections.Generic;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 namespace Hexxle.Unity.Input
 {
     public class MouseEventsHandler : MonoBehaviour
     {
-        GameObject oldTile;
-        GameObject currentCollisionTile;
-        InputManager inputManager;
+        private GameObject oldTile;
+        private GameObject currentCollisionTile;
+        private InputManager inputManager;
         private bool isMouseOverTile;
-        List<GameObject> highlightedTiles;
+        private List<GameObject> highlightedTiles;
+
+        private GraphicRaycaster graphicsRaycaster;
+        private PointerEventData pointerEventData;
 
         private void Awake()
         {
             oldTile = null;
             currentCollisionTile = null;
             inputManager = new InputManager();
+
+            graphicsRaycaster = GameObjectFinder.UICanvas.GetComponent<GraphicRaycaster>();
+            pointerEventData = new PointerEventData(EventSystem.current);
         }
 
 
@@ -45,12 +53,18 @@ namespace Hexxle.Unity.Input
 
         // Update is called once per frame
         void Update()
-        {   
+        {
             if(Mouse.current != null)
             {
                 var vec = Mouse.current.position.ReadValue();
                 Ray ray = Camera.main.ScreenPointToRay(new Vector3(vec.x, vec.y, 0));
-                if (Physics.Raycast(ray, out RaycastHit hit))
+
+                pointerEventData.position = vec;
+                List<RaycastResult> reults = new List<RaycastResult>();
+                graphicsRaycaster.Raycast(pointerEventData, reults);
+
+                // If reults contains elements, it means that there's UI between the game field and the mouse
+                if (Physics.Raycast(ray, out RaycastHit hit) && reults.Count == 0)
                 {
                     if (!hit.collider.gameObject.Equals(currentCollisionTile))
                     {
@@ -93,7 +107,7 @@ namespace Hexxle.Unity.Input
         {
             if(highlightedTiles != null)
             {
-                highlightedTiles.ForEach(tile => tile.GetComponent<UnityTileHighlighter>().enabled = state);
+                highlightedTiles.ForEach(tile => tile.transform.GetChild(0).gameObject.GetComponent<UnityTileHighlighter>().enabled = state);
             }
         }
 
@@ -107,7 +121,7 @@ namespace Hexxle.Unity.Input
             }
         }
 
-        private void UpdateTiles()
+        public void UpdateTiles()
         {
             UpdateOldTile();
             SetHighlightedTiles();
@@ -132,7 +146,7 @@ namespace Hexxle.Unity.Input
 
         private void MouseClickAction()
         {
-            if(isMouseOverTile && currentCollisionTile != null && currentCollisionTile.CompareTag("Void"))
+            if (isMouseOverTile && currentCollisionTile != null && currentCollisionTile.CompareTag("Void"))
             {
                 UnityMap unityMap = GameObjectFinder.UnityMap;
                 Coordinate coordinate = unityMap.PointToCoordinate(currentCollisionTile.transform.position);

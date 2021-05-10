@@ -10,6 +10,7 @@ namespace Hexxle.TileSystem
     public class Tile : ITile
     {
         private Coordinate _coordinate;
+        private int _rotation;
         private EState _state;
         private ITileType _type;
         private ITileBehaviour _behaviour;
@@ -33,7 +34,18 @@ namespace Hexxle.TileSystem
             return tile;
         }
 
-        private static ITileBehaviour CreateBehaviour(EBehaviour behaviour)
+        public static Tile CreateInstance(EState state, ITileType type, ITileNature nature, ITileBehaviour behaviour)
+        {
+            Tile tile = new Tile();
+            tile.State = state;
+            tile.Type = type;
+            tile.Nature = nature;
+            tile.Behaviour = behaviour;
+            return tile;
+        }
+
+
+        public static ITileBehaviour CreateBehaviour(EBehaviour behaviour)
         {
             ITileBehaviour tileBehaviour;
             switch (behaviour)
@@ -55,7 +67,7 @@ namespace Hexxle.TileSystem
             return tileBehaviour;
         }
 
-        private static ITileNature CreateNature(ENature nature)
+        public static ITileNature CreateNature(ENature nature)
         {
             ITileNature tileNature;
             switch (nature)
@@ -66,6 +78,9 @@ namespace Hexxle.TileSystem
                 case ENature.Star:
                     tileNature = new StarNature();
                     break;
+                case ENature.Line:
+                    tileNature = new LineNature();
+                    break;
                 case ENature.None:
                 default:
                     tileNature = null;
@@ -74,7 +89,7 @@ namespace Hexxle.TileSystem
             return tileNature;
         }
 
-        private static ITileType CreateType(EType type)
+        public static ITileType CreateType(EType type)
         {
             ITileType tileType;
             switch (type)
@@ -153,9 +168,53 @@ namespace Hexxle.TileSystem
             }
         }
 
+        public int Rotation
+        {
+            get => _rotation;
+        }
+
         public void RequestRemoval()
         {
             RemovalRequestedEvent?.Invoke(this.Coordinate);
+        }
+
+        public void Rotate(int rotation)
+        {
+            // modulo in C# is remainder and not classical modulo
+            int r = (_rotation + rotation) % 6;
+            _rotation = r < 0 ? r + 6 : r;
+            TileChangedEvent?.Invoke();
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is Tile tile && tile.Behaviour != null && tile.Nature != null && tile.Type != null)
+            {
+                return this.Behaviour.Behaviour.Equals(tile.Behaviour.Behaviour)
+                    && this.Nature.Nature.Equals(tile.Nature.Nature)
+                    && this.Type.Type.Equals(tile.Type.Type);
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public override int GetHashCode()
+        {
+            int hash = 17;
+            int prime = 23;
+            hash = hash * prime + (Behaviour is ITileBehaviour ? Behaviour.GetHashCode() : 0);
+            hash = hash * prime + (Nature is ITileNature ? Nature.GetHashCode() : 0);
+            hash = hash * prime + (Type is ITileType ? Type.GetHashCode() : 0);
+            hash = hash * prime + Coordinate.GetHashCode();
+            return hash;
+
+        }
+
+        public override string ToString()
+        {
+            return "B: " + Behaviour + " N: " + Nature + " T: " + Type;
         }
     }
 }

@@ -12,6 +12,7 @@ namespace Hexxle.TileSystem.Nature
     {
         public abstract ENature Nature { get; }
 
-        public abstract IEnumerable<Coordinate> RelevantCoordinates(Coordinate coordinate);
+        public abstract int CalculateWeight();
+        public abstract IEnumerable<Coordinate> RelevantCoordinates(Coordinate coordinate, int rotation);
     }
 }

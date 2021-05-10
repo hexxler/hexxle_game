@@ -74,5 +74,10 @@ namespace Hexxle.TileSystem.Type
                     yellow
                 };
         }
+
+        public int CalculateWeight()
+        { 
+            return TileRelationship(this.Type).Sum(x => Math.Abs(x));
+        }
     }
 }

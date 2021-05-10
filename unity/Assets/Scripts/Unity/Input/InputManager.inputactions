@@ -39,6 +39,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "Press"
+                },
+                {
+                    "name": "TileRotation",
+                    "type": "Button",
+                    "id": "739c1198-77a4-44b4-994d-218c07dbf71e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -52,6 +60,39 @@
                     "action": "MouseClick",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "1D Axis",
+                    "id": "fd6991ff-bfcf-4939-b025-8661d325ef26",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TileRotation",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "positive",
+                    "id": "02929407-8c47-489b-bfd8-c7351b1d8ce4",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard and Mouse",
+                    "action": "TileRotation",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "negative",
+                    "id": "37077ecf-ed43-43e0-b42c-4604e270a8cd",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard and Mouse",
+                    "action": "TileRotation",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         },

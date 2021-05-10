@@ -65,6 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\CoordinateSystem\Coordinate.cs" />
+    <Compile Include="Assets\Scripts\Interfaces\IFunctionalValues.cs" />
     <Compile Include="Assets\Scripts\Interfaces\IGameScore.cs" />
     <Compile Include="Assets\Scripts\Interfaces\ITile.cs" />
     <Compile Include="Assets\Scripts\Interfaces\ITileBehaviour.cs" />
@@ -87,7 +88,9 @@
     <Compile Include="Assets\Scripts\TileSystem\EType.cs" />
     <Compile Include="Assets\Scripts\TileSystem\Nature\BaseTileNature.cs" />
     <Compile Include="Assets\Scripts\TileSystem\Nature\CircleNature.cs" />
+    <Compile Include="Assets\Scripts\TileSystem\Nature\LineNature.cs" />
     <Compile Include="Assets\Scripts\TileSystem\Nature\StarNature.cs" />
+    <Compile Include="Assets\Scripts\TileSystem\RandomTileGenerator.cs" />
     <Compile Include="Assets\Scripts\TileSystem\Tile.cs" />
     <Compile Include="Assets\Scripts\TileSystem\Type\BaseTileType.cs" />
     <Compile Include="Assets\Scripts\TileSystem\Type\BlueType.cs" />
@@ -101,6 +104,7 @@
     <Compile Include="Assets\Scripts\Unity\Input\EscapeEventHandler.cs" />
     <Compile Include="Assets\Scripts\Unity\Input\InputManager.cs" />
     <Compile Include="Assets\Scripts\Unity\Input\MouseEventsHandler.cs" />
+    <Compile Include="Assets\Scripts\Unity\Input\TileTurnEventHandler.cs" />
     <Compile Include="Assets\Scripts\Unity\SceneFadeManager.cs" />
     <Compile Include="Assets\Scripts\Unity\UnityCamera.cs" />
     <Compile Include="Assets\Scripts\Unity\UnityHand.cs" />
@@ -310,8 +314,23 @@
     <Reference Include="UnityEditor.WebGL.Extensions">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.22f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEditor.Android.Extensions">
+      <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.22f1/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.UWP.Extensions">
+      <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.22f1/Editor/Data/PlaybackEngines/MetroSupport/UnityEditor.UWP.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.iOS.Extensions">
+      <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.22f1/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.dll</HintPath>
+    </Reference>
     <Reference Include="SyntaxTree.VisualStudio.Unity.Bridge">
       <HintPath>C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/16.0/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.iOS.Extensions.Xcode">
+      <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.22f1/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.iOS.Extensions.Common">
+      <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.22f1/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Common.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.22f1/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>
@@ -658,23 +677,20 @@
     <Reference Include="System.Xml.Serialization">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.22f1/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.Xml.Serialization.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.InputSystem">
+      <HintPath>E:/Exchange/ZHAW/FS2021/PSIT4/Hexxle/hexxle_game/unity/Library/ScriptAssemblies/Unity.InputSystem.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.TextMeshPro">
+      <HintPath>E:/Exchange/ZHAW/FS2021/PSIT4/Hexxle/hexxle_game/unity/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEditor.UI">
-      <HintPath>C:/Users/ricar/Documents/GitHub/hexxle_game/unity/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+      <HintPath>E:/Exchange/ZHAW/FS2021/PSIT4/Hexxle/hexxle_game/unity/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>C:/Users/ricar/Documents/GitHub/hexxle_game/unity/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+      <HintPath>E:/Exchange/ZHAW/FS2021/PSIT4/Hexxle/hexxle_game/unity/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="Unity.InputSystem.csproj">
-      <Project>{720346F4-F464-B896-D392-0281C0555DA6}</Project>
-      <Name>Unity.InputSystem</Name>
-    </ProjectReference>
-    <ProjectReference Include="Unity.TextMeshPro.csproj">
-      <Project>{0EC6B5F2-0218-AE7B-3C70-1901B4B53FF9}</Project>
-      <Name>Unity.TextMeshPro</Name>
-    </ProjectReference>
-  </ItemGroup>
+  <ItemGroup></ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

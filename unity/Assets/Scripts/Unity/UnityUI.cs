@@ -12,15 +12,10 @@ namespace Hexxle.Unity
             // activate PausePanel
             GameObjectFinder.PausePanel.SetActive(true);
             GameObjectFinder.MouseEventLogic.enabled = false;
+            GameObjectFinder.TileTurnEventLogic.enabled = false;
 
             // play soundeffect
             FindObjectOfType<AudioManager>().Play(GameSoundTypes.PAUSE);
-
-            // disable Buttons in UI
-            foreach (Button button in GameObjectFinder.UIPanel.GetComponentsInChildren<Button>())
-            {
-                button.enabled = false;
-            }
         }
     }
 }

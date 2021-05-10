@@ -2,7 +2,7 @@
 
 namespace Hexxle.Interfaces
 {
-    public interface ITileBehaviour
+    public interface ITileBehaviour : IFunctionalValues
     {
         EBehaviour Behaviour { get; }
         void ApplyBehaviour(ITile originalTile, ITile otherTile);

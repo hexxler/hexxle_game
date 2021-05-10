@@ -18,5 +18,10 @@ namespace Hexxle.TileSystem.Behaviour
                 otherTile.Type = (ITileType)Activator.CreateInstance(originalTile.Type.GetType());
             }
         }
+
+        public int CalculateWeight()
+        {
+            return 6;
+        }
     }
 }

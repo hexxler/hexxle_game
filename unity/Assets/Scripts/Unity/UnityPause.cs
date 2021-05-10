@@ -7,15 +7,9 @@ public class UnityPause : MonoBehaviour
 {
     public void ResumeRound()
     {
-        // deactivate PausePanel
         GameObjectFinder.PausePanel.SetActive(false);
         GameObjectFinder.MouseEventLogic.enabled = true;
-
-        // enable Buttons in UI
-        foreach (Button button in GameObjectFinder.UIPanel.GetComponentsInChildren<Button>())
-        {
-            button.enabled = true;
-        }
+        GameObjectFinder.TileTurnEventLogic.enabled = true;
     }
 
     public void ShowInfo()

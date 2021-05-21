@@ -12,6 +12,10 @@ namespace Hexxle.Unity.Audio
         public List<Sound> backgroundMusics = new List<Sound>();
         public Sound pauseSound;
         public Sound RotationSound;
+        public enum AudioChannel {Music, Sfx};
+        public float musicVolumePercent { get; private set; } = 0.5f;
+        public float sfxVolumePercent { get; private set; } = 0.5f;
+
 
         void Awake()
         {
@@ -64,6 +68,21 @@ namespace Hexxle.Unity.Audio
                         RotationSound.source.Play();
                         break;
                     }
+            }
+        }
+
+        public void SetVolume(float value, AudioChannel channel)
+        {
+            switch(channel)
+            {
+                case AudioChannel.Music:
+                    musicVolumePercent = value;
+                    break;
+                case AudioChannel.Sfx:
+                    sfxVolumePercent = value;
+                    break;
+                default:
+                    break;
             }
         }
 

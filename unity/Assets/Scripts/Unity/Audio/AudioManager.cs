@@ -13,8 +13,8 @@ namespace Hexxle.Unity.Audio
         public Sound pauseSound;
         public Sound RotationSound;
         public enum AudioChannel {Music, Sfx};
-        public float musicVolumePercent { get; private set; } = 0.5f;
-        public float sfxVolumePercent { get; private set; } = 0.5f;
+        public float musicVolumePercent { get; private set; } = 0.4f;
+        public float sfxVolumePercent { get; private set; } = 0.4f;
 
 
         void Awake()
@@ -32,9 +32,24 @@ namespace Hexxle.Unity.Audio
 
             DontDestroyOnLoad(gameObject);
 
-            AddAudioSource(popSounds);
-            AddAudioSource(backgroundMusics);
-            AddAudioSource(new List<Sound> { pauseSound, RotationSound });
+            AddAudioSource(popSounds, sfxVolumePercent);
+            AddAudioSource(backgroundMusics, musicVolumePercent);
+            AddAudioSource(new List<Sound> { pauseSound, RotationSound }, sfxVolumePercent);
+
+            
+
+            foreach (Sound s in backgroundMusics)
+            {
+                s.source.volume = musicVolumePercent;
+            }
+
+            foreach (Sound s in popSounds)
+            {
+                s.source.volume = sfxVolumePercent;
+            }
+
+            pauseSound.source.volume = sfxVolumePercent;
+            RotationSound.source.volume = sfxVolumePercent;
 
         }
 
@@ -84,15 +99,33 @@ namespace Hexxle.Unity.Audio
                 default:
                     break;
             }
+
+            foreach(Sound s in backgroundMusics)
+            {
+                s.source.volume = musicVolumePercent;
+            }
+
+            foreach (Sound s in popSounds)
+            {
+                s.source.volume = sfxVolumePercent;
+            }
+
+            pauseSound.source.volume = sfxVolumePercent;
+            RotationSound.source.volume = sfxVolumePercent;
+
+            if(channel.Equals(AudioChannel.Sfx))
+            {
+                popSounds[rnd.Next(popSounds.Count)].source.Play();
+            }
         }
 
-        private void AddAudioSource(List<Sound> sounds)
+        private void AddAudioSource(List<Sound> sounds, float volume)
         {
             foreach (Sound s in sounds)
             {
                 s.source = gameObject.AddComponent<AudioSource>();
                 s.source.clip = s.clip;
-                s.source.volume = s.volume;
+                s.source.volume = volume;
                 s.source.pitch = s.pitch;
                 s.source.loop = s.loop;
             }

@@ -17,6 +17,7 @@ namespace Hexxle.Unity
             VolumeSlider[1].value = AudioManager.instance.sfxVolumePercent;
         }
 
+
         public void SetMusicVolume(float value)
         {
             AudioManager.instance.SetVolume(value, AudioManager.AudioChannel.Music);

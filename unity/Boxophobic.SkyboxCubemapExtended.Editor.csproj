@@ -9,10 +9,10 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{C1B9863B-B2A8-6A84-855C-CB82904FAD06}</ProjectGuid>
+    <ProjectGuid>{F1C02F03-96EC-7446-B0A0-2D15DCB6103E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <AssemblyName>Unity.VSCode.Editor</AssemblyName>
+    <AssemblyName>Boxophobic.SkyboxCubemapExtended.Editor</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <BaseDirectory>.</BaseDirectory>
@@ -64,14 +64,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Library\PackageCache\com.unity.ide.vscode@1.2.3\Editor\ProjectGeneration\AssemblyNameProvider.cs" />
-    <Compile Include="Library\PackageCache\com.unity.ide.vscode@1.2.3\Editor\ProjectGeneration\FileIO.cs" />
-    <Compile Include="Library\PackageCache\com.unity.ide.vscode@1.2.3\Editor\ProjectGeneration\GUIDGenerator.cs" />
-    <Compile Include="Library\PackageCache\com.unity.ide.vscode@1.2.3\Editor\ProjectGeneration\ProjectGeneration.cs" />
-    <Compile Include="Library\PackageCache\com.unity.ide.vscode@1.2.3\Editor\ProjectGeneration\ProjectGenerationFlag.cs" />
-    <Compile Include="Library\PackageCache\com.unity.ide.vscode@1.2.3\Editor\VSCodeDiscovery.cs" />
-    <Compile Include="Library\PackageCache\com.unity.ide.vscode@1.2.3\Editor\VSCodeScriptEditor.cs" />
-    <None Include="Library\PackageCache\com.unity.ide.vscode@1.2.3\Editor\Unity.com.unity.vscode.Editor.asmdef" />
+    <Compile Include="Assets\BOXOPHOBIC\Skybox Cubemap Extended\Core\Editor\SkyboxExtendedHub.cs" />
+    <Compile Include="Assets\BOXOPHOBIC\Skybox Cubemap Extended\Core\Editor\SkyboxExtendedShaderGUI.cs" />
+    <Compile Include="Assets\BOXOPHOBIC\Skybox Cubemap Extended\Core\Editor\SkyboxExtendedWindows.cs" />
+    <None Include="Assets\BOXOPHOBIC\Skybox Cubemap Extended\Core\Editor\Boxophobic.SkyboxCubemapExtended.Editor.asmdef" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.22f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
@@ -638,6 +634,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="Boxophobic.Utils.Editor.csproj">
+      <Project>{937BD6A4-FCD6-5FBE-EFC2-62768EBCA806}</Project>
+      <Name>Boxophobic.Utils.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Boxophobic.Utils.Scripts.csproj">
+      <Project>{F571C498-5615-4156-70F1-51A137551C2A}</Project>
+      <Name>Boxophobic.Utils.Scripts</Name>
+    </ProjectReference>
     <ProjectReference Include="UnityEditor.TestRunner.csproj">
       <Project>{00FA63EE-66F3-34A4-D434-A87722E49AF8}</Project>
       <Name>UnityEditor.TestRunner</Name>

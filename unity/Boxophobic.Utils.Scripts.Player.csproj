@@ -5,9 +5,9 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{52318AC8-86D4-14E4-F27A-264BF30FDDEE}</ProjectGuid>
+    <ProjectGuid>{07773055-53F6-8A9B-1013-AEA34C94B7A3}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <AssemblyName>PlayMode</AssemblyName>
+    <AssemblyName>Boxophobic.Utils.Scripts</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
@@ -53,21 +53,6 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="UnityEngine.TestRunner">
-      <HintPath>Library/ScriptAssemblies/UnityEngine.TestRunner.dll</HintPath>
-    </Reference>
-    <Reference Include="Scripts">
-      <HintPath>Library/ScriptAssemblies/Scripts.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.InputSystem">
-      <HintPath>Library/ScriptAssemblies/Unity.InputSystem.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.InputSystem.TestFramework">
-      <HintPath>Library/ScriptAssemblies/Unity.InputSystem.TestFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.TextMeshPro">
-      <HintPath>Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>
@@ -245,14 +230,8 @@
     <Reference Include="UnityEngine.XRModule">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.22f1/Editor/Data/PlaybackEngines/WebGLSupport/Managed/UnityEngine.XRModule.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEditor.TestRunner">
-      <HintPath>Library/ScriptAssemblies/UnityEditor.TestRunner.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEditor.UI">
       <HintPath>Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="nunit.framework">
-      <HintPath>C:/Users/ricar/Documents/GitHub/hexxle_game/unity/Library/PackageCache/com.unity.ext.nunit@1.0.6/net35/unity-custom/nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2019.4.22f1\Editor\Data\NetStandard\ref\2.0.0\netstandard.dll</HintPath>
@@ -601,15 +580,24 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Tests\PlayMode\Unity\AudioManagerTests.cs" />
-    <Compile Include="Assets\Tests\PlayMode\Unity\CameraMovementTests.cs" />
-    <Compile Include="Assets\Tests\PlayMode\Unity\EscPauseMenuTests.cs" />
-    <Compile Include="Assets\Tests\PlayMode\Unity\PossibleScoreTests.cs" />
-    <Compile Include="Assets\Tests\PlayMode\Unity\TilePlacementTest.cs" />
-    <Compile Include="Assets\Tests\PlayMode\Unity\UnityTileHighlighterTests.cs" />
+    <Compile Include="Assets\BOXOPHOBIC\Utils\Scripts\SettingsUtils\SettingsData.cs" />
+    <Compile Include="Assets\BOXOPHOBIC\Utils\Scripts\StyledInspector\StyledBanner.cs" />
+    <Compile Include="Assets\BOXOPHOBIC\Utils\Scripts\StyledInspector\StyledButton.cs" />
+    <Compile Include="Assets\BOXOPHOBIC\Utils\Scripts\StyledInspector\StyledCategory.cs" />
+    <Compile Include="Assets\BOXOPHOBIC\Utils\Scripts\StyledInspector\StyledIndent.cs" />
+    <Compile Include="Assets\BOXOPHOBIC\Utils\Scripts\StyledInspector\StyledInteractive.cs" />
+    <Compile Include="Assets\BOXOPHOBIC\Utils\Scripts\StyledInspector\StyledMessage.cs" />
+    <Compile Include="Assets\BOXOPHOBIC\Utils\Scripts\StyledInspector\StyledPopupArray.cs" />
+    <Compile Include="Assets\BOXOPHOBIC\Utils\Scripts\StyledInspector\StyledPopupLayers.cs" />
+    <Compile Include="Assets\BOXOPHOBIC\Utils\Scripts\StyledInspector\StyledRangeOptions.cs" />
+    <Compile Include="Assets\BOXOPHOBIC\Utils\Scripts\StyledInspector\StyledSpace.cs" />
+    <Compile Include="Assets\BOXOPHOBIC\Utils\Scripts\StyledInspector\StyledText.cs" />
+    <Compile Include="Assets\BOXOPHOBIC\Utils\Scripts\StyledInspector\StyledTexturePreview.cs" />
+    <Compile Include="Assets\BOXOPHOBIC\Utils\Scripts\StyledMono\StyledMonoBehaviour.cs" />
+    <Compile Include="Assets\BOXOPHOBIC\Utils\Scripts\StyledMono\StyledScriptableObject.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\Tests\PlayMode\PlayMode.asmdef" />
+    <None Include="Assets\BOXOPHOBIC\Utils\Scripts\Boxophobic.Utils.Scripts.asmdef" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

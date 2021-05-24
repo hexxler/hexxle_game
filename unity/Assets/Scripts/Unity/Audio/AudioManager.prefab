@@ -81,3 +81,9 @@ MonoBehaviour:
     pitch: 1
     source: {fileID: 0}
     loop: 0
+  RotationSound:
+    clip: {fileID: 8300000, guid: 0e4ff16fec53fb248bb809e9c2e7403d, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0

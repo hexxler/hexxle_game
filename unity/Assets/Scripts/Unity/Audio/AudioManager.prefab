@@ -70,7 +70,7 @@ MonoBehaviour:
     source: {fileID: 0}
     loop: 0
   backgroundMusics:
-  - clip: {fileID: 8300000, guid: fd91424ef770ab3479f549873c450999, type: 3}
+  - clip: {fileID: 8300000, guid: c0fdcfd3ced7eee418daf55b678d46e6, type: 3}
     volume: 0.1
     pitch: 1
     source: {fileID: 0}

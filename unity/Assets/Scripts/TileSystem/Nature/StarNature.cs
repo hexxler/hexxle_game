@@ -14,7 +14,7 @@ namespace Hexxle.TileSystem.Nature
 
         public override int CalculateWeight()
         {
-            return RelevantCoordinates(new Coordinate(), 0).Count();
+            return RelevantCoordinates(new Coordinate(), 0).Count()-2;
         }
 
         public override IEnumerable<Coordinate> RelevantCoordinates(Coordinate coordinate, int rotation)

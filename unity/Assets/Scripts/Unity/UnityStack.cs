@@ -73,7 +73,6 @@ namespace Hexxle.Unity
                 toDelete.Add(newTile);
                 newTile.transform.SetParent(Content.transform, false);
                 newTile.GetComponent<RawImage>().texture = texture;
-                newTile.GetComponentInChildren<TMP_Text>().text = tile.Nature.Nature.ToString().Substring(0,2) +  "|" + tile.Behaviour.Behaviour.ToString().Substring(0,4);
             }
             stackChanged = false;
         }

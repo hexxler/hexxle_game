@@ -70,13 +70,19 @@ MonoBehaviour:
     source: {fileID: 0}
     loop: 0
   backgroundMusics:
-  - clip: {fileID: 8300000, guid: fd91424ef770ab3479f549873c450999, type: 3}
+  - clip: {fileID: 8300000, guid: c0fdcfd3ced7eee418daf55b678d46e6, type: 3}
     volume: 0.1
     pitch: 1
     source: {fileID: 0}
     loop: 1
   pauseSound:
     clip: {fileID: 8300000, guid: eed2ea265c18ccd41a4b17dab3356010, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0
+  RotationSound:
+    clip: {fileID: 8300000, guid: 0e4ff16fec53fb248bb809e9c2e7403d, type: 3}
     volume: 1
     pitch: 1
     source: {fileID: 0}

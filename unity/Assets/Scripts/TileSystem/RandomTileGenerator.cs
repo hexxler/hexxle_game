@@ -62,11 +62,16 @@ namespace Hexxle.TileSystem
 
         private void FillWeightedBehaviours()
         {
-            foreach(EBehaviour behaviour in Enum.GetValues(typeof(EBehaviour)))
+
+            int maxWeight = Enum.GetValues(typeof(EBehaviour)).Cast<EBehaviour>().ToList()
+                .ConvertAll(x => Tile.CreateBehaviour(x) is ITileBehaviour t ? t.CalculateWeight() : 0)
+                .Max() + 5;
+
+            foreach (EBehaviour behaviour in Enum.GetValues(typeof(EBehaviour)))
             {
                 if(Tile.CreateBehaviour(behaviour) is ITileBehaviour behaviourToAdd && !behaviour.Equals(EBehaviour.None))
                 {
-                    for (int x = 10; x > behaviourToAdd.CalculateWeight(); x--)
+                    for (int x = maxWeight; x > behaviourToAdd.CalculateWeight(); x--)
                     {
                         weightedBehaviours.Add(behaviourToAdd);
                     }
@@ -76,11 +81,16 @@ namespace Hexxle.TileSystem
 
         private void FillWeightedNatures()
         {
+
+            int maxWeight = Enum.GetValues(typeof(ENature)).Cast<ENature>().ToList()
+                .ConvertAll(x => Tile.CreateNature(x) is ITileNature t ? t.CalculateWeight() : 0)
+                .Max() + 5;
+
             foreach (ENature nature in Enum.GetValues(typeof(ENature)))
             {
                 if(Tile.CreateNature(nature) is ITileNature natureToAdd)
                 {
-                    for (int x = 10; x > natureToAdd.CalculateWeight(); x--)
+                    for (int x = maxWeight; x > natureToAdd.CalculateWeight(); x--)
                     {
                         weightedNatures.Add(natureToAdd);
                     }
@@ -90,10 +100,10 @@ namespace Hexxle.TileSystem
 
         private void FillWeightedTypes()
         {
-
             int maxWeight = Enum.GetValues(typeof(EType)).Cast<EType>().ToList()
                 .ConvertAll(x => Tile.CreateType(x) is ITileType t ? t.CalculateWeight() : 0)
-                .Max() + 1;
+                .Max() + 5;
+
             foreach (EType type in Enum.GetValues(typeof(EType)))
             {
                 if (Tile.CreateType(type) is ITileType typeToAdd && !type.Equals(EType.None) && !type.Equals(EType.Void))
